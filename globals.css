@@ -1,0 +1,60 @@
+@import "tailwindcss";
+
+:root {
+  --pk: #f9a8d4;
+  --pk2: #ec4899;
+  --pk3: #be185d;
+  --bg: #fff8fb;
+  --bg2: #fff0f7;
+  --text: #1a0812;
+  --sub: #9d4e73;
+  --muted: #c794ad;
+  --bdr: rgba(249, 168, 212, 0.25);
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  background: var(--bg);
+  color: var(--text);
+  font-family: "Helvetica Neue", Arial, "Hiragino Kaku Gothic ProN",
+    "Hiragino Sans", sans-serif;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* prefers-reduced-motion */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
+
+/* ticker animation */
+@keyframes ticker {
+  from { transform: translateX(0); }
+  to   { transform: translateX(-50%); }
+}
+.animate-ticker {
+  animation: ticker 22s linear infinite;
+}
+
+/* gradient orb pulse */
+@keyframes pulse-orb {
+  0%, 100% { opacity: 0.15; }
+  50%       { opacity: 0.25; }
+}
+.animate-orb {
+  animation: pulse-orb 6s ease-in-out infinite;
+}
