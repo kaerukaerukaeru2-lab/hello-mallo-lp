@@ -1,0 +1,534 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Hello ∵ Mallo（ハローマロー）| 大阪発ガールズアイドルグループ</title>
+<meta name="description" content="不完全で、まぶしくて、少しだけ泣きそうな女の子たち。マシュマロみたいにやわらかい心で、大阪から世界へ夢を届けるガールズアイドルグループ「Hello ∵ Mallo」公式ランディングページ。2026年9月12日デビューワンマンLIVE開催。">
+<meta name="keywords" content="Hello Mallo,ハローマロー,大阪アイドル,地下アイドル,ガールズアイドル,デビュー,2026">
+<meta property="og:title" content="Hello ∵ Mallo（ハローマロー）">
+<meta property="og:description" content="やわらかいから強い。大阪発ガールズアイドルグループ 2026.9.12デビュー">
+<meta property="og:image" content="images/ogp.jpg">
+<meta property="og:type" content="website">
+<meta property="og:locale" content="ja_JP">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:site" content="@_HelloMallo">
+<meta name="twitter:title" content="Hello ∵ Mallo（ハローマロー）">
+<meta name="twitter:description" content="やわらかいから強い。大阪発ガールズアイドルグループ 2026.9.12デビュー">
+<meta name="twitter:image" content="images/ogp.jpg">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "MusicGroup",
+  "name": "Hello ∵ Mallo",
+  "alternateName": "ハローマロー",
+  "description": "大阪発ガールズアイドルグループ。2026年9月12日デビューワンマンLIVE。",
+  "sameAs": [
+    "https://x.com/_HelloMallo",
+    "https://www.instagram.com/_hellomallo",
+    "https://www.tiktok.com/@_hellomallo"
+  ],
+  "foundingLocation": { "@type": "Place", "name": "大阪" }
+}
+</script>
+<style>
+:root {
+  --pk: #f9a8d4;
+  --pk2: #ec4899;
+  --pk3: #be185d;
+  --bg: #fff8fb;
+  --bg2: #fff0f7;
+  --text: #1a0812;
+  --sub: #9d4e73;
+  --muted: #c794ad;
+  --bdr: rgba(249, 168, 212, 0.25);
+}
+* { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+body {
+  background: var(--bg);
+  color: var(--text);
+  font-family: "Helvetica Neue", Arial, "Hiragino Kaku Gothic ProN", "Hiragino Sans", sans-serif;
+  -webkit-font-smoothing: antialiased;
+}
+img { display: block; max-width: 100%; }
+a { text-decoration: none; }
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
+@keyframes ticker { from { transform: translateX(0); } to { transform: translateX(-50%); } }
+.animate-ticker { animation: ticker 22s linear infinite; }
+@keyframes pulse-orb { 0%, 100% { opacity: 0.15; } 50% { opacity: 0.25; } }
+.animate-orb { animation: pulse-orb 6s ease-in-out infinite; }
+
+/* ===== Nav ===== */
+header.nav {
+  position: sticky; top: 0; z-index: 50;
+  display: flex; align-items: center; justify-content: space-between;
+  padding: 12px 24px;
+  background: rgba(255,248,251,0.92);
+  backdrop-filter: blur(12px);
+  border-bottom: 0.5px solid var(--bdr);
+}
+.nav-logo { height: 32px; }
+.nav-logo img { height: 100%; object-fit: contain; }
+.nav-links { display: none; align-items: center; gap: 20px; }
+.nav-links a { font-size: 11px; letter-spacing: 0.15em; color: var(--sub); }
+@media (min-width: 768px) { .nav-links { display: flex; } }
+.nav-sns { display: flex; align-items: center; gap: 6px; }
+.icon-btn {
+  display: flex; align-items: center; justify-content: center;
+  width: 24px; height: 24px; border-radius: 999px;
+  font-size: 10px; color: var(--sub);
+  background: var(--bg2); border: 0.5px solid var(--bdr);
+  transition: opacity .2s;
+}
+.icon-btn:hover { opacity: .7; }
+
+/* ===== Hero ===== */
+.hero { position: relative; display: grid; grid-template-columns: 1fr; min-height: 420px; align-items: center; overflow: hidden; }
+@media (min-width: 768px) { .hero { grid-template-columns: 1fr 1fr; } }
+.hero-left { position: relative; z-index: 10; padding: 64px 32px; }
+.eyebrow { display: flex; align-items: center; gap: 8px; margin-bottom: 20px; font-size: 10px; text-transform: uppercase; letter-spacing: 0.22em; color: var(--pk2); }
+.eyebrow .line { display: inline-block; width: 20px; height: 1px; background: var(--pk2); }
+.debut-badge {
+  display: inline-flex; align-items: center; gap: 8px; margin-bottom: 16px;
+  padding: 8px 16px; border-radius: 999px; font-size: 12px; font-weight: 600; color: #fff;
+  background: linear-gradient(135deg, var(--pk2), var(--pk3));
+}
+.debut-badge .big { font-size: 15px; font-weight: 700; }
+.debut-badge .small { font-size: 11px; opacity: .9; }
+.hero-logo { position: relative; margin-bottom: 8px; height: 64px; width: 176px; }
+.hero-logo img { height: 100%; object-fit: contain; object-position: left; }
+.hero-yomi { margin-bottom: 20px; font-size: 10px; letter-spacing: 0.22em; color: var(--muted); }
+.hero-copy { margin-bottom: 28px; max-width: 280px; font-size: 12px; line-height: 1.9; color: var(--sub); }
+.hero-cta { display: flex; flex-wrap: wrap; gap: 8px; }
+.btn-dark { border-radius: 999px; padding: 10px 20px; font-size: 11px; font-weight: 500; color: #fff; background: var(--text); transition: opacity .2s; }
+.btn-dark:hover { opacity: .8; }
+.btn-outline { border-radius: 999px; padding: 10px 20px; font-size: 11px; color: var(--sub); border: 0.5px solid rgba(157,78,115,0.3); transition: opacity .2s; }
+.btn-outline:hover { opacity: .7; }
+.hero-right { position: relative; display: none; min-height: 420px; }
+@media (min-width: 768px) { .hero-right { display: block; } }
+.hero-right .bgGrad { position: absolute; inset: 0; background: linear-gradient(135deg,#fce7f3 0%,#fbcfe8 40%,#f9a8d4 70%,#f472b6 100%); }
+.hero-right .photo { position: absolute; inset: 0; display: flex; align-items: flex-end; justify-content: center; }
+.hero-right .photo img { width: 100%; height: 100%; object-fit: cover; object-position: top; }
+.hero-right .fade { position: absolute; inset: 0; background: linear-gradient(to right, var(--bg) 0%, transparent 30%); }
+
+/* ===== Ticker ===== */
+.ticker-wrap {
+  overflow: hidden; white-space: nowrap;
+  border-top: 0.5px solid var(--bdr); border-bottom: 0.5px solid var(--bdr);
+  background: linear-gradient(90deg,#fdf2f8,#fff8fb,#fdf2f8);
+  padding: 10px 0;
+}
+.ticker-inner { display: inline-flex; gap: 32px; }
+.ticker-item { display: flex; align-items: center; gap: 32px; }
+.ticker-item span.txt { font-size: 10px; text-transform: uppercase; letter-spacing: 0.22em; color: var(--pk2); }
+.ticker-item span.dash { color: var(--pk); opacity: .5; }
+
+/* ===== Story ===== */
+.section { padding: 56px 28px; background: #fff; }
+.section-label {
+  display: flex; align-items: center; gap: 10px; margin-bottom: 20px;
+  font-size: 10px; text-transform: uppercase; letter-spacing: 0.26em; color: var(--pk2);
+}
+.section-label .line { display: inline-block; width: 16px; height: 1px; background: var(--pk2); }
+.story-grid { display: grid; grid-template-columns: 1fr; gap: 28px; }
+@media (min-width: 768px) { .story-grid { grid-template-columns: 1fr 1fr; } }
+.story-quote { font-size: 20px; font-weight: 300; line-height: 1.6; color: var(--text); border-left: 2px solid var(--pk2); padding-left: 18px; }
+.story-quote em { color: var(--pk2); font-style: normal; }
+.story-body { font-size: 12px; line-height: 2.1; color: var(--sub); }
+.story-body br + br { display: none; }
+
+/* ===== Members ===== */
+.members-section { padding: 56px 28px; background: var(--bg2); }
+.members-title { margin-bottom: 24px; font-size: 22px; font-weight: 400; color: var(--text); }
+.members-grid { display: none; gap: 12px; }
+@media (min-width: 640px) { .members-grid { display: grid; grid-template-columns: 1fr 1fr; } }
+@media (min-width: 1024px) { .members-grid { grid-template-columns: 1fr 1fr 1fr; } }
+.members-carousel {
+  display: flex; gap: 12px; overflow-x: auto; padding-bottom: 16px;
+  scroll-snap-type: x mandatory; scrollbar-width: none;
+}
+.members-carousel::-webkit-scrollbar { display: none; }
+@media (min-width: 640px) { .members-carousel { display: none; } }
+.member-card-wrap { flex: none; width: 72vw; scroll-snap-align: start; }
+.member-card {
+  overflow: hidden; border-radius: 16px; background: #fff; border: 0.5px solid var(--bdr);
+  transition: transform .2s;
+}
+.member-card:hover { transform: translateY(-4px); }
+.member-photo { position: relative; aspect-ratio: 3/4; overflow: hidden; }
+.member-photo .fallback { position: absolute; inset: 0; }
+.member-photo img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; object-position: top; }
+.member-photo .badge-num, .member-photo .badge-trainee {
+  position: absolute; top: 10px; border-radius: 999px; padding: 2px 6px;
+  font-size: 9px; letter-spacing: 0.1em; color: rgba(255,255,255,0.85);
+}
+.member-photo .badge-num { left: 10px; background: rgba(0,0,0,0.12); }
+.member-photo .badge-trainee { right: 10px; background: rgba(255,255,255,0.2); }
+.member-photo .colorbar { position: absolute; bottom: 0; left: 0; right: 0; height: 3px; }
+.member-text { padding: 14px 12px 12px; }
+.member-name { font-size: 15px; font-weight: 500; color: var(--text); }
+.member-yomi { margin-bottom: 8px; font-size: 10px; letter-spacing: 0.1em; color: var(--muted); }
+.member-bio {
+  margin-bottom: 10px; font-size: 10px; line-height: 1.7; color: var(--sub);
+  display: -webkit-box; -webkit-line-clamp: 3; -webkit-box-orient: vertical; overflow: hidden;
+}
+.member-sns { display: flex; gap: 6px; }
+.member-sns a {
+  border-radius: 999px; padding: 2px 10px; font-size: 10px; color: var(--sub);
+  background: var(--bg2); border: 0.5px solid var(--bdr); transition: all .2s;
+}
+
+/* ===== Links ===== */
+.links-title { margin-bottom: 28px; font-size: 22px; font-weight: 400; color: var(--text); }
+.links-subhead {
+  margin-bottom: 12px; padding-bottom: 8px; font-size: 10px; text-transform: uppercase;
+  letter-spacing: 0.18em; color: var(--muted); border-bottom: 1px solid var(--bdr);
+}
+.links-group { display: grid; grid-template-columns: 1fr; gap: 8px; margin-bottom: 32px; }
+@media (min-width: 640px) { .links-group { grid-template-columns: 1fr 1fr 1fr; } }
+.link-row {
+  display: flex; align-items: center; gap: 12px; border-radius: 12px; padding: 12px;
+  background: #fff; border: 0.5px solid var(--bdr); transition: border-color .2s;
+}
+.link-row:hover { border-color: var(--pk2); }
+.link-icon {
+  flex-shrink: 0; display: flex; align-items: center; justify-content: center;
+  width: 32px; height: 32px; border-radius: 9px; font-size: 14px;
+}
+.link-info p:first-child { font-size: 12px; font-weight: 500; color: var(--text); }
+.link-info p:last-child { font-size: 10px; color: var(--muted); }
+.link-arrow { margin-left: auto; font-size: 12px; color: var(--muted); }
+.links-members { display: grid; grid-template-columns: 1fr; gap: 8px; }
+@media (min-width: 640px) { .links-members { grid-template-columns: 1fr 1fr; } }
+.link-member-icon { width: 32px; height: 32px; border-radius: 9px; display: flex; align-items: center; justify-content: center; font-size: 11px; font-weight: 600; flex-shrink: 0; }
+.link-member-sns { display: flex; gap: 6px; margin-top: 6px; }
+.link-member-sns a { border-radius: 999px; padding: 2px 8px; font-size: 10px; color: var(--sub); background: var(--bg2); border: 0.5px solid var(--bdr); }
+
+/* ===== Final CTA ===== */
+.cta-section {
+  position: relative; overflow: hidden; padding: 80px 28px; text-align: center;
+  background: linear-gradient(140deg,#fdf2f8 0%,#fce7f3 30%,#fbcfe8 60%,#f9a8d4 100%);
+}
+.orb { position: absolute; pointer-events: none; border-radius: 999px; }
+.orb1 { right: -64px; top: -96px; width: 320px; height: 320px; background: rgba(255,255,255,0.15); }
+.orb2 { bottom: -48px; left: -40px; width: 192px; height: 192px; background: rgba(255,255,255,0.12); animation-delay: 3s; }
+.cta-eyebrow { position: relative; margin-bottom: 12px; font-size: 10px; text-transform: uppercase; letter-spacing: 0.26em; color: var(--pk3); opacity: .7; }
+.cta-sub { position: relative; margin-bottom: 6px; font-size: 11px; text-transform: uppercase; letter-spacing: 0.18em; color: var(--pk3); }
+.cta-date { position: relative; margin-bottom: 4px; font-size: 48px; font-weight: 300; line-height: 1; letter-spacing: -0.03em; color: var(--text); }
+.cta-title { position: relative; margin-bottom: 6px; font-size: 13px; font-weight: 500; color: var(--pk3); }
+.cta-loc { position: relative; margin-bottom: 16px; font-size: 12px; color: var(--sub); }
+.countdown {
+  position: relative; margin-bottom: 32px; display: inline-block; border-radius: 999px;
+  padding: 8px 24px; font-size: 13px; font-weight: 500; color: var(--pk3);
+  background: rgba(255,255,255,0.55); backdrop-filter: blur(8px); border: 0.5px solid rgba(236,72,153,0.2);
+}
+.cal-btns { position: relative; display: flex; flex-wrap: wrap; justify-content: center; gap: 8px; }
+.cal-btn {
+  display: flex; align-items: center; gap: 6px; border-radius: 999px; padding: 10px 16px;
+  font-size: 11px; font-weight: 500; cursor: pointer; transition: opacity .2s; border: none; font-family: inherit;
+}
+.cal-btn.google { background: var(--pk3); color: #fff; border: 1px solid var(--pk3); }
+.cal-btn.other { color: var(--pk3); background: rgba(255,255,255,0.6); backdrop-filter: blur(4px); border: 1px solid rgba(190,24,93,0.3); }
+.cal-btn:hover { opacity: .85; }
+
+/* ===== Footer ===== */
+footer {
+  display: flex; align-items: center; justify-content: space-between;
+  padding: 24px 28px; background: #fff; border-top: 0.5px solid var(--bdr);
+}
+footer .brand { font-size: 12px; font-weight: 500; color: var(--sub); }
+footer .brand .dot { color: var(--pk2); }
+footer .copyright { font-size: 10px; letter-spacing: 0.04em; color: var(--muted); }
+</style>
+</head>
+<body>
+
+<header class="nav">
+  <div class="nav-logo"><img src="images/logo.png" alt="Hello ∵ Mallo" onerror="this.style.display='none'"></div>
+  <nav class="nav-links">
+    <a href="#concept">Concept</a>
+    <a href="#members">Members</a>
+    <a href="#news">News</a>
+    <a href="#links">Links</a>
+  </nav>
+  <div class="nav-sns" id="navSns"></div>
+</header>
+
+<section class="hero">
+  <div class="hero-left">
+    <p class="eyebrow"><span class="line"></span>Osaka Girls Idol Group</p>
+    <div class="debut-badge">
+      <span>🎤</span>
+      <span class="big">2026.9.12</span>
+      <span class="small">デビューワンマンLIVE</span>
+    </div>
+    <div class="hero-logo"><img src="images/logo.png" alt="Hello ∵ Mallo" onerror="this.style.display='none'"></div>
+    <p class="hero-yomi">ハローマロー</p>
+    <p class="hero-copy">
+      不完全で、まぶしくて、少しだけ泣きそうな女の子たち。<br>
+      マシュマロみたいにやわらかい心で、<br>
+      大阪から世界へ夢を届ける。
+    </p>
+    <div class="hero-cta">
+      <a href="#members" class="btn-dark">Members →</a>
+      <a href="https://x.com/_HelloMallo" target="_blank" rel="noopener noreferrer" class="btn-outline">SNSをフォロー</a>
+    </div>
+  </div>
+  <div class="hero-right">
+    <div class="bgGrad"></div>
+    <div class="photo"><img src="images/group.jpg" alt="Hello ∵ Mallo メンバー集合写真" onerror="this.style.display='none'"></div>
+    <div class="fade"></div>
+  </div>
+</section>
+
+<div class="ticker-wrap">
+  <div class="ticker-inner animate-ticker" id="tickerInner"></div>
+</div>
+
+<section id="concept" class="section">
+  <p class="section-label"><span class="line"></span>Story</p>
+  <div class="story-grid">
+    <blockquote class="story-quote">
+      甘くて儚いだけじゃない、<br>
+      <em>“やわらかいから強い”</em><br>
+      女の子たちの物語。
+    </blockquote>
+    <p class="story-body">
+      迷いながら、傷つきながら、それぞれの色を隠さずに、ありのままの自分でステージに立つ。<br><br>
+      その一瞬のきらめきが、誰かの明日を少しだけ明るくする。<br><br>
+      Hello ∵ Mallo は、ひとりひとりの個性をそのまま抱きしめて、マシュマロみたいにやわらかい心で、大阪から世界へ夢を届けるガールズアイドルグループです。
+    </p>
+  </div>
+</section>
+
+<section id="members" class="members-section">
+  <p class="section-label"><span class="line"></span>Members</p>
+  <h2 class="members-title">6人のメンバー</h2>
+  <div class="members-grid" id="membersGrid"></div>
+  <div class="members-carousel" id="membersCarousel"></div>
+</section>
+
+<section id="links" class="section">
+  <p class="section-label"><span class="line"></span>Links</p>
+  <h2 class="links-title">公式SNS &amp; リンク</h2>
+  <p class="links-subhead">Group Official</p>
+  <div class="links-group" id="groupLinks"></div>
+  <p class="links-subhead">Members</p>
+  <div class="links-members" id="memberLinks"></div>
+</section>
+
+<section class="cta-section">
+  <div class="orb orb1 animate-orb"></div>
+  <div class="orb orb2 animate-orb"></div>
+  <p class="cta-eyebrow">Debut Live</p>
+  <p class="cta-sub">デビューワンマンLIVE</p>
+  <p class="cta-date">2026.9.12</p>
+  <p class="cta-title">🎤 Hello ∵ Mallo デビューワンマンLIVE</p>
+  <p class="cta-loc">📍 大阪</p>
+  <div class="countdown" id="countdown">計算中...</div>
+  <div class="cal-btns">
+    <a href="#" id="googleCalBtn" target="_blank" rel="noopener noreferrer" class="cal-btn google">📅 Google Calendar</a>
+    <button onclick="downloadIcs()" class="cal-btn other">🍎 Apple / ICS</button>
+    <a href="#" id="outlookCalBtn" target="_blank" rel="noopener noreferrer" class="cal-btn other">📆 Outlook</a>
+  </div>
+</section>
+
+<footer>
+  <div class="brand">Hello <span class="dot">∵</span> Mallo</div>
+  <p class="copyright">© 2026 Hello ∵ Mallo. All rights reserved.</p>
+</footer>
+
+<script>
+// ===== データ =====
+const GROUP_SNS = {
+  x: "https://x.com/_HelloMallo",
+  instagram: "https://www.instagram.com/_hellomallo",
+  tiktok: "https://www.tiktok.com/@_hellomallo",
+};
+const DEBUT_DATE = "2026-09-12T00:00:00+09:00";
+
+const MEMBERS = [
+  { id: 1, name: "月兎 まる", yomi: "つきと まる", color: "#ef4444", colorLight: "#fecdd3",
+    bio: "赤いリボンがトレードマークの、真面目で負けず嫌いなかぐや姫。まるの魅力をまるっと全部受け止めて、夜空の月まで一緒に連れていってあげるね。",
+    image: "maru.jpg",
+    sns: { x: "https://x.com/mallo_maru0", instagram: "https://www.instagram.com/mallo_maru0", tiktok: "https://www.tiktok.com/@mallo_maru" } },
+  { id: 2, name: "苺乃 みぃみ", yomi: "いちの みぃみ", color: "#ec4899", colorLight: "#fbcfe8",
+    bio: "うさぎのようにぴょんぴょん跳ねるおんなのこ。ちょっぴり泣き虫だけど、可愛いだけじゃ終わらない。やわらかくて強い魅力でみんなをメロメロにしちゃいます。",
+    image: "miimi.jpg",
+    sns: { x: "https://x.com/mallo_miimi", instagram: "https://www.instagram.com/mallo_miimi", tiktok: "https://www.tiktok.com/@mallo_miimi" } },
+  { id: 3, name: "月島 せいら", yomi: "つきしま せいら", color: "#f97316", colorLight: "#fed7aa",
+    bio: "みんなに元気を届けるビタミン剤！「にゃ〜」と鳴いちゃう犬のように、褒めるとすぐ懐く寂しがり屋。目を離すと逃げちゃうのでしっかり見ていてね。",
+    image: "seira.jpg",
+    sns: { x: "https://x.com/mallo_seira", instagram: "https://www.instagram.com/mallo_seira", tiktok: "https://www.tiktok.com/@mallo_seira" } },
+  { id: 4, name: "白雪 りずむ", yomi: "しらゆき りずむ", color: "#3b82f6", colorLight: "#bfdbfe",
+    bio: "美味しいものをモグモグ食べることが大好きな、ふわふわ小動物系女子。ときどき慌てちゃうけれど、ステージではいつでも本気のリズムを刻み歌うよ。",
+    image: "rhythm.jpg",
+    sns: { x: "https://x.com/mallo_rhythm", instagram: "https://www.instagram.com/mallo_rhythm", tiktok: "https://www.tiktok.com/@mallo_rhythm" } },
+  { id: 5, name: "秋風 ミミ澪", yomi: "あきかぜ みみお", color: "#eab308", colorLight: "#fef08a",
+    bio: "笑うとパッとまわりを照らす、太陽のようにハッピーなヒロイン。ハチャメチャに見えて実は努力家。目で追っているうちに、すぐお隣にいるかも……？",
+    image: "mimio.jpg",
+    sns: { x: "https://x.com/mallo_mimimio", instagram: "https://www.instagram.com/mallo_mimimio", tiktok: "https://www.tiktok.com/@mimimiodayo" } },
+  { id: 6, name: "東雲 ふりる", yomi: "しののめ ふりる", color: "#10b981", colorLight: "#a7f3d0",
+    bio: "夜明けの空のような、圧倒的な透明感をまとったおしとやかな存在。その美しいひと声で誰もが振り返る、甘く優しい「ふりるの魔法」にかかってね。",
+    image: "furiru.jpg",
+    sns: { x: "https://x.com/mallo_furiru", instagram: "https://www.instagram.com/mallo.furiru", tiktok: "https://www.tiktok.com/@mallo_furiru" } },
+];
+
+// ===== SNSアイコン共通 =====
+function snsIcons(sns, sizeClass) {
+  return [
+    { href: sns.x, label: "X", icon: "𝕏" },
+    { href: sns.instagram, label: "Instagram", icon: "📸" },
+    { href: sns.tiktok, label: "TikTok", icon: "♪" },
+  ].map(s =>
+    `<a href="${s.href}" target="_blank" rel="noopener noreferrer" aria-label="${s.label}" class="${sizeClass}">${s.icon}</a>`
+  ).join("");
+}
+
+// ===== Nav SNS =====
+document.getElementById("navSns").innerHTML = snsIcons(GROUP_SNS, "icon-btn");
+
+// ===== Ticker =====
+const TICKER_ITEMS = ["Hello ∵ Mallo", "Osaka", "Debut 2026.9.12", "やわらかいから強い", "6 Members", "Girls Idol Group"];
+const doubled = [...TICKER_ITEMS, ...TICKER_ITEMS];
+document.getElementById("tickerInner").innerHTML = doubled.map(item =>
+  `<span class="ticker-item"><span class="txt">${item}</span><span class="dash">—</span></span>`
+).join("");
+
+// ===== Member Card HTML =====
+function memberCardHtml(m) {
+  const num = String(m.id).padStart(2, "0");
+  return `
+    <article class="member-card">
+      <div class="member-photo">
+        <div class="fallback" style="background:linear-gradient(160deg,#fff1f2,${m.colorLight},${m.color})"></div>
+        <img src="images/${m.image}" alt="${m.name}" loading="lazy" onerror="this.style.display='none'">
+        <span class="badge-num">${num}</span>
+        <span class="badge-trainee">練習生</span>
+        <div class="colorbar" style="background:${m.color}"></div>
+      </div>
+      <div class="member-text">
+        <p class="member-name">${m.name}</p>
+        <p class="member-yomi">${m.yomi}</p>
+        <p class="member-bio">${m.bio}</p>
+        <div class="member-sns">${snsIcons(m.sns, "")}</div>
+      </div>
+    </article>`;
+}
+
+document.getElementById("membersGrid").innerHTML = MEMBERS.map(memberCardHtml).join("");
+document.getElementById("membersCarousel").innerHTML = MEMBERS.map(m =>
+  `<div class="member-card-wrap">${memberCardHtml(m)}</div>`
+).join("");
+
+// ===== Links section =====
+const groupLinksData = [
+  { href: GROUP_SNS.x, label: "公式 X", handle: "@_HelloMallo", icon: "𝕏", bg: "#f0f0f0" },
+  { href: GROUP_SNS.instagram, label: "Instagram", handle: "@_hellomallo", icon: "📸", bg: "linear-gradient(135deg,#fce7f3,#fbcfe8)" },
+  { href: GROUP_SNS.tiktok, label: "TikTok", handle: "@_hellomallo", icon: "♪", bg: "#f0fdf4" },
+];
+document.getElementById("groupLinks").innerHTML = groupLinksData.map(s => `
+  <a href="${s.href}" target="_blank" rel="noopener noreferrer" class="link-row">
+    <div class="link-icon" style="background:${s.bg}">${s.icon}</div>
+    <div class="link-info"><p>${s.label}</p><p>${s.handle}</p></div>
+    <span class="link-arrow">→</span>
+  </a>`).join("");
+
+document.getElementById("memberLinks").innerHTML = MEMBERS.map(m => {
+  const initials = m.name.split(" ")[1] ? m.name.split(" ")[1].slice(0, 3) : m.name.slice(0, 2);
+  return `
+    <div class="link-row">
+      <div class="link-member-icon" style="background:linear-gradient(135deg,#fff1f2,${m.colorLight});color:${m.color}">${initials}</div>
+      <div class="link-info" style="flex:1;min-width:0">
+        <p>${m.name}</p>
+        <div class="link-member-sns">${snsIcons(m.sns, "")}</div>
+      </div>
+      <span class="link-arrow">→</span>
+    </div>`;
+}).join("");
+
+// ===== カウントダウン =====
+function updateCountdown() {
+  const diff = new Date(DEBUT_DATE).getTime() - Date.now();
+  const el = document.getElementById("countdown");
+  if (diff > 0) {
+    const days = Math.ceil(diff / 86400000);
+    el.textContent = `デビューまで あと ${days} 日`;
+  } else {
+    el.textContent = "🎉 本日デビュー！";
+  }
+}
+updateCountdown();
+setInterval(updateCountdown, 60000);
+
+// ===== カレンダー登録 =====
+const EVENT = {
+  title: "Hello ∵ Mallo デビューワンマンLIVE",
+  location: "大阪",
+  detail: "Hello ∵ Mallo（ハローマロー）デビューワンマンLIVE\nhttps://x.com/_HelloMallo",
+  startDate: "20260912",
+  endDate: "20260913",
+};
+
+function buildGoogleCalUrl() {
+  const params = new URLSearchParams({
+    action: "TEMPLATE",
+    text: EVENT.title,
+    dates: `${EVENT.startDate}/${EVENT.endDate}`,
+    details: EVENT.detail,
+    location: EVENT.location,
+  });
+  return `https://calendar.google.com/calendar/render?${params.toString()}`;
+}
+
+function buildOutlookCalUrl() {
+  const params = new URLSearchParams({
+    path: "/calendar/action/compose",
+    rru: "addevent",
+    subject: EVENT.title,
+    startdt: "2026-09-12",
+    enddt: "2026-09-12",
+    body: EVENT.detail,
+    location: EVENT.location,
+  });
+  return `https://outlook.live.com/calendar/0/deeplink/compose?${params.toString()}`;
+}
+
+function buildIcsContent() {
+  const uid = "hello-mallo-debut-20260912@hellomallo";
+  const now = new Date().toISOString().replace(/[-:]/g, "").replace(/\.\d{3}/, "");
+  return [
+    "BEGIN:VCALENDAR", "VERSION:2.0", "PRODID:-//Hello Mallo LP//JP",
+    "CALSCALE:GREGORIAN", "METHOD:PUBLISH", "BEGIN:VEVENT",
+    `UID:${uid}`, `DTSTAMP:${now}Z`,
+    `DTSTART;VALUE=DATE:${EVENT.startDate}`, `DTEND;VALUE=DATE:${EVENT.endDate}`,
+    `SUMMARY:${EVENT.title}`, `LOCATION:${EVENT.location}`,
+    `DESCRIPTION:${EVENT.detail.replace(/\n/g, "\\n")}`,
+    "END:VEVENT", "END:VCALENDAR",
+  ].join("\r\n");
+}
+
+function downloadIcs() {
+  const content = buildIcsContent();
+  const blob = new Blob([content], { type: "text/calendar;charset=utf-8" });
+  const url = URL.createObjectURL(blob);
+  const a = document.createElement("a");
+  a.href = url;
+  a.download = "hello-mallo-debut.ics";
+  a.click();
+  URL.revokeObjectURL(url);
+}
+
+document.getElementById("googleCalBtn").href = buildGoogleCalUrl();
+document.getElementById("outlookCalBtn").href = buildOutlookCalUrl();
+</script>
+
+</body>
+</html>
