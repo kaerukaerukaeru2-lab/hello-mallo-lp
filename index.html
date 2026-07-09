@@ -207,8 +207,7 @@ header.nav{position:sticky;top:0;z-index:50;display:flex;align-items:center;just
 .event-card-actions{display:flex;gap:8px;flex-wrap:wrap;}
 .event-ticket-btn{font-size:11px;padding:7px 14px;border-radius:999px;background:var(--pk3);color:#fff;font-weight:500;transition:opacity .2s;}
 .event-ticket-btn:hover{opacity:.85;}
-.event-cal-btn{font-size:10px;padding:6px 12px;border-radius:999px;border:.5px solid var(--bdr);color:var(--sub);background:#fff;cursor:pointer;font-family:inherit;transition:all .2s;}
-.event-cal-btn:hover{border-color:var(--pk2);color:var(--pk2);}
+
 
 /* ===== Links ===== */
 .links-title{margin-bottom:28px;font-size:22px;font-weight:400;color:var(--text);}
@@ -238,11 +237,7 @@ header.nav{position:sticky;top:0;z-index:50;display:flex;align-items:center;just
 .cta-title{position:relative;margin-bottom:6px;font-size:13px;font-weight:500;color:var(--pk3);}
 .cta-loc{position:relative;margin-bottom:16px;font-size:12px;color:var(--sub);}
 .countdown{position:relative;margin-bottom:32px;display:inline-block;border-radius:999px;padding:8px 24px;font-size:13px;font-weight:500;color:var(--pk3);background:rgba(255,255,255,.55);backdrop-filter:blur(8px);border:.5px solid rgba(236,72,153,.2);}
-.cal-btns{position:relative;display:flex;flex-wrap:wrap;justify-content:center;gap:8px;}
-.cal-btn{display:flex;align-items:center;gap:6px;border-radius:999px;padding:10px 16px;font-size:11px;font-weight:500;cursor:pointer;transition:opacity .2s;border:none;font-family:inherit;}
-.cal-btn.google{background:var(--pk3);color:#fff;border:1px solid var(--pk3);}
-.cal-btn.other{color:var(--pk3);background:rgba(255,255,255,.6);backdrop-filter:blur(4px);border:1px solid rgba(190,24,93,.3);}
-.cal-btn:hover{opacity:.85;}
+
 
 /* ===== Footer ===== */
 footer{display:flex;align-items:center;justify-content:space-between;padding:24px 28px;background:#fff;border-top:.5px solid var(--bdr);}
@@ -361,11 +356,7 @@ footer .copyright{font-size:10px;letter-spacing:.04em;color:var(--muted);}
   <p class="cta-title">🎤 Hello ∵ Mallo デビューワンマンLIVE</p>
   <p class="cta-loc">📍 大阪</p>
   <div class="countdown" id="countdown">計算中...</div>
-  <div class="cal-btns">
-    <a href="#" id="googleCalBtn" target="_blank" rel="noopener noreferrer" class="cal-btn google">📅 Google Calendar</a>
-    <button onclick="downloadIcs()" class="cal-btn other">🍎 Apple / ICS</button>
-    <a href="#" id="outlookCalBtn" target="_blank" rel="noopener noreferrer" class="cal-btn other">📆 Outlook</a>
-  </div>
+
 </section>
 
 <footer>
@@ -673,14 +664,13 @@ function renderEventList() {
       : '<div class="event-card-img-ph">🎤</div>';
     var ticketBtn = live.ticketUrl
       ? '<a href="' + live.ticketUrl + '" target="_blank" rel="noopener noreferrer" class="event-ticket-btn">チケット購入 →</a>' : '';
-    var calBtn = '<button class="event-cal-btn" onclick="addLiveCal(\'' + live.date + '\',\'' + live.name + '\',\'' + (live.venue||'') + '\')">📅 カレンダー登録</button>';
     return '<div class="event-card" id="ev-' + live.date + '">' +
       imgHtml +
       '<div class="event-card-body">' +
         '<p class="event-card-date">' + dateStr + '</p>' +
         '<p class="event-card-name">' + live.name + '</p>' +
         '<p class="event-card-venue">📍 ' + (live.venue||'') + '</p>' +
-        '<div class="event-card-actions">' + ticketBtn + calBtn + '</div>' +
+        '<div class="event-card-actions">' + ticketBtn + '</div>' +
       '</div>' +
     '</div>';
   }).join("");
@@ -691,14 +681,7 @@ function scrollToEvent(dateStr) {
   if (el) el.scrollIntoView({ behavior:"smooth", block:"start" });
 }
 
-function addLiveCal(dateStr, title, venue) {
-  var d    = dateStr.replace(/-/g,"");
-  var next = new Date(dateStr + "T00:00:00+09:00");
-  next.setDate(next.getDate() + 1);
-  var dNext = next.toISOString().slice(0,10).replace(/-/g,"");
-  var p = new URLSearchParams({ action:"TEMPLATE", text:title, dates:d+"/"+dNext, location:venue });
-  window.open("https://calendar.google.com/calendar/render?" + p, "_blank");
-}
+
 
 // ============================================================
 // 共通パーツ
@@ -765,34 +748,7 @@ function updateCountdown() {
 updateCountdown();
 setInterval(updateCountdown, 60000);
 
-var DEBUT_EVENT = {
-  title:"Hello ∵ Mallo デビューワンマンLIVE", location:"大阪",
-  detail:"Hello ∵ Mallo（ハローマロー）デビューワンマンLIVE\nhttps://x.com/_HelloMallo",
-  startDate:"20260912", endDate:"20260913",
-};
-function buildGoogleCalUrl() {
-  var p = new URLSearchParams({ action:"TEMPLATE", text:DEBUT_EVENT.title, dates:DEBUT_EVENT.startDate+"/"+DEBUT_EVENT.endDate, details:DEBUT_EVENT.detail, location:DEBUT_EVENT.location });
-  return "https://calendar.google.com/calendar/render?" + p;
-}
-function buildOutlookCalUrl() {
-  var p = new URLSearchParams({ path:"/calendar/action/compose", rru:"addevent", subject:DEBUT_EVENT.title, startdt:"2026-09-12", enddt:"2026-09-12", body:DEBUT_EVENT.detail, location:DEBUT_EVENT.location });
-  return "https://outlook.live.com/calendar/0/deeplink/compose?" + p;
-}
-function buildIcsContent() {
-  var now = new Date().toISOString().replace(/[-:]/g,"").replace(/\.\d{3}/,"");
-  return ["BEGIN:VCALENDAR","VERSION:2.0","PRODID:-//Hello Mallo LP//JP","CALSCALE:GREGORIAN","METHOD:PUBLISH","BEGIN:VEVENT",
-    "UID:hello-mallo-debut-20260912@hellomallo","DTSTAMP:"+now+"Z",
-    "DTSTART;VALUE=DATE:"+DEBUT_EVENT.startDate,"DTEND;VALUE=DATE:"+DEBUT_EVENT.endDate,
-    "SUMMARY:"+DEBUT_EVENT.title,"LOCATION:"+DEBUT_EVENT.location,"DESCRIPTION:"+DEBUT_EVENT.detail.replace(/\n/g,"\\n"),
-    "END:VEVENT","END:VCALENDAR"].join("\r\n");
-}
-function downloadIcs() {
-  var a = document.createElement("a");
-  a.href = URL.createObjectURL(new Blob([buildIcsContent()],{type:"text/calendar;charset=utf-8"}));
-  a.download = "hello-mallo-debut.ics"; a.click();
-}
-document.getElementById("googleCalBtn").href = buildGoogleCalUrl();
-document.getElementById("outlookCalBtn").href = buildOutlookCalUrl();
+
 
 // ============================================================
 // 初期化
