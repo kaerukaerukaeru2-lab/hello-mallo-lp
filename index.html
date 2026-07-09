@@ -216,6 +216,13 @@ header.nav{position:sticky;top:0;z-index:50;display:flex;align-items:center;just
 .event-card-name{font-size:15px;font-weight:500;color:var(--text);margin-bottom:4px;}
 .event-card-venue{font-size:12px;color:var(--sub);margin-bottom:10px;}
 .event-card-actions{display:flex;gap:8px;flex-wrap:wrap;}
+.event-card[data-clickable="1"]{cursor:pointer;}
+.event-card-toggle{display:flex;align-items:center;gap:4px;margin-top:8px;font-size:10px;color:var(--pk2);}
+.event-card-toggle .arrow{display:inline-block;transition:transform .25s ease;}
+.event-card.open .event-card-toggle .arrow{transform:rotate(180deg);}
+.event-card-detail{max-height:0;overflow:hidden;transition:max-height .35s ease;}
+.event-card.open .event-card-detail{max-height:1400px;}
+.event-card-detail-inner{padding-top:10px;margin-top:6px;border-top:.5px solid var(--bdr);font-size:11px;line-height:1.9;color:var(--sub);white-space:pre-wrap;word-break:break-word;}
 .event-ticket-btn{font-size:11px;padding:7px 14px;border-radius:999px;background:var(--pk3);color:#fff;font-weight:500;transition:opacity .2s;}
 .event-ticket-btn:hover{opacity:.85;}
 
@@ -427,11 +434,12 @@ var YOUTUBE = {
 var LIVES = [
   {
     date: "2026-07-19",
-    time: "",
-    name: "真夏のリバープレイス（時間調整中）",
+    time: "12:00",
+    name: "真夏のリバープレイス",
     venue: "リバープレイス",
     image: "",
     ticketUrl: "",
+    detail: "🕐 12:00〜16:00の間で時間調整中",
   },
   {
     date: "2026-07-19",
@@ -440,6 +448,7 @@ var LIVES = [
     venue: "ポルックスシアター",
     image: "",
     ticketUrl: "https://tiget.net/events/499731",
+    detail: "TIGET主催一括受付\nhttps://tiget.net/events/499731\n\n日時：7月19日（日）12:00開場 / 12:15開演 予定\n会場：ポルックスシアター\n料金：前売一般 500円／前方優先1500円 ※1D別 ※当日＋500円\n出演：大阪24区ガールズ、超★NOVA24'、リトルシェノン、NANIkaWA、LOTUS MARRY、キューハチパーセント！、HIGHSPYDOLL、ChanceMovement、リリシック学園、コドモシンカ、ParaMilia、ミケネコガールズ、無花果とマシンガン、Unity、カリフラワー冒険記、ふぁんたす！、TIPINKIT、にゃあにゃあ、M.M.T、OGP研修生、ほか\n\n【撮影に関して】\n優先チケット：静止画可能／動画不可\n一般チケット：静止画動画とも不可\n※静止画撮影は優先エリアからのみ可能。\n※撮影可否は各グループレギュレーションにより異なります。",
   },
   {
     date: "2026-08-01",
@@ -748,7 +757,7 @@ function renderEventList() {
     return;
   }
 
-  cards.innerHTML = monthLives.map(function(live){
+  cards.innerHTML = monthLives.map(function(live, idx){
     var d      = new Date(live.date + "T00:00:00+09:00");
     var dow    = ["日","月","火","水","木","金","土"][d.getDay()];
     var dateStr = (calMonth+1) + "月" + d.getDate() + "日（" + dow + "）" + (live.time ? " " + live.time : "");
@@ -756,21 +765,35 @@ function renderEventList() {
       ? '<img class="event-card-img" src="' + live.image + '" alt="' + live.name + '" onerror="this.style.display=\'none\'">'
       : '<div class="event-card-img-ph">🎤</div>';
     var ticketBtn = live.ticketUrl
-      ? '<a href="' + live.ticketUrl + '" target="_blank" rel="noopener noreferrer" class="event-ticket-btn">チケット購入 →</a>' : '';
-    return '<div class="event-card" id="ev-' + live.date + '">' +
+      ? '<a href="' + live.ticketUrl + '" target="_blank" rel="noopener noreferrer" class="event-ticket-btn" onclick="event.stopPropagation()">🎟 チケット購入 →</a>' : '';
+    var cardId = "ev-" + live.date + "-" + idx;
+    var hasDetail = !!live.detail;
+    var toggleHtml = hasDetail
+      ? '<p class="event-card-toggle">詳細あり <span class="arrow">▾</span></p>' : '';
+    var detailHtml = hasDetail
+      ? '<div class="event-card-detail"><div class="event-card-detail-inner">' + live.detail.replace(/\n/g,'<br>') + '</div></div>' : '';
+    var clickAttr = hasDetail ? ' data-clickable="1" onclick="toggleEventCard(\'' + cardId + '\')"' : '';
+    return '<div class="event-card" id="' + cardId + '" data-date="' + live.date + '"' + clickAttr + '>' +
       imgHtml +
       '<div class="event-card-body">' +
         '<p class="event-card-date">' + dateStr + '</p>' +
         '<p class="event-card-name">' + live.name + '</p>' +
         '<p class="event-card-venue">📍 ' + (live.venue||'') + '</p>' +
+        toggleHtml +
+        detailHtml +
         '<div class="event-card-actions">' + ticketBtn + '</div>' +
       '</div>' +
     '</div>';
   }).join("");
 }
 
+function toggleEventCard(cardId) {
+  var el = document.getElementById(cardId);
+  if (el) el.classList.toggle("open");
+}
+
 function scrollToEvent(dateStr) {
-  var el = document.getElementById("ev-" + dateStr);
+  var el = document.querySelector('[data-date="' + dateStr + '"]');
   if (el) el.scrollIntoView({ behavior:"smooth", block:"start" });
 }
 
