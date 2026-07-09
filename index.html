@@ -62,7 +62,7 @@ header.nav{position:sticky;top:0;z-index:50;display:flex;align-items:center;just
 .hero-slide{position:absolute;inset:0;opacity:0;transition:opacity .8s ease;pointer-events:none;}
 .hero-slide.active{opacity:1;pointer-events:auto;}
 @media(min-width:768px){.hero-slide{display:grid;grid-template-columns:1fr 1fr;align-items:center;}}
-.hero-left{position:absolute;left:0;right:0;bottom:0;z-index:10;padding:24px 24px 32px;}
+.hero-left{position:absolute;left:0;right:0;top:0;z-index:10;padding:28px 24px 24px;}
 @media(min-width:768px){.hero-left{position:relative;padding:64px 32px;}}
 .eyebrow{display:flex;align-items:center;gap:8px;margin-bottom:20px;font-size:10px;text-transform:uppercase;letter-spacing:.22em;color:var(--pk2);}
 .eyebrow .line{display:inline-block;width:20px;height:1px;background:var(--pk2);}
@@ -83,7 +83,7 @@ header.nav{position:sticky;top:0;z-index:50;display:flex;align-items:center;just
 .hero-right .bgGrad{position:absolute;inset:0;background:linear-gradient(135deg,#fce7f3 0%,#fbcfe8 40%,#f9a8d4 70%,#f472b6 100%);}
 .hero-right .photo{position:absolute;inset:0;}
 .hero-right .photo img{width:100%;height:100%;object-fit:cover;object-position:top;}
-.hero-right .fade{position:absolute;inset:0;background:linear-gradient(to top, var(--bg) 12%, rgba(255,248,251,.6) 38%, transparent 65%);}
+.hero-right .fade{position:absolute;inset:0;background:linear-gradient(to bottom, var(--bg) 8%, rgba(255,248,251,.65) 32%, transparent 58%);}
 @media(min-width:768px){.hero-right .fade{background:linear-gradient(to right,var(--bg) 0%,transparent 30%);}}
 /* ドット・矢印 */
 .slider-dots{position:absolute;bottom:16px;left:50%;transform:translateX(-50%);display:flex;gap:6px;z-index:20;}
@@ -382,7 +382,6 @@ var DEBUT_DATE = "2026-09-12T00:00:00+09:00";
 // ── ヒーロースライド ──
 // image: 画像パス　copy: コピー文
 var SLIDES = [
-  { image:"images/group.jpg",  copy:"やわらかいから、強い。" },
   { image:"images/slide2.jpg", copy:"不完全で、まぶしくて。" },
   { image:"images/slide3.jpg", copy:"やるからには、全力で。" },
   { image:"images/slide4.jpg", copy:"完璧になるまで。"       },
@@ -460,7 +459,7 @@ function buildSlides() {
   var slider = document.getElementById("heroSlider");
   var dots   = document.getElementById("sliderDots");
   var list   = SLIDES.filter(function(s){ return s.image; });
-  if (!list.length) list = [{ image:"images/group.jpg", copy:"やわらかいから、強い。" }];
+  if (!list.length) list = [{ image:"images/slide2.jpg", copy:"やわらかいから、強い。" }];
 
   slider.innerHTML = list.map(function(s, i) {
     return '<div class="hero-slide' + (i===0?' active':'') + '">' +
