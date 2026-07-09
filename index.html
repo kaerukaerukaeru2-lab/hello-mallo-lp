@@ -49,11 +49,14 @@ header.nav{position:sticky;top:0;z-index:50;display:flex;align-items:center;just
 .icon-btn{display:flex;align-items:center;justify-content:center;width:24px;height:24px;border-radius:999px;font-size:10px;color:var(--sub);background:var(--bg2);border:.5px solid var(--bdr);transition:opacity .2s;}
 .icon-btn:hover{opacity:.7;}
 
-/* BGMボタン */
-.bgm-btn{display:flex;align-items:center;gap:5px;padding:4px 10px;border-radius:999px;border:.5px solid var(--bdr);background:var(--bg2);color:var(--sub);font-size:10px;cursor:pointer;transition:all .2s;font-family:inherit;}
-.bgm-btn.playing{background:var(--pk2);color:#fff;border-color:var(--pk2);}
-.bgm-dot{width:5px;height:5px;border-radius:50%;background:currentColor;flex-shrink:0;}
-.bgm-btn.playing .bgm-dot{animation:pulse-orb 1s ease-in-out infinite;}
+/* BGMミニプレイヤー */
+.bgm-player{display:flex;align-items:center;gap:2px;padding:4px 8px 4px 10px;border-radius:999px;border:.5px solid var(--bdr);background:var(--bg2);color:var(--sub);font-size:10px;}
+.bgm-player.playing{background:var(--pk2);color:#fff;border-color:var(--pk2);}
+.bgm-dot{width:5px;height:5px;border-radius:50%;background:currentColor;flex-shrink:0;margin-right:4px;}
+.bgm-player.playing .bgm-dot{animation:pulse-orb 1s ease-in-out infinite;}
+.bgm-track-label{font-size:9px;min-width:22px;text-align:center;}
+.bgm-ctrl{display:flex;align-items:center;justify-content:center;width:18px;height:18px;border:none;background:transparent;color:inherit;font-size:10px;cursor:pointer;padding:0;line-height:1;}
+.bgm-ctrl:active{opacity:.6;}
 
 /* ===== Hero スライダー ===== */
 .hero{position:relative;overflow:hidden;}
@@ -266,19 +269,19 @@ footer .copyright{font-size:10px;letter-spacing:.04em;color:var(--muted);}
     <a href="#links">Links</a>
   </nav>
   <div class="nav-right">
-    <button class="bgm-btn" id="bgmBtn" onclick="toggleBgm()">
+    <div class="bgm-player" id="bgmPlayer">
       <span class="bgm-dot"></span>
-      <span id="bgmLabel">BGM</span>
-    </button>
+      <button class="bgm-ctrl" onclick="bgmPrev()" aria-label="前の曲">⏮</button>
+      <button class="bgm-ctrl" id="bgmPlayBtn" onclick="bgmToggle()" aria-label="再生/一時停止">▶</button>
+      <button class="bgm-ctrl" onclick="bgmNext()" aria-label="次の曲">⏭</button>
+      <span class="bgm-track-label" id="bgmTrackLabel">1/3</span>
+    </div>
     <div class="nav-sns" id="navSns"></div>
   </div>
 </header>
 
 <!-- BGM -->
-<audio id="bgmAudio" loop preload="none">
-  <source src="audio/bgm.mp3" type="audio/mpeg">
-  <source src="audio/bgm.m4a" type="audio/mp4">
-</audio>
+<audio id="bgmAudio" preload="none" onended="bgmNext()"></audio>
 
 <!-- ===== Hero スライダー ===== -->
 <section class="hero">
@@ -513,23 +516,54 @@ function slideMove(dir) {
 }
 
 // ============================================================
-// ② BGM
+// ② BGM（3曲プレイリスト・自動で繋げて再生）
 // ============================================================
-var bgmAudio   = document.getElementById("bgmAudio");
-var bgmPlaying = false;
+// audio/フォルダに bgm1.mp3, bgm2.mp3, bgm3.mp3 を置くだけで反映される
+var BGM_TRACKS = ["audio/bgm1.mp3", "audio/bgm2.mp3", "audio/bgm3.mp3"];
 
-function toggleBgm() {
-  var btn   = document.getElementById("bgmBtn");
-  var label = document.getElementById("bgmLabel");
-  if (bgmPlaying) {
-    bgmAudio.pause(); bgmPlaying = false;
-    btn.classList.remove("playing"); label.textContent = "BGM";
-  } else {
+var bgmAudio      = document.getElementById("bgmAudio");
+var bgmPlayer     = document.getElementById("bgmPlayer");
+var bgmPlayBtn    = document.getElementById("bgmPlayBtn");
+var bgmTrackLabel = document.getElementById("bgmTrackLabel");
+var bgmIndex      = 0;
+var bgmPlaying    = false;
+
+function bgmUpdateUI() {
+  bgmTrackLabel.textContent = (bgmIndex + 1) + "/" + BGM_TRACKS.length;
+  bgmPlayBtn.textContent = bgmPlaying ? "⏸" : "▶";
+  if (bgmPlaying) bgmPlayer.classList.add("playing");
+  else bgmPlayer.classList.remove("playing");
+}
+
+function bgmLoad(idx, autoplay) {
+  bgmIndex = (idx + BGM_TRACKS.length) % BGM_TRACKS.length;
+  bgmAudio.src = BGM_TRACKS[bgmIndex];
+  if (autoplay) {
     bgmAudio.play().then(function(){
-      bgmPlaying = true; btn.classList.add("playing"); label.textContent = "再生中";
-    }).catch(function(){ alert("audio/bgm.mp3 を配置してください"); });
+      bgmPlaying = true; bgmUpdateUI();
+    }).catch(function(){
+      bgmPlaying = false; bgmUpdateUI();
+      alert("audio/bgm1.mp3〜bgm3.mp3 を配置してください");
+    });
+  } else {
+    bgmUpdateUI();
   }
 }
+
+function bgmToggle() {
+  if (!bgmAudio.src) { bgmLoad(0, true); return; }
+  if (bgmPlaying) {
+    bgmAudio.pause(); bgmPlaying = false; bgmUpdateUI();
+  } else {
+    bgmAudio.play().then(function(){
+      bgmPlaying = true; bgmUpdateUI();
+    }).catch(function(){ alert("audio/bgm1.mp3〜bgm3.mp3 を配置してください"); });
+  }
+}
+
+function bgmNext() { bgmLoad(bgmIndex + 1, bgmPlaying || !bgmAudio.src); }
+function bgmPrev() { bgmLoad(bgmIndex - 1, bgmPlaying || !bgmAudio.src); }
+
 
 // ============================================================
 // ③ メンバーTikTok動画グリッド（タップでTikTokへ飛ぶ）
