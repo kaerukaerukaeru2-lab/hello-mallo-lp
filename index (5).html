@@ -1,0 +1,880 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Hello ∵ Mallo（ハローマロー）| 大阪発ガールズアイドルグループ</title>
+<meta name="description" content="不完全で、まぶしくて、少しだけ泣きそうな女の子たち。マシュマロみたいにやわらかい心で、大阪から世界へ夢を届けるガールズアイドルグループ「Hello ∵ Mallo」公式ランディングページ。2026年9月12日デビューワンマンLIVE開催。">
+<meta name="keywords" content="Hello Mallo,ハローマロー,大阪アイドル,地下アイドル,ガールズアイドル,デビュー,2026">
+<meta property="og:title" content="Hello ∵ Mallo（ハローマロー）">
+<meta property="og:description" content="やわらかいから強い。大阪発ガールズアイドルグループ 2026.9.12デビュー">
+<meta property="og:image" content="images/ogp.jpg">
+<meta property="og:type" content="website">
+<meta property="og:locale" content="ja_JP">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:site" content="@_HelloMallo">
+<meta name="twitter:title" content="Hello ∵ Mallo（ハローマロー）">
+<meta name="twitter:description" content="やわらかいから強い。大阪発ガールズアイドルグループ 2026.9.12デビュー">
+<meta name="twitter:image" content="images/ogp.jpg">
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"MusicGroup","name":"Hello ∵ Mallo","alternateName":"ハローマロー","description":"大阪発ガールズアイドルグループ。2026年9月12日デビューワンマンLIVE。","sameAs":["https://x.com/_HelloMallo","https://www.instagram.com/_hellomallo","https://www.tiktok.com/@_hellomallo"],"foundingLocation":{"@type":"Place","name":"大阪"}}
+</script>
+<style>
+:root {
+  --pk:#f9a8d4; --pk2:#ec4899; --pk3:#be185d;
+  --bg:#fff8fb; --bg2:#fff0f7;
+  --text:#1a0812; --sub:#9d4e73; --muted:#c794ad;
+  --bdr:rgba(249,168,212,0.25);
+}
+*{box-sizing:border-box;margin:0;padding:0;}
+html{scroll-behavior:smooth;}
+body{background:var(--bg);color:var(--text);font-family:"Helvetica Neue",Arial,"Hiragino Kaku Gothic ProN","Hiragino Sans",sans-serif;-webkit-font-smoothing:antialiased;}
+img{display:block;max-width:100%;}
+a{text-decoration:none;}
+@media(prefers-reduced-motion:reduce){*,*::before,*::after{animation-duration:.01ms!important;animation-iteration-count:1!important;transition-duration:.01ms!important;}}
+@keyframes ticker{from{transform:translateX(0)}to{transform:translateX(-50%)}}
+.animate-ticker{animation:ticker 22s linear infinite;}
+@keyframes pulse-orb{0%,100%{opacity:.15}50%{opacity:.25}}
+.animate-orb{animation:pulse-orb 6s ease-in-out infinite;}
+
+/* ===== Nav ===== */
+header.nav{position:sticky;top:0;z-index:50;display:flex;align-items:center;justify-content:space-between;padding:12px 20px;background:rgba(255,248,251,0.92);backdrop-filter:blur(12px);border-bottom:.5px solid var(--bdr);}
+.nav-logo{height:32px;}
+.nav-logo img{height:100%;object-fit:contain;}
+.nav-links{display:none;align-items:center;gap:20px;}
+.nav-links a{font-size:11px;letter-spacing:.15em;color:var(--sub);}
+@media(min-width:768px){.nav-links{display:flex;}}
+.nav-right{display:flex;align-items:center;gap:8px;}
+.nav-sns{display:flex;align-items:center;gap:6px;}
+.icon-btn{display:flex;align-items:center;justify-content:center;width:24px;height:24px;border-radius:999px;font-size:10px;color:var(--sub);background:var(--bg2);border:.5px solid var(--bdr);transition:opacity .2s;}
+.icon-btn:hover{opacity:.7;}
+
+/* BGMミニプレイヤー */
+.bgm-player{display:flex;align-items:center;gap:2px;padding:4px 8px 4px 10px;border-radius:999px;border:.5px solid var(--bdr);background:var(--bg2);color:var(--sub);font-size:10px;}
+.bgm-player.playing{background:var(--pk2);color:#fff;border-color:var(--pk2);}
+.bgm-dot{width:5px;height:5px;border-radius:50%;background:currentColor;flex-shrink:0;margin-right:4px;}
+.bgm-player.playing .bgm-dot{animation:pulse-orb 1s ease-in-out infinite;}
+.bgm-track-label{font-size:9px;min-width:22px;text-align:center;}
+.bgm-ctrl{display:flex;align-items:center;justify-content:center;width:18px;height:18px;border:none;background:transparent;color:inherit;font-size:10px;cursor:pointer;padding:0;line-height:1;}
+.bgm-ctrl:active{opacity:.6;}
+
+/* ===== Hero スライダー ===== */
+.hero{position:relative;overflow:hidden;}
+.hero-slider{position:relative;min-height:560px;overflow:hidden;}
+@media(min-width:768px){.hero-slider{min-height:420px;}}
+.hero-slide{position:absolute;inset:0;opacity:0;transition:opacity .8s ease;pointer-events:none;}
+.hero-slide.active{opacity:1;pointer-events:auto;}
+@media(min-width:768px){.hero-slide{display:grid;grid-template-columns:1fr 1fr;align-items:center;}}
+.hero-left{position:absolute;left:0;right:0;top:0;z-index:10;padding:28px 24px 24px;}
+@media(min-width:768px){.hero-left{position:relative;padding:64px 32px;}}
+.eyebrow{display:flex;align-items:center;gap:8px;margin-bottom:20px;font-size:10px;text-transform:uppercase;letter-spacing:.22em;color:#fff;text-shadow:0 1px 3px rgba(0,0,0,.5);}
+.eyebrow .line{display:inline-block;width:20px;height:1px;background:#fff;}
+@media(min-width:768px){.eyebrow{color:var(--pk2);text-shadow:none;}.eyebrow .line{background:var(--pk2);}}
+.debut-badge{display:inline-flex;align-items:center;gap:8px;margin-bottom:16px;padding:8px 16px;border-radius:999px;font-size:12px;font-weight:600;color:#fff;background:transparent;border:1.5px solid rgba(255,255,255,.9);text-shadow:0 1px 3px rgba(0,0,0,.55),0 0 10px rgba(0,0,0,.35);}
+@media(min-width:768px){.debut-badge{background:linear-gradient(135deg,var(--pk2),var(--pk3));border:none;text-shadow:none;}}
+.debut-badge .big{font-size:15px;font-weight:700;}
+.debut-badge .small{font-size:11px;opacity:.9;}
+.hero-logo{position:relative;margin-bottom:8px;height:64px;width:176px;}
+.hero-logo img{height:100%;object-fit:contain;object-position:left;}
+.hero-yomi{margin-bottom:20px;font-size:10px;letter-spacing:.22em;color:#fff;text-shadow:0 1px 3px rgba(0,0,0,.5);}
+@media(min-width:768px){.hero-yomi{color:var(--muted);text-shadow:none;}}
+.hero-copy{margin-bottom:28px;max-width:280px;font-size:12px;line-height:1.9;color:#fff;text-shadow:0 1px 4px rgba(0,0,0,.5);}
+@media(min-width:768px){.hero-copy{color:var(--sub);text-shadow:none;}}
+.hero-cta{display:flex;flex-wrap:wrap;gap:8px;}
+.btn-dark{border-radius:999px;padding:10px 20px;font-size:11px;font-weight:500;color:#fff;background:var(--text);transition:opacity .2s;}
+.btn-dark:hover{opacity:.8;}
+.btn-outline{border-radius:999px;padding:10px 20px;font-size:11px;color:#fff;border:1px solid rgba(255,255,255,.85);transition:opacity .2s;text-shadow:0 1px 3px rgba(0,0,0,.4);}
+@media(min-width:768px){.btn-outline{color:var(--sub);border:.5px solid rgba(157,78,115,.3);text-shadow:none;}}
+.btn-outline:hover{opacity:.7;}
+.hero-right{position:absolute;inset:0;z-index:1;}
+@media(min-width:768px){.hero-right{position:relative;display:block;min-height:420px;}}
+.hero-right .bgGrad{position:absolute;inset:0;background:linear-gradient(135deg,#fce7f3 0%,#fbcfe8 40%,#f9a8d4 70%,#f472b6 100%);}
+.hero-right .photo{position:absolute;inset:0;}
+.hero-right .photo img{width:100%;height:100%;object-fit:cover;object-position:top;}
+.hero-right .fade{position:absolute;inset:0;background:linear-gradient(to bottom, rgba(0,0,0,.18) 0%, transparent 45%);}
+@media(min-width:768px){.hero-right .fade{background:linear-gradient(to right,var(--bg) 0%,transparent 30%);}}
+/* ドット・矢印 */
+.slider-dots{position:absolute;bottom:16px;left:50%;transform:translateX(-50%);display:flex;gap:6px;z-index:20;}
+.slider-dot{width:6px;height:6px;border-radius:50%;background:var(--pk);opacity:.4;cursor:pointer;transition:all .2s;border:none;padding:0;}
+.slider-dot.active{opacity:1;background:var(--pk2);transform:scale(1.3);}
+.slider-arrow{position:absolute;top:50%;transform:translateY(-50%);z-index:20;width:32px;height:32px;border-radius:50%;border:.5px solid var(--bdr);background:rgba(255,255,255,.7);backdrop-filter:blur(4px);display:flex;align-items:center;justify-content:center;font-size:14px;color:var(--sub);cursor:pointer;transition:all .2s;line-height:1;}
+.slider-arrow:hover{background:#fff;}
+.slider-arrow.prev{left:12px;}
+.slider-arrow.next{right:12px;}
+
+/* ===== Ticker ===== */
+.ticker-wrap{overflow:hidden;white-space:nowrap;border-top:.5px solid var(--bdr);border-bottom:.5px solid var(--bdr);background:linear-gradient(90deg,#fdf2f8,#fff8fb,#fdf2f8);padding:10px 0;}
+.ticker-inner{display:inline-flex;gap:32px;}
+.ticker-item{display:flex;align-items:center;gap:32px;}
+.ticker-item span.txt{font-size:10px;text-transform:uppercase;letter-spacing:.22em;color:var(--pk2);}
+.ticker-item span.dash{color:var(--pk);opacity:.5;}
+
+/* ===== Story ===== */
+.section{padding:56px 28px;background:#fff;}
+.section-label{display:flex;align-items:center;gap:10px;margin-bottom:20px;font-size:10px;text-transform:uppercase;letter-spacing:.26em;color:var(--pk2);}
+.section-label .line{display:inline-block;width:16px;height:1px;background:var(--pk2);}
+.story-grid{display:grid;grid-template-columns:1fr;gap:28px;}
+@media(min-width:768px){.story-grid{grid-template-columns:1fr 1fr;}}
+.story-quote{font-size:20px;font-weight:300;line-height:1.6;color:var(--text);border-left:2px solid var(--pk2);padding-left:18px;}
+.story-quote em{color:var(--pk2);font-style:normal;}
+.story-body{font-size:12px;line-height:2.1;color:var(--sub);}
+
+/* ===== Members ===== */
+.members-section{padding:56px 28px;background:var(--bg2);}
+.members-title{margin-bottom:24px;font-size:22px;font-weight:400;color:var(--text);}
+.members-grid{display:none;gap:12px;}
+@media(min-width:640px){.members-grid{display:grid;grid-template-columns:1fr 1fr;}}
+@media(min-width:1024px){.members-grid{grid-template-columns:1fr 1fr 1fr;}}
+.members-carousel{display:flex;gap:12px;overflow-x:auto;padding-bottom:16px;scroll-snap-type:x mandatory;scrollbar-width:none;}
+.members-carousel::-webkit-scrollbar{display:none;}
+@media(min-width:640px){.members-carousel{display:none;}}
+.member-card-wrap{flex:none;width:72vw;scroll-snap-align:start;}
+.member-card{overflow:hidden;border-radius:16px;background:#fff;border:.5px solid var(--bdr);transition:transform .2s;}
+.member-card:hover{transform:translateY(-4px);}
+.member-photo{position:relative;aspect-ratio:3/4;overflow:hidden;}
+.member-photo .fallback{position:absolute;inset:0;}
+.member-photo img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:top;}
+.member-photo .badge-num,.member-photo .badge-trainee{position:absolute;top:10px;border-radius:999px;padding:2px 6px;font-size:9px;letter-spacing:.1em;color:rgba(255,255,255,.85);}
+.member-photo .badge-num{left:10px;background:rgba(0,0,0,.12);}
+.member-photo .badge-trainee{right:10px;background:rgba(255,255,255,.2);}
+.member-photo .colorbar{position:absolute;bottom:0;left:0;right:0;height:3px;}
+.member-text{padding:14px 12px 12px;}
+.member-name{font-size:15px;font-weight:500;color:var(--text);}
+.member-yomi{margin-bottom:8px;font-size:10px;letter-spacing:.1em;color:var(--muted);}
+.member-bio{margin-bottom:10px;font-size:10px;line-height:1.7;color:var(--sub);display:-webkit-box;-webkit-line-clamp:3;-webkit-box-orient:vertical;overflow:hidden;}
+.member-sns{display:flex;gap:6px;}
+.member-sns a{border-radius:999px;padding:2px 10px;font-size:10px;color:var(--sub);background:var(--bg2);border:.5px solid var(--bdr);transition:all .2s;}
+
+/* ===== メンバーTikTok動画グリッド ===== */
+.video-section{padding:56px 28px 32px;background:#fff;}
+.member-tiktok-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-top:8px;}
+@media(min-width:640px){.member-tiktok-grid{grid-template-columns:repeat(6,1fr);}}
+.mt-card{position:relative;border-radius:12px;overflow:hidden;aspect-ratio:9/16;display:block;border:.5px solid var(--bdr);cursor:pointer;}
+.mt-card .mt-bg{position:absolute;inset:0;}
+.mt-card .mt-bg img{width:100%;height:100%;object-fit:cover;object-position:top;}
+.mt-card .mt-overlay{position:absolute;inset:0;background:linear-gradient(to top,rgba(0,0,0,.55) 0%,transparent 55%);display:flex;flex-direction:column;justify-content:flex-end;padding:8px;gap:3px;}
+.mt-name{font-size:11px;font-weight:600;color:#fff;line-height:1.2;}
+.mt-badge{display:inline-flex;align-items:center;gap:3px;font-size:9px;color:rgba(255,255,255,.85);background:rgba(0,0,0,.3);padding:2px 6px;border-radius:999px;width:fit-content;}
+/* YouTube（16:9） */
+.yt-section{padding:0 28px 56px;background:#fff;}
+.yt-facade{position:relative;border-radius:14px;overflow:hidden;aspect-ratio:16/9;cursor:pointer;border:.5px solid var(--bdr);background:linear-gradient(135deg,#fce7f3,#fbcfe8);}
+.yt-facade .thumb{position:absolute;inset:0;}
+.yt-facade .thumb img{width:100%;height:100%;object-fit:cover;}
+.yt-overlay{position:absolute;inset:0;background:rgba(0,0,0,.08);display:flex;flex-direction:column;align-items:center;justify-content:center;gap:10px;transition:background .2s;}
+.yt-facade:hover .yt-overlay{background:rgba(0,0,0,.18);}
+.play-btn{width:48px;height:48px;border-radius:50%;background:rgba(255,255,255,.9);display:flex;align-items:center;justify-content:center;font-size:18px;box-shadow:0 4px 12px rgba(0,0,0,.15);}
+.video-platform{position:absolute;top:10px;left:10px;font-size:10px;letter-spacing:.08em;font-weight:500;color:var(--pk2);background:rgba(255,255,255,.88);padding:3px 8px;border-radius:999px;}
+.video-caption{font-size:11px;color:rgba(255,255,255,.9);text-shadow:0 1px 4px rgba(0,0,0,.3);}
+.yt-iframe-wrap{position:relative;border-radius:14px;overflow:hidden;aspect-ratio:16/9;border:.5px solid var(--bdr);}
+.yt-iframe-wrap iframe{position:absolute;inset:0;width:100%;height:100%;border:none;}
+
+/* ===== ライブ情報 ===== */
+.lives-section{padding:56px 28px;background:var(--bg2);}
+.lives-list{display:flex;flex-direction:column;gap:12px;margin-top:8px;}
+.live-card{display:flex;align-items:center;gap:14px;background:#fff;border:.5px solid var(--bdr);border-radius:14px;padding:14px 16px;transition:border-color .2s;flex-wrap:wrap;}
+@media(min-width:640px){.live-card{flex-wrap:nowrap;}}
+.live-card:hover{border-color:var(--pk2);}
+.live-date-block{flex-shrink:0;text-align:center;min-width:52px;}
+.live-month{font-size:10px;letter-spacing:.1em;color:var(--pk2);text-transform:uppercase;}
+.live-day{font-size:28px;font-weight:300;line-height:1;color:var(--text);}
+.live-year{font-size:10px;color:var(--muted);}
+.live-divider{width:1px;align-self:stretch;background:var(--bdr);flex-shrink:0;display:none;}
+@media(min-width:640px){.live-divider{display:block;}}
+.live-info{flex:1;min-width:0;}
+.live-name{font-size:14px;font-weight:500;color:var(--text);margin-bottom:3px;}
+.live-venue{font-size:12px;color:var(--sub);margin-bottom:8px;}
+.live-tags{display:flex;gap:6px;flex-wrap:wrap;}
+.live-tag{font-size:10px;padding:2px 8px;border-radius:999px;background:var(--bg2);color:var(--pk2);border:.5px solid var(--bdr);}
+.live-actions{display:flex;gap:6px;flex-shrink:0;align-items:center;flex-wrap:wrap;}
+.live-link{font-size:11px;padding:7px 14px;border-radius:999px;background:var(--pk3);color:#fff;font-weight:500;white-space:nowrap;transition:opacity .2s;}
+.live-link:hover{opacity:.85;}
+.live-cal{font-size:10px;padding:6px 12px;border-radius:999px;border:.5px solid var(--bdr);color:var(--sub);background:#fff;cursor:pointer;white-space:nowrap;font-family:inherit;transition:all .2s;}
+.live-cal:hover{border-color:var(--pk2);color:var(--pk2);}
+
+/* ===== カレンダー ===== */
+.cal-section{padding:56px 28px;background:#fff;}
+.cal-header{display:flex;align-items:center;justify-content:space-between;margin-bottom:16px;}
+.cal-nav-btn{width:36px;height:36px;border-radius:50%;border:.5px solid var(--bdr);background:var(--bg2);color:var(--sub);font-size:16px;cursor:pointer;display:flex;align-items:center;justify-content:center;transition:all .2s;}
+.cal-nav-btn:hover{background:var(--pk);color:#fff;border-color:var(--pk);}
+.cal-month-label{font-size:16px;font-weight:500;color:var(--text);}
+.cal-grid{display:grid;grid-template-columns:repeat(7,1fr);gap:2px;margin-bottom:24px;}
+.cal-dow{text-align:center;font-size:10px;color:var(--muted);padding:6px 0;letter-spacing:.05em;}
+.cal-day{min-height:44px;border-radius:8px;padding:4px;cursor:default;position:relative;}
+.cal-day.other-month{opacity:.3;}
+.cal-day.today .day-num{background:var(--pk2);color:#fff;border-radius:50%;width:22px;height:22px;display:flex;align-items:center;justify-content:center;}
+.day-num{font-size:12px;color:var(--text);width:22px;height:22px;display:flex;align-items:center;justify-content:center;}
+.day-events{display:flex;flex-direction:column;gap:2px;margin-top:2px;}
+.day-event-dot{font-size:9px;background:var(--pk2);color:#fff;border-radius:3px;padding:1px 4px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;cursor:pointer;}
+/* イベントリスト */
+.event-list-title{font-size:12px;letter-spacing:.15em;color:var(--muted);text-transform:uppercase;margin-bottom:12px;padding-bottom:8px;border-bottom:.5px solid var(--bdr);}
+.event-cards{display:flex;flex-direction:column;gap:14px;}
+.event-card{border-radius:14px;overflow:hidden;border:.5px solid var(--bdr);background:#fff;}
+.event-card-img{width:100%;aspect-ratio:16/9;object-fit:cover;display:block;}
+.event-card-img-ph{width:100%;aspect-ratio:16/9;background:linear-gradient(135deg,#fce7f3,#fbcfe8);display:flex;align-items:center;justify-content:center;font-size:28px;}
+.event-card-body{padding:14px 16px;}
+.event-card-date{font-size:11px;color:var(--pk2);margin-bottom:4px;letter-spacing:.05em;}
+.event-card-name{font-size:15px;font-weight:500;color:var(--text);margin-bottom:4px;}
+.event-card-venue{font-size:12px;color:var(--sub);margin-bottom:10px;}
+.event-card-actions{display:flex;gap:8px;flex-wrap:wrap;}
+.event-card[data-clickable="1"]{cursor:pointer;}
+.event-card-toggle{display:flex;align-items:center;gap:4px;margin-top:8px;font-size:10px;color:var(--pk2);}
+.event-card-toggle .arrow{display:inline-block;transition:transform .25s ease;}
+.event-card.open .event-card-toggle .arrow{transform:rotate(180deg);}
+.event-card-detail{max-height:0;overflow:hidden;transition:max-height .35s ease;}
+.event-card.open .event-card-detail{max-height:1400px;}
+.event-card-detail-inner{padding-top:10px;margin-top:6px;border-top:.5px solid var(--bdr);font-size:11px;line-height:1.9;color:var(--sub);white-space:pre-wrap;word-break:break-word;}
+.event-ticket-btn{font-size:11px;padding:7px 14px;border-radius:999px;background:var(--pk3);color:#fff;font-weight:500;transition:opacity .2s;}
+.event-ticket-btn:hover{opacity:.85;}
+
+
+/* ===== Links ===== */
+.links-title{margin-bottom:28px;font-size:22px;font-weight:400;color:var(--text);}
+.links-subhead{margin-bottom:12px;padding-bottom:8px;font-size:10px;text-transform:uppercase;letter-spacing:.18em;color:var(--muted);border-bottom:1px solid var(--bdr);}
+.links-group{display:grid;grid-template-columns:1fr;gap:8px;margin-bottom:32px;}
+@media(min-width:640px){.links-group{grid-template-columns:1fr 1fr 1fr;}}
+.link-row{display:flex;align-items:center;gap:12px;border-radius:12px;padding:12px;background:#fff;border:.5px solid var(--bdr);transition:border-color .2s;}
+.link-row:hover{border-color:var(--pk2);}
+.link-icon{flex-shrink:0;display:flex;align-items:center;justify-content:center;width:32px;height:32px;border-radius:9px;font-size:14px;}
+.link-info p:first-child{font-size:12px;font-weight:500;color:var(--text);}
+.link-info p:last-child{font-size:10px;color:var(--muted);}
+.link-arrow{margin-left:auto;font-size:12px;color:var(--muted);}
+.links-members{display:grid;grid-template-columns:1fr;gap:8px;}
+@media(min-width:640px){.links-members{grid-template-columns:1fr 1fr;}}
+.link-member-icon{width:32px;height:32px;border-radius:9px;display:flex;align-items:center;justify-content:center;font-size:11px;font-weight:600;flex-shrink:0;}
+.link-member-sns{display:flex;gap:6px;margin-top:6px;}
+.link-member-sns a{border-radius:999px;padding:2px 8px;font-size:10px;color:var(--sub);background:var(--bg2);border:.5px solid var(--bdr);}
+
+/* ===== Final CTA ===== */
+.cta-section{position:relative;overflow:hidden;padding:80px 28px;text-align:center;background:linear-gradient(140deg,#fdf2f8 0%,#fce7f3 30%,#fbcfe8 60%,#f9a8d4 100%);}
+.orb{position:absolute;pointer-events:none;border-radius:999px;}
+.orb1{right:-64px;top:-96px;width:320px;height:320px;background:rgba(255,255,255,.15);}
+.orb2{bottom:-48px;left:-40px;width:192px;height:192px;background:rgba(255,255,255,.12);animation-delay:3s;}
+.cta-eyebrow{position:relative;margin-bottom:12px;font-size:10px;text-transform:uppercase;letter-spacing:.26em;color:var(--pk3);opacity:.7;}
+.cta-sub{position:relative;margin-bottom:6px;font-size:11px;text-transform:uppercase;letter-spacing:.18em;color:var(--pk3);}
+.cta-date{position:relative;margin-bottom:4px;font-size:48px;font-weight:300;line-height:1;letter-spacing:-.03em;color:var(--text);}
+.cta-title{position:relative;margin-bottom:6px;font-size:13px;font-weight:500;color:var(--pk3);}
+.cta-loc{position:relative;margin-bottom:16px;font-size:12px;color:var(--sub);}
+.countdown{position:relative;margin-bottom:32px;display:inline-block;border-radius:999px;padding:8px 24px;font-size:13px;font-weight:500;color:var(--pk3);background:rgba(255,255,255,.55);backdrop-filter:blur(8px);border:.5px solid rgba(236,72,153,.2);}
+
+
+/* ===== Footer ===== */
+footer{display:flex;align-items:center;justify-content:space-between;padding:24px 28px;background:#fff;border-top:.5px solid var(--bdr);}
+footer .brand{font-size:12px;font-weight:500;color:var(--sub);}
+footer .brand .dot{color:var(--pk2);}
+footer .copyright{font-size:10px;letter-spacing:.04em;color:var(--muted);}
+</style>
+</head>
+<body>
+
+<header class="nav">
+  <div class="nav-logo"><img src="images/logo.png" alt="Hello ∵ Mallo" onerror="this.style.display='none'"></div>
+  <nav class="nav-links">
+    <a href="#concept">Concept</a>
+    <a href="#members">Members</a>
+    <a href="#media">Media</a>
+    <a href="#lives">Lives</a>
+    <a href="#links">Links</a>
+  </nav>
+  <div class="nav-right">
+    <div class="bgm-player" id="bgmPlayer">
+      <span class="bgm-dot"></span>
+      <button class="bgm-ctrl" onclick="bgmPrev()" aria-label="前の曲">⏮</button>
+      <button class="bgm-ctrl" id="bgmPlayBtn" onclick="bgmToggle()" aria-label="再生/一時停止">▶</button>
+      <button class="bgm-ctrl" onclick="bgmNext()" aria-label="次の曲">⏭</button>
+      <span class="bgm-track-label" id="bgmTrackLabel">1/3</span>
+    </div>
+    <div class="nav-sns" id="navSns"></div>
+  </div>
+</header>
+
+<!-- BGM -->
+<audio id="bgmAudio" preload="none" onended="bgmNext()"></audio>
+
+<!-- ===== Hero スライダー ===== -->
+<section class="hero">
+  <div class="hero-slider" id="heroSlider"></div>
+  <button class="slider-arrow prev" onclick="slideMove(-1)" aria-label="前へ">&#8249;</button>
+  <button class="slider-arrow next" onclick="slideMove(1)" aria-label="次へ">&#8250;</button>
+  <div class="slider-dots" id="sliderDots"></div>
+</section>
+
+<div class="ticker-wrap">
+  <div class="ticker-inner animate-ticker" id="tickerInner"></div>
+</div>
+
+<section id="concept" class="section">
+  <p class="section-label"><span class="line"></span>Story</p>
+  <div class="story-grid">
+    <blockquote class="story-quote">
+      甘くて儚いだけじゃない、<br>
+      <em>"やわらかいから強い"</em><br>
+      女の子たちの物語。
+    </blockquote>
+    <p class="story-body">
+      迷いながら、傷つきながら、それぞれの色を隠さずに、ありのままの自分でステージに立つ。<br><br>
+      その一瞬のきらめきが、誰かの明日を少しだけ明るくする。<br><br>
+      Hello ∵ Mallo は、ひとりひとりの個性をそのまま抱きしめて、マシュマロみたいにやわらかい心で、大阪から世界へ夢を届けるガールズアイドルグループです。
+    </p>
+  </div>
+</section>
+
+<section id="members" class="members-section">
+  <p class="section-label"><span class="line"></span>Members</p>
+  <h2 class="members-title">6人のメンバー</h2>
+  <div class="members-grid" id="membersGrid"></div>
+  <div class="members-carousel" id="membersCarousel"></div>
+</section>
+
+<!-- ===== メンバーTikTok動画 ===== -->
+<section id="media" class="video-section">
+  <p class="section-label"><span class="line"></span>Media</p>
+  <h2 class="members-title">メンバー動画</h2>
+  <div class="member-tiktok-grid" id="memberTiktokGrid"></div>
+</section>
+
+<!-- ===== YouTube ===== -->
+<div class="yt-section">
+  <div id="ytArea"></div>
+</div>
+
+<!-- ===== カレンダー ===== -->
+<section id="lives" class="cal-section">
+  <p class="section-label"><span class="line"></span>Lives</p>
+  <h2 class="members-title">ライブ・イベント</h2>
+  <div class="cal-header">
+    <button class="cal-nav-btn" onclick="calMove(-1)">&#8249;</button>
+    <p class="cal-month-label" id="calMonthLabel"></p>
+    <button class="cal-nav-btn" onclick="calMove(1)">&#8250;</button>
+  </div>
+  <div class="cal-grid" id="calGrid"></div>
+  <p class="event-list-title" id="eventListTitle"></p>
+  <div class="event-cards" id="eventCards"></div>
+</section>
+
+<!-- ===== 旧ライブ情報（削除） ===== -->
+<section id="lives-old" class="lives-section" style="display:none">
+  <p class="section-label"><span class="line"></span>Lives</p>
+  <h2 class="members-title">ライブ情報</h2>
+  <div class="lives-list" id="livesList"></div>
+</section>
+
+<section id="links" class="section">
+  <p class="section-label"><span class="line"></span>Links</p>
+  <h2 class="links-title">公式SNS &amp; リンク</h2>
+  <p class="links-subhead">Group Official</p>
+  <div class="links-group" id="groupLinks"></div>
+</section>
+
+<section class="cta-section">
+  <div class="orb orb1 animate-orb"></div>
+  <div class="orb orb2 animate-orb"></div>
+  <p class="cta-eyebrow">Debut Live</p>
+  <p class="cta-sub">デビューワンマンLIVE</p>
+  <p class="cta-date">2026.9.12</p>
+  <p class="cta-title">🎤 Hello ∵ Mallo デビューワンマンLIVE</p>
+  <p class="cta-loc">📍 Club Vijon</p>
+  <div class="countdown" id="countdown">計算中...</div>
+
+</section>
+
+<footer>
+  <div class="brand">Hello <span class="dot">∵</span> Mallo</div>
+  <p class="copyright">© 2026 Hello ∵ Mallo. All rights reserved.</p>
+</footer>
+
+<script>
+// ============================================================
+// データ定義（ここだけ編集すれば全て反映される）
+// ============================================================
+
+var GROUP_SNS = {
+  x: "https://x.com/_HelloMallo",
+  instagram: "https://www.instagram.com/_hellomallo",
+  tiktok: "https://www.tiktok.com/@_hellomallo",
+};
+var DEBUT_DATE = "2026-09-12T00:00:00+09:00";
+
+// ── ヒーロースライド ──
+// image: 画像パス　copy: コピー文
+var SLIDES = [
+  { image:"images/slide2.jpg", copy:"不完全で、まぶしくて。" },
+  { image:"images/slide3.jpg", copy:"やるからには、全力で。" },
+  { image:"images/slide4.jpg", copy:"完璧になるまで。"       },
+  { image:"images/slide5.jpg", copy:"あなたを笑顔にするために。" },
+  { image:"images/slide6.jpg", copy:"頑張れる理由になりたい。" },
+  { image:"images/slide7.jpg", copy:"大阪から、世界へ。"     },
+];
+
+// ── メンバー個人TikTok動画 ──
+// thumb: サムネイル画像パス（images/フォルダに置く）
+// url: TikTok動画の直リンク
+// name: 表示名
+var MEMBER_TIKTOKS = [
+  { name:"月兎 まる",   thumb:"images/tiktok_maru.jpg",   url:"https://vt.tiktok.com/ZSCK76Mxu/", color:"#ef4444" },
+  { name:"苺乃 みぃみ", thumb:"images/tiktok_miimi.jpg",  url:"https://vt.tiktok.com/ZSCKvRQ93/", color:"#ec4899" },
+  { name:"月島 せいら", thumb:"images/tiktok_seira.jpg",  url:"https://vt.tiktok.com/ZSCKcYmtr/", color:"#f97316" },
+  { name:"白雪 りずむ", thumb:"images/tiktok_rhythm.jpg", url:"https://vt.tiktok.com/ZSCK3euWX/", color:"#3b82f6" },
+  { name:"秋風 ミミ澪", thumb:"images/tiktok_mimio.jpg",  url:"https://vt.tiktok.com/ZSCK37een/", color:"#eab308" },
+  { name:"東雲 ふりる", thumb:"images/tiktok_furiru.jpg", url:"https://vt.tiktok.com/ZSCK3bJXG/", color:"#10b981" },
+];
+
+// ── YouTube動画（16:9、1枚）──
+// embedId: watch?v= 以降のID　thumb: サムネイル（省略可）
+var YOUTUBE = {
+  embedId: "KeRy6DJkQCw",
+  thumb: "https://img.youtube.com/vi/KeRy6DJkQCw/hqdefault.jpg",
+  label: "Hello ∵ Mallo",
+};
+
+// ── ライブ・イベント情報 ──
+// ── ライブ・イベント情報 ──
+// 追加するときはここに追記する
+var LIVES = [
+  {
+    date: "2026-07-19",
+    time: "11:00",
+    name: "押忍フェス（OSU FESTIVAL）",
+    venue: "湊町リバープレイス",
+    image: "images/live_0719.webp",
+    ticketUrl: "",
+  },
+  {
+    date: "2026-07-19",
+    time: "12:00",
+    name: "真夏のリバープレイス",
+    venue: "リバープレイス",
+    image: "",
+    ticketUrl: "",
+  },
+  {
+    date: "2026-07-19",
+    time: "17:30",
+    name: "推し事.LivePollux〜大阪24区ガールズ 北ななか生誕セレモニー〜",
+    venue: "ポルックスシアター",
+    image: "images/live_0719_pollux.jpg",
+    ticketUrl: "https://tiget.net/events/499731",
+  },
+  {
+    date: "2026-08-01",
+    time: "17:00",
+    name: "ライブ",
+    venue: "ポルックスシアター",
+    image: "",
+    ticketUrl: "",
+  },
+  {
+    date: "2026-08-09",
+    time: "16:00",
+    name: "ライブ",
+    venue: "ポルックスシアター",
+    image: "",
+    ticketUrl: "",
+  },
+  {
+    date: "2026-08-16",
+    time: "10:00",
+    name: "浴衣でライブ",
+    venue: "ポルックスシアター",
+    image: "",
+    ticketUrl: "",
+  },
+  {
+    date: "2026-09-12",
+    time: "12:00",
+    name: "Hello ∵ Mallo デビュー前LIVE！",
+    venue: "Club Vijon 堀江",
+    image: "",
+    ticketUrl: "",
+  },
+  {
+    date: "2026-09-12",
+    time: "15:00",
+    name: "Hello ∵ Mallo デビューワンマンLIVE",
+    venue: "club vijon",
+    image: "",
+    ticketUrl: "",
+  },
+];
+
+var MEMBERS = [
+  { id:1, name:"月兎 まる",   yomi:"つきと まる",     color:"#ef4444", colorLight:"#fecdd3",
+    bio:"赤いリボンがトレードマークの、真面目で負けず嫌いなかぐや姫。まるの魅力をまるっと全部受け止めて、夜空の月まで一緒に連れていってあげるね。",
+    image:"maru.jpg", sns:{ x:"https://x.com/mallo_maru0", instagram:"https://www.instagram.com/mallo_maru0", tiktok:"https://www.tiktok.com/@mallo_maru" } },
+  { id:2, name:"苺乃 みぃみ", yomi:"いちの みぃみ",   color:"#ec4899", colorLight:"#fbcfe8",
+    bio:"うさぎのようにぴょんぴょん跳ねるおんなのこ。ちょっぴり泣き虫だけど、可愛いだけじゃ終わらない。やわらかくて強い魅力でみんなをメロメロにしちゃいます。",
+    image:"miimi.jpg", sns:{ x:"https://x.com/mallo_miimi", instagram:"https://www.instagram.com/mallo_miimi", tiktok:"https://www.tiktok.com/@mallo_miimi" } },
+  { id:3, name:"月島 せいら", yomi:"つきしま せいら", color:"#f97316", colorLight:"#fed7aa",
+    bio:"みんなに元気を届けるビタミン剤！「にゃ〜」と鳴いちゃう犬のように、褒めるとすぐ懐く寂しがり屋。目を離すと逃げちゃうのでしっかり見ていてね。",
+    image:"seira.jpg", sns:{ x:"https://x.com/mallo_seira", instagram:"https://www.instagram.com/mallo_seira", tiktok:"https://www.tiktok.com/@mallo_seira" } },
+  { id:4, name:"白雪 りずむ", yomi:"しらゆき りずむ", color:"#3b82f6", colorLight:"#bfdbfe",
+    bio:"美味しいものをモグモグ食べることが大好きな、ふわふわ小動物系女子。ときどき慌てちゃうけれど、ステージではいつでも本気のリズムを刻み歌うよ。",
+    image:"rhythm.jpg", sns:{ x:"https://x.com/mallo_rhythm", instagram:"https://www.instagram.com/mallo_rhythm", tiktok:"https://www.tiktok.com/@mallo_rhythm" } },
+  { id:5, name:"秋風 ミミ澪", yomi:"あきかぜ みみお", color:"#eab308", colorLight:"#fef08a",
+    bio:"笑うとパッとまわりを照らす、太陽のようにハッピーなヒロイン。ハチャメチャに見えて実は努力家。目で追っているうちに、すぐお隣にいるかも……？",
+    image:"mimio.jpg", sns:{ x:"https://x.com/mallo_mimimio", instagram:"https://www.instagram.com/mallo_mimimio", tiktok:"https://www.tiktok.com/@mimimiodayo" } },
+  { id:6, name:"東雲 ふりる", yomi:"しののめ ふりる", color:"#10b981", colorLight:"#a7f3d0",
+    bio:"夜明けの空のような、圧倒的な透明感をまとったおしとやかな存在。その美しいひと声で誰もが振り返る、甘く優しい「ふりるの魔法」にかかってね。",
+    image:"furiru.jpg", sns:{ x:"https://x.com/mallo_furiru", instagram:"https://www.instagram.com/mallo.furiru", tiktok:"https://www.tiktok.com/@mallo_furiru" } },
+];
+
+// ============================================================
+// ① ヒーロースライダー
+// ============================================================
+var slideIndex = 0;
+var slideTimer = null;
+
+function buildSlides() {
+  var slider = document.getElementById("heroSlider");
+  var dots   = document.getElementById("sliderDots");
+  var list   = SLIDES.filter(function(s){ return s.image; });
+  if (!list.length) list = [{ image:"images/slide2.jpg", copy:"やわらかいから、強い。" }];
+
+  slider.innerHTML = list.map(function(s, i) {
+    return '<div class="hero-slide' + (i===0?' active':'') + '">' +
+      '<div class="hero-left">' +
+        '<p class="eyebrow"><span class="line"></span>Osaka Girls Idol Group</p>' +
+        '<div class="debut-badge"><span>🎤</span><span class="big">2026.9.12</span><span class="small">デビューワンマンLIVE</span></div>' +
+        '<div class="hero-logo"><img src="images/logo.png" alt="Hello ∵ Mallo" onerror="this.style.display=\'none\'"></div>' +
+        '<p class="hero-yomi">ハローマロー</p>' +
+        '<p class="hero-copy">' + (s.copy||'') + '</p>' +
+        '<div class="hero-cta">' +
+          '<a href="#members" class="btn-dark">Members →</a>' +
+          '<a href="https://x.com/_HelloMallo" target="_blank" rel="noopener noreferrer" class="btn-outline">SNSをフォロー</a>' +
+        '</div>' +
+      '</div>' +
+      '<div class="hero-right">' +
+        '<div class="bgGrad"></div>' +
+        '<div class="photo"><img src="' + s.image + '" alt="Hello ∵ Mallo" onerror="this.style.display=\'none\'"></div>' +
+        '<div class="fade"></div>' +
+      '</div>' +
+    '</div>';
+  }).join("");
+  slider.style.minHeight = "420px";
+  if (list.length > 1) {
+    dots.innerHTML = list.map(function(_, i){
+      return '<button class="slider-dot' + (i===0?' active':'') + '" onclick="slideTo(' + i + ')" aria-label="スライド' + (i+1) + '"></button>';
+    }).join("");
+    slideTimer = setInterval(function(){ slideTo(slideIndex+1); }, 5000);
+  }
+}
+
+function slideTo(idx) {
+  var slides = document.querySelectorAll(".hero-slide");
+  var dots   = document.querySelectorAll(".slider-dot");
+  if (!slides.length) return;
+  slides[slideIndex].classList.remove("active");
+  if (dots[slideIndex]) dots[slideIndex].classList.remove("active");
+  slideIndex = (idx + slides.length) % slides.length;
+  slides[slideIndex].classList.add("active");
+  if (dots[slideIndex]) dots[slideIndex].classList.add("active");
+}
+
+function slideMove(dir) {
+  slideTo(slideIndex + dir);
+  if (slideTimer) { clearInterval(slideTimer); slideTimer = setInterval(function(){ slideTo(slideIndex+1); }, 5000); }
+}
+
+// ============================================================
+// ② BGM（3曲プレイリスト・自動で繋げて再生）
+// ============================================================
+// audio/フォルダに bgm1.mp3, bgm2.mp3, bgm3.mp3 を置くだけで反映される
+var BGM_TRACKS = ["audio/bgm1.mp3", "audio/bgm2.mp3", "audio/bgm3.mp3"];
+
+var bgmAudio      = document.getElementById("bgmAudio");
+var bgmPlayer     = document.getElementById("bgmPlayer");
+var bgmPlayBtn    = document.getElementById("bgmPlayBtn");
+var bgmTrackLabel = document.getElementById("bgmTrackLabel");
+var bgmIndex      = 0;
+var bgmPlaying    = false;
+
+function bgmUpdateUI() {
+  bgmTrackLabel.textContent = (bgmIndex + 1) + "/" + BGM_TRACKS.length;
+  bgmPlayBtn.textContent = bgmPlaying ? "⏸" : "▶";
+  if (bgmPlaying) bgmPlayer.classList.add("playing");
+  else bgmPlayer.classList.remove("playing");
+}
+
+function bgmLoad(idx, autoplay) {
+  bgmIndex = (idx + BGM_TRACKS.length) % BGM_TRACKS.length;
+  bgmAudio.src = BGM_TRACKS[bgmIndex];
+  if (autoplay) {
+    bgmAudio.play().then(function(){
+      bgmPlaying = true; bgmUpdateUI();
+    }).catch(function(){
+      bgmPlaying = false; bgmUpdateUI();
+      alert("audio/bgm1.mp3〜bgm3.mp3 を配置してください");
+    });
+  } else {
+    bgmUpdateUI();
+  }
+}
+
+function bgmToggle() {
+  if (!bgmAudio.src) { bgmLoad(0, true); return; }
+  if (bgmPlaying) {
+    bgmAudio.pause(); bgmPlaying = false; bgmUpdateUI();
+  } else {
+    bgmAudio.play().then(function(){
+      bgmPlaying = true; bgmUpdateUI();
+    }).catch(function(){ alert("audio/bgm1.mp3〜bgm3.mp3 を配置してください"); });
+  }
+}
+
+function bgmNext() { bgmLoad(bgmIndex + 1, bgmPlaying || !bgmAudio.src); }
+function bgmPrev() { bgmLoad(bgmIndex - 1, bgmPlaying || !bgmAudio.src); }
+
+
+// ============================================================
+// ③ メンバーTikTok動画グリッド（タップでTikTokへ飛ぶ）
+// ============================================================
+function buildMemberTiktoks() {
+  var grid = document.getElementById("memberTiktokGrid");
+  grid.innerHTML = MEMBER_TIKTOKS.map(function(m) {
+    var tag = m.url ? 'a href="' + m.url + '" target="_blank" rel="noopener noreferrer"' : 'div';
+    var closeTag = m.url ? 'a' : 'div';
+    var thumbHtml = m.thumb
+      ? '<div class="mt-bg"><img src="' + m.thumb + '" alt="' + m.name + '" onerror="this.parentNode.style.background=\'linear-gradient(135deg,#fce7f3,#fbcfe8)\'"></div>'
+      : '<div class="mt-bg" style="background:linear-gradient(135deg,#fce7f3,#fbcfe8)"></div>';
+    return '<' + tag + ' class="mt-card" style="border-bottom:3px solid ' + m.color + '">' +
+      thumbHtml +
+      '<div class="mt-overlay">' +
+        '<p class="mt-name">' + m.name + '</p>' +
+        (m.url ? '<span class="mt-badge">♪ TikTok</span>' : '<span class="mt-badge">準備中</span>') +
+      '</div>' +
+    '</' + closeTag + '>';
+  }).join("");
+}
+
+// ============================================================
+// ④ YouTube（16:9 Facade）
+// ============================================================
+function buildYoutube() {
+  var area = document.getElementById("ytArea");
+  if (!YOUTUBE.embedId && !YOUTUBE.thumb) { area.parentElement.style.display = "none"; return; }
+  var thumb = YOUTUBE.thumb
+    ? '<div class="thumb"><img src="' + YOUTUBE.thumb + '" alt="' + YOUTUBE.label + '" onerror="this.style.display=\'none\'"></div>' : '';
+  area.innerHTML = '<div class="yt-facade" id="ytFacade" onclick="loadYoutube()">' +
+    thumb +
+    '<span class="video-platform">YouTube</span>' +
+    '<div class="yt-overlay"><div class="play-btn">▶</div><span class="video-caption">' + YOUTUBE.label + '</span></div>' +
+  '</div>';
+}
+
+function loadYoutube() {
+  if (!YOUTUBE.embedId) { alert("YOUTUBE.embedId を設定してください"); return; }
+  var wrap = document.createElement("div");
+  wrap.className = "yt-iframe-wrap";
+  wrap.innerHTML = '<iframe src="https://www.youtube.com/embed/' + YOUTUBE.embedId + '?autoplay=1&rel=0" allowfullscreen allow="autoplay;encrypted-media"></iframe>';
+  var facade = document.getElementById("ytFacade");
+  facade.parentNode.replaceChild(wrap, facade);
+}
+
+// ============================================================
+// ⑤ カレンダー＋イベントリスト
+// ============================================================
+var calYear, calMonth;
+
+function initCalendar() {
+  var now = new Date();
+  calYear  = now.getFullYear();
+  calMonth = now.getMonth();
+  renderCalendar();
+}
+
+function calMove(dir) {
+  calMonth += dir;
+  if (calMonth > 11) { calMonth = 0; calYear++; }
+  if (calMonth < 0)  { calMonth = 11; calYear--; }
+  renderCalendar();
+}
+
+function renderCalendar() {
+  var DAYS_JP = ["日","月","火","水","木","金","土"];
+  var label   = document.getElementById("calMonthLabel");
+  var grid    = document.getElementById("calGrid");
+
+  label.textContent = calYear + "年 " + (calMonth+1) + "月";
+
+  // イベントをこの月のdateでまとめる
+  var eventMap = {};
+  LIVES.forEach(function(live) {
+    var d = new Date(live.date + "T00:00:00+09:00");
+    if (d.getFullYear() === calYear && d.getMonth() === calMonth) {
+      var key = d.getDate();
+      if (!eventMap[key]) eventMap[key] = [];
+      eventMap[key].push(live);
+    }
+  });
+
+  var firstDay = new Date(calYear, calMonth, 1).getDay();
+  var lastDate = new Date(calYear, calMonth+1, 0).getDate();
+  var prevLast = new Date(calYear, calMonth, 0).getDate();
+  var today    = new Date();
+  var isThisMonth = today.getFullYear()===calYear && today.getMonth()===calMonth;
+
+  var html = DAYS_JP.map(function(d){ return '<div class="cal-dow">' + d + '</div>'; }).join("");
+
+  // 前月の残り
+  for (var i = 0; i < firstDay; i++) {
+    html += '<div class="cal-day other-month"><div class="day-num">' + (prevLast - firstDay + 1 + i) + '</div></div>';
+  }
+  // 当月
+  for (var d2 = 1; d2 <= lastDate; d2++) {
+    var isToday = isThisMonth && today.getDate() === d2;
+    var evs = eventMap[d2] || [];
+    var dots = evs.map(function(ev){
+      var shortName = ev.name.length > 6 ? ev.name.slice(0,6)+"…" : ev.name;
+      return '<div class="day-event-dot" onclick="scrollToEvent(\'' + ev.date + '\')">' + shortName + '</div>';
+    }).join("");
+    html += '<div class="cal-day' + (isToday?' today':'') + '">' +
+      '<div class="day-num">' + d2 + '</div>' +
+      (dots ? '<div class="day-events">' + dots + '</div>' : '') +
+    '</div>';
+  }
+  // 翌月の穴埋め
+  var remaining = 7 - ((firstDay + lastDate) % 7);
+  if (remaining < 7) {
+    for (var n = 1; n <= remaining; n++) {
+      html += '<div class="cal-day other-month"><div class="day-num">' + n + '</div></div>';
+    }
+  }
+  grid.innerHTML = html;
+
+  // この月のイベントリスト
+  renderEventList();
+}
+
+function renderEventList() {
+  var title = document.getElementById("eventListTitle");
+  var cards = document.getElementById("eventCards");
+  var monthLives = LIVES.filter(function(live){
+    var d = new Date(live.date + "T00:00:00+09:00");
+    return d.getFullYear()===calYear && d.getMonth()===calMonth;
+  });
+
+  title.textContent = "LIVE / EVENTS — " + (calMonth+1) + "月";
+
+  if (!monthLives.length) {
+    cards.innerHTML = '<p style="font-size:12px;color:var(--muted);padding:16px 0">この月のイベントはありません</p>';
+    return;
+  }
+
+  cards.innerHTML = monthLives.map(function(live, idx){
+    var d      = new Date(live.date + "T00:00:00+09:00");
+    var dow    = ["日","月","火","水","木","金","土"][d.getDay()];
+    var dateStr = (calMonth+1) + "月" + d.getDate() + "日（" + dow + "）" + (live.time ? " " + live.time : "");
+    var imgHtml = live.image
+      ? '<img class="event-card-img" src="' + live.image + '" alt="' + live.name + '" onerror="this.style.display=\'none\'">'
+      : '<div class="event-card-img-ph">🎤</div>';
+    var ticketBtn = live.ticketUrl
+      ? '<a href="' + live.ticketUrl + '" target="_blank" rel="noopener noreferrer" class="event-ticket-btn" onclick="event.stopPropagation()">🎟 チケット購入 →</a>' : '';
+    var cardId = "ev-" + live.date + "-" + idx;
+    var hasDetail = !!live.detail;
+    var toggleHtml = hasDetail
+      ? '<p class="event-card-toggle">詳細あり <span class="arrow">▾</span></p>' : '';
+    var detailHtml = hasDetail
+      ? '<div class="event-card-detail"><div class="event-card-detail-inner">' + live.detail.replace(/\n/g,'<br>') + '</div></div>' : '';
+    var clickAttr = hasDetail ? ' data-clickable="1" onclick="toggleEventCard(\'' + cardId + '\')"' : '';
+    return '<div class="event-card" id="' + cardId + '" data-date="' + live.date + '"' + clickAttr + '>' +
+      imgHtml +
+      '<div class="event-card-body">' +
+        '<p class="event-card-date">' + dateStr + '</p>' +
+        '<p class="event-card-name">' + live.name + '</p>' +
+        '<p class="event-card-venue">📍 ' + (live.venue||'') + '</p>' +
+        toggleHtml +
+        detailHtml +
+        '<div class="event-card-actions">' + ticketBtn + '</div>' +
+      '</div>' +
+    '</div>';
+  }).join("");
+}
+
+function toggleEventCard(cardId) {
+  var el = document.getElementById(cardId);
+  if (el) el.classList.toggle("open");
+}
+
+function scrollToEvent(dateStr) {
+  var el = document.querySelector('[data-date="' + dateStr + '"]');
+  if (el) el.scrollIntoView({ behavior:"smooth", block:"start" });
+}
+
+
+
+// ============================================================
+// 共通パーツ
+// ============================================================
+function snsIcons(sns, cls) {
+  return [
+    { href:sns.x,         label:"X",        icon:"𝕏"  },
+    { href:sns.instagram, label:"Instagram", icon:"📸" },
+    { href:sns.tiktok,    label:"TikTok",    icon:"♪"  },
+  ].map(function(s){
+    return '<a href="' + s.href + '" target="_blank" rel="noopener noreferrer" aria-label="' + s.label + '" class="' + cls + '">' + s.icon + '</a>';
+  }).join("");
+}
+
+document.getElementById("navSns").innerHTML = snsIcons(GROUP_SNS, "icon-btn");
+
+var TICKER_ITEMS = ["Hello ∵ Mallo","Osaka","Debut 2026.9.12","やわらかいから強い","6 Members","Girls Idol Group"];
+var doubled = TICKER_ITEMS.concat(TICKER_ITEMS);
+document.getElementById("tickerInner").innerHTML = doubled.map(function(item){
+  return '<span class="ticker-item"><span class="txt">' + item + '</span><span class="dash">—</span></span>';
+}).join("");
+
+function memberCardHtml(m) {
+  var num = String(m.id).padStart(2,"0");
+  return '<article class="member-card">' +
+    '<div class="member-photo">' +
+      '<div class="fallback" style="background:linear-gradient(160deg,#fff1f2,' + m.colorLight + ',' + m.color + ')"></div>' +
+      '<img src="images/' + m.image + '" alt="' + m.name + '" loading="lazy" onerror="this.style.display=\'none\'">' +
+      '<span class="badge-num">' + num + '</span>' +
+      '<span class="badge-trainee">練習生</span>' +
+      '<div class="colorbar" style="background:' + m.color + '"></div>' +
+    '</div>' +
+    '<div class="member-text">' +
+      '<p class="member-name">' + m.name + '</p>' +
+      '<p class="member-yomi">' + m.yomi + '</p>' +
+      '<p class="member-bio">' + m.bio + '</p>' +
+      '<div class="member-sns">' + snsIcons(m.sns,"") + '</div>' +
+    '</div>' +
+  '</article>';
+}
+
+document.getElementById("membersGrid").innerHTML    = MEMBERS.map(memberCardHtml).join("");
+document.getElementById("membersCarousel").innerHTML = MEMBERS.map(function(m){
+  return '<div class="member-card-wrap">' + memberCardHtml(m) + '</div>';
+}).join("");
+
+var groupLinksData = [
+  { href:GROUP_SNS.x,         label:"公式 X",    handle:"@_HelloMallo", icon:"𝕏",  bg:"#f0f0f0" },
+  { href:GROUP_SNS.instagram,  label:"Instagram", handle:"@_hellomallo", icon:"📸", bg:"linear-gradient(135deg,#fce7f3,#fbcfe8)" },
+  { href:GROUP_SNS.tiktok,     label:"TikTok",    handle:"@_hellomallo", icon:"♪",  bg:"#f0fdf4" },
+];
+document.getElementById("groupLinks").innerHTML = groupLinksData.map(function(s){
+  return '<a href="' + s.href + '" target="_blank" rel="noopener noreferrer" class="link-row">' +
+    '<div class="link-icon" style="background:' + s.bg + '">' + s.icon + '</div>' +
+    '<div class="link-info"><p>' + s.label + '</p><p>' + s.handle + '</p></div>' +
+    '<span class="link-arrow">→</span></a>';
+}).join("");
+
+function updateCountdown() {
+  var diff = new Date(DEBUT_DATE).getTime() - Date.now();
+  document.getElementById("countdown").textContent =
+    diff > 0 ? "デビューまで あと " + Math.ceil(diff/86400000) + " 日" : "🎉 本日デビュー！";
+}
+updateCountdown();
+setInterval(updateCountdown, 60000);
+
+
+
+// ============================================================
+// 初期化
+// ============================================================
+buildSlides();
+buildMemberTiktoks();
+buildYoutube();
+initCalendar();
+</script>
+</body>
+</html>
