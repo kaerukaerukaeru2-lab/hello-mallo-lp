@@ -427,11 +427,17 @@ var YOUTUBE = {
 };
 
 // ── ライブ・イベント情報 ──
-// date: "YYYY-MM-DD"
-// time: "HH:MM"（省略可）
-// image: イベントフライヤー画像パス（省略可）
-// ticketUrl: チケットURL（なければ""）
+// ── ライブ・イベント情報 ──
+// 追加するときはここに追記する
 var LIVES = [
+  {
+    date: "2026-07-19",
+    time: "11:00",
+    name: "押忍フェス（OSU FESTIVAL）",
+    venue: "湊町リバープレイス",
+    image: "images/live_0719.webp",
+    ticketUrl: "",
+  },
   {
     date: "2026-07-19",
     time: "12:00",
@@ -439,7 +445,6 @@ var LIVES = [
     venue: "リバープレイス",
     image: "",
     ticketUrl: "",
-    detail: "🕐 12:00〜16:00の間で時間調整中",
   },
   {
     date: "2026-07-19",
@@ -448,7 +453,6 @@ var LIVES = [
     venue: "ポルックスシアター",
     image: "images/live_0719_pollux.jpg",
     ticketUrl: "https://tiget.net/events/499731",
-    detail: "TIGET主催一括受付\nhttps://tiget.net/events/499731\n\n日時：7月19日（日）12:00開場 / 12:15開演 予定\n会場：ポルックスシアター\n料金：前売一般 500円／前方優先1500円 ※1D別 ※当日＋500円\n出演：大阪24区ガールズ、超★NOVA24'、リトルシェノン、NANIkaWA、LOTUS MARRY、キューハチパーセント！、HIGHSPYDOLL、ChanceMovement、リリシック学園、コドモシンカ、ParaMilia、ミケネコガールズ、無花果とマシンガン、Unity、カリフラワー冒険記、ふぁんたす！、TIPINKIT、にゃあにゃあ、M.M.T、OGP研修生、ほか\n\n【撮影に関して】\n優先チケット：静止画可能／動画不可\n一般チケット：静止画動画とも不可\n※静止画撮影は優先エリアからのみ可能。\n※撮影可否は各グループレギュレーションにより異なります。",
   },
   {
     date: "2026-08-01",
@@ -490,8 +494,6 @@ var LIVES = [
     image: "",
     ticketUrl: "",
   },
-  // 追加例：
-  // { date:"2026-10-01", time:"18:00", name:"イベントタイトル", venue:"会場名", image:"images/live_oct.jpg", ticketUrl:"https://..." },
 ];
 
 var MEMBERS = [
