@@ -223,6 +223,7 @@ header.nav{position:sticky;top:0;z-index:50;display:flex;align-items:center;just
 .event-card-detail{max-height:0;overflow:hidden;transition:max-height .35s ease;}
 .event-card.open .event-card-detail{max-height:1400px;}
 .event-card-detail-inner{padding-top:10px;margin-top:6px;border-top:.5px solid var(--bdr);font-size:11px;line-height:1.9;color:var(--sub);white-space:pre-wrap;word-break:break-word;}
+.event-card-detail-img{width:100%;border-radius:10px;margin-bottom:10px;display:block;}
 .event-ticket-btn{font-size:11px;padding:7px 14px;border-radius:999px;background:var(--pk3);color:#fff;font-weight:500;transition:opacity .2s;}
 .event-ticket-btn:hover{opacity:.85;}
 
@@ -446,6 +447,7 @@ var LIVES = [
     venue: "ポルックスシアター",
     image: "images/live_0719_pollux.jpg",
     ticketUrl: "https://tiget.net/events/499731",
+    detailImage: "images/timetable_0719_pollux.webp",
     detail: "TIGET主催一括受付\nhttps://tiget.net/events/499731\n\n日時：7月19日（日）12:00開場 / 12:15開演 予定\n会場：ポルックスシアター\n料金：前売一般 500円／前方優先1500円 ※1D別 ※当日＋500円\n出演：大阪24区ガールズ、超★NOVA24'、リトルシェノン、NANIkaWA、LOTUS MARRY、キューハチパーセント！、HIGHSPYDOLL、ChanceMovement、リリシック学園、コドモシンカ、ParaMilia、ミケネコガールズ、無花果とマシンガン、Unity、カリフラワー冒険記、ふぁんたす！、TIPINKIT、にゃあにゃあ、M.M.T、OGP研修生、ほか\n\n【撮影に関して】\n優先チケット：静止画可能／動画不可\n一般チケット：静止画動画とも不可\n※静止画撮影は優先エリアからのみ可能。\n※撮影可否は各グループレギュレーションにより異なります。",
   },
   {
@@ -764,11 +766,13 @@ function renderEventList() {
     var ticketBtn = live.ticketUrl
       ? '<a href="' + live.ticketUrl + '" target="_blank" rel="noopener noreferrer" class="event-ticket-btn" onclick="event.stopPropagation()">🎟 チケット購入 →</a>' : '';
     var cardId = "ev-" + live.date + "-" + idx;
-    var hasDetail = !!live.detail;
+    var hasDetail = !!(live.detail || live.detailImage);
     var toggleHtml = hasDetail
       ? '<p class="event-card-toggle">詳細あり <span class="arrow">▾</span></p>' : '';
+    var detailImgHtml = live.detailImage
+      ? '<img class="event-card-detail-img" src="' + live.detailImage + '" alt="タイムテーブル" onerror="this.style.display=\'none\'">' : '';
     var detailHtml = hasDetail
-      ? '<div class="event-card-detail"><div class="event-card-detail-inner">' + live.detail.replace(/\n/g,'<br>') + '</div></div>' : '';
+      ? '<div class="event-card-detail"><div class="event-card-detail-inner">' + detailImgHtml + (live.detail ? live.detail.replace(/\n/g,'<br>') : '') + '</div></div>' : '';
     var clickAttr = hasDetail ? ' data-clickable="1" onclick="toggleEventCard(\'' + cardId + '\')"' : '';
     return '<div class="event-card" id="' + cardId + '" data-date="' + live.date + '"' + clickAttr + '>' +
       imgHtml +
