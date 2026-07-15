@@ -593,8 +593,14 @@ var DEBUT_DATE = "2026-09-12T00:00:00+09:00";
 
 // ── ヒーロースライド ──
 // image: 画像パス　copy: コピー文
-// SLIDES はこの下、MEMBERSのgalleryから自動生成される（「自動ヒーロースライダー生成」セクション参照）
-var SLIDES = []; // 互換用の仮宣言（後で上書きされる）
+var SLIDES = [
+  { image:"images/slide2.jpg", copy:"不完全で、まぶしくて。" },
+  { image:"images/slide3.jpg", copy:"やるからには、全力で。" },
+  { image:"images/slide4.jpg", copy:"完璧になるまで。"       },
+  { image:"images/slide5.jpg", copy:"あなたを笑顔にするために。" },
+  { image:"images/slide6.jpg", copy:"頑張れる理由になりたい。" },
+  { image:"images/slide7.jpg", copy:"大阪から、世界へ。"     },
+];
 
 // ── メンバー個人TikTok動画 ──
 // thumb: サムネイル画像パス（images/フォルダに置く）
@@ -723,16 +729,6 @@ var MEMBERS = [
 ];
 
 // ============================================================
-// ヒーロースライダーを自動生成（各メンバーのgalleryの2枚目から採用）
-// gallery[0]はプロフィール写真固定なので、gallery[1]（追加写真の1枚目）を使う。
-// メンバーを追加・入れ替えするだけで自動的にヒーローにも反映される。
-// ============================================================
-SLIDES = MEMBERS.map(function(m){
-  var pic = (m.gallery && m.gallery.length > 1) ? m.gallery[1] : (m.gallery ? m.gallery[0] : "");
-  return { image: pic, copy: m.heroCopy || ("Hello ∵ Mallo") };
-}).filter(function(s){ return s.image; });
-
-// ============================================================
 // ① ヒーロースライダー
 // ============================================================
 var slideIndex = 0;
@@ -742,7 +738,7 @@ function buildSlides() {
   var slider = document.getElementById("heroSlider");
   var dots   = document.getElementById("sliderDots");
   var list   = SLIDES.filter(function(s){ return s.image; });
-  if (!list.length) list = [{ image:"images/group.jpg", copy:"やわらかいから、強い。" }];
+  if (!list.length) list = [{ image:"images/slide2.jpg", copy:"やわらかいから、強い。" }];
 
   slider.innerHTML = list.map(function(s, i) {
     return '<div class="hero-slide' + (i===0?' active':'') + '">' +
