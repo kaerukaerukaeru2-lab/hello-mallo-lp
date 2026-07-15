@@ -245,6 +245,54 @@ header.nav{position:sticky;top:0;z-index:50;display:flex;align-items:center;just
 .link-member-sns{display:flex;gap:6px;margin-top:6px;}
 .link-member-sns a{border-radius:999px;padding:2px 8px;font-size:10px;color:var(--sub);background:var(--bg2);border:.5px solid var(--bdr);}
 
+/* ===== メンバーモーダル ===== */
+.member-modal-overlay{position:fixed;inset:0;z-index:100;background:rgba(0,0,0,.45);backdrop-filter:blur(4px);opacity:0;pointer-events:none;transition:opacity .3s;}
+.member-modal-overlay.open{opacity:1;pointer-events:auto;}
+.member-modal{position:fixed;bottom:0;left:0;right:0;z-index:101;background:var(--bg);border-radius:20px 20px 0 0;max-height:90dvh;display:flex;flex-direction:column;transform:translateY(100%);transition:transform .35s cubic-bezier(.32,.72,0,1);}
+.member-modal.open{transform:translateY(0);}
+.modal-handle-bar{display:flex;justify-content:center;padding:12px 0 4px;flex-shrink:0;}
+.modal-handle{width:36px;height:4px;border-radius:99px;background:var(--bdr);}
+/* モーダルヘッダー */
+.modal-header{display:flex;align-items:center;gap:14px;padding:12px 20px 0;flex-shrink:0;}
+.modal-header-img{width:52px;height:52px;border-radius:14px;object-fit:cover;object-position:top;flex-shrink:0;}
+.modal-header-img-ph{width:52px;height:52px;border-radius:14px;flex-shrink:0;}
+.modal-header-name{font-size:18px;font-weight:500;color:var(--text);margin-bottom:1px;}
+.modal-header-yomi{font-size:10px;letter-spacing:.1em;color:var(--muted);}
+.modal-close{margin-left:auto;width:28px;height:28px;border-radius:50%;background:var(--bg2);border:.5px solid var(--bdr);display:flex;align-items:center;justify-content:center;font-size:14px;color:var(--sub);cursor:pointer;flex-shrink:0;}
+/* タブ */
+.modal-tabs{display:flex;padding:14px 20px 0;gap:0;flex-shrink:0;border-bottom:.5px solid var(--bdr);position:relative;}
+.modal-tab{flex:1;text-align:center;padding:8px 0;font-size:12px;color:var(--muted);cursor:pointer;position:relative;transition:color .2s;}
+.modal-tab.active{color:var(--pk2);font-weight:500;}
+.modal-tab-bar{position:absolute;bottom:0;left:0;height:2px;background:var(--pk2);border-radius:99px;transition:transform .25s ease,width .25s ease;}
+/* タブコンテンツ */
+.modal-body{flex:1;overflow-y:auto;overflow-x:hidden;-webkit-overflow-scrolling:touch;}
+.modal-panel{display:none;padding:20px;}
+.modal-panel.active{display:block;}
+/* プロフィールタブ */
+.modal-bio{font-size:13px;line-height:1.9;color:var(--sub);margin-bottom:20px;}
+.modal-sns-row{display:flex;gap:10px;flex-wrap:wrap;}
+.modal-sns-btn{display:flex;align-items:center;gap:6px;padding:10px 18px;border-radius:999px;font-size:12px;font-weight:500;border:.5px solid var(--bdr);color:var(--sub);background:#fff;text-decoration:none;transition:all .2s;}
+.modal-sns-btn:hover{border-color:var(--pk2);color:var(--pk2);}
+/* ギャラリータブ */
+.modal-gallery-slider{position:relative;overflow:hidden;border-radius:14px;aspect-ratio:3/4;background:var(--bg2);touch-action:pan-y;}
+.gallery-track{display:flex;height:100%;transition:transform .3s ease;}
+.gallery-slide{flex:none;width:100%;height:100%;position:relative;}
+.gallery-slide img{width:100%;height:100%;object-fit:cover;object-position:top;}
+.gallery-slide-ph{width:100%;height:100%;display:flex;align-items:center;justify-content:center;font-size:32px;}
+.gallery-dots{display:flex;justify-content:center;gap:5px;margin-top:10px;}
+.gallery-dot{width:5px;height:5px;border-radius:50%;background:var(--pk);opacity:.4;border:none;padding:0;cursor:pointer;transition:all .2s;}
+.gallery-dot.active{opacity:1;background:var(--pk2);transform:scale(1.3);}
+.gallery-arrows{position:absolute;top:50%;left:0;right:0;display:flex;justify-content:space-between;transform:translateY(-50%);pointer-events:none;padding:0 8px;}
+.gallery-arrow{width:28px;height:28px;border-radius:50%;background:rgba(255,255,255,.8);border:none;font-size:14px;color:var(--sub);cursor:pointer;pointer-events:auto;display:flex;align-items:center;justify-content:center;}
+/* 動画タブ */
+.modal-tiktok-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px;}
+.modal-tiktok-card{position:relative;border-radius:10px;overflow:hidden;aspect-ratio:9/16;display:block;border:.5px solid var(--bdr);}
+.modal-tiktok-card .mt-bg{position:absolute;inset:0;}
+.modal-tiktok-card .mt-bg img{width:100%;height:100%;object-fit:cover;}
+.modal-tiktok-card .mt-overlay{position:absolute;inset:0;background:linear-gradient(to top,rgba(0,0,0,.5) 0%,transparent 50%);display:flex;flex-direction:column;justify-content:flex-end;padding:8px;}
+.modal-tiktok-card .mt-name{font-size:10px;font-weight:600;color:#fff;}
+.modal-tiktok-card .mt-badge{font-size:9px;color:rgba(255,255,255,.8);background:rgba(0,0,0,.3);padding:2px 6px;border-radius:999px;width:fit-content;margin-top:2px;}
+
 /* ===== Final CTA ===== */
 .cta-section{position:relative;overflow:hidden;padding:80px 28px;text-align:center;background:linear-gradient(140deg,#fdf2f8 0%,#fce7f3 30%,#fbcfe8 60%,#f9a8d4 100%);}
 .orb{position:absolute;pointer-events:none;border-radius:999px;}
@@ -378,6 +426,45 @@ footer .copyright{font-size:10px;letter-spacing:.04em;color:var(--muted);}
 
 </section>
 
+<!-- ===== メンバーモーダル ===== -->
+<div class="member-modal-overlay" id="memberModalOverlay" onclick="closeMemberModal()"></div>
+<div class="member-modal" id="memberModal">
+  <div class="modal-handle-bar"><div class="modal-handle"></div></div>
+  <div class="modal-header">
+    <div class="modal-header-img-ph" id="modalHeaderImgWrap"></div>
+    <div>
+      <p class="modal-header-name" id="modalName"></p>
+      <p class="modal-header-yomi" id="modalYomi"></p>
+    </div>
+    <button class="modal-close" onclick="closeMemberModal()">✕</button>
+  </div>
+  <div class="modal-tabs" id="modalTabs">
+    <div class="modal-tab active" onclick="switchModalTab(0)">プロフィール</div>
+    <div class="modal-tab" onclick="switchModalTab(1)">ギャラリー</div>
+    <div class="modal-tab" onclick="switchModalTab(2)">動画</div>
+    <div class="modal-tab-bar" id="modalTabBar"></div>
+  </div>
+  <div class="modal-body">
+    <div class="modal-panel active" id="modalPanel0">
+      <p class="modal-bio" id="modalBio"></p>
+      <div class="modal-sns-row" id="modalSns"></div>
+    </div>
+    <div class="modal-panel" id="modalPanel1">
+      <div class="modal-gallery-slider" id="gallerySlider">
+        <div class="gallery-track" id="galleryTrack"></div>
+        <div class="gallery-arrows">
+          <button class="gallery-arrow" onclick="galleryMove(-1)">‹</button>
+          <button class="gallery-arrow" onclick="galleryMove(1)">›</button>
+        </div>
+      </div>
+      <div class="gallery-dots" id="galleryDots"></div>
+    </div>
+    <div class="modal-panel" id="modalPanel2">
+      <div class="modal-tiktok-grid" id="modalTiktokGrid"></div>
+    </div>
+  </div>
+</div>
+
 <footer>
   <div class="brand">Hello <span class="dot">∵</span> Mallo</div>
   <p class="copyright">© 2026 Hello ∵ Mallo. All rights reserved.</p>
@@ -496,22 +583,34 @@ var LIVES = [
 var MEMBERS = [
   { id:1, name:"月兎 まる",   yomi:"つきと まる",     color:"#ef4444", colorLight:"#fecdd3",
     bio:"赤いリボンがトレードマークの、真面目で負けず嫌いなかぐや姫。まるの魅力をまるっと全部受け止めて、夜空の月まで一緒に連れていってあげるね。",
-    image:"maru.jpg", sns:{ x:"https://x.com/mallo_maru0", instagram:"https://www.instagram.com/mallo_maru0", tiktok:"https://www.tiktok.com/@mallo_maru" } },
+    image:"maru.jpg",
+    gallery:["images/maru.jpg"],  // ギャラリー画像（images/フォルダに置いて追加）
+    sns:{ x:"https://x.com/mallo_maru0", instagram:"https://www.instagram.com/mallo_maru0", tiktok:"https://www.tiktok.com/@mallo_maru" } },
   { id:2, name:"苺乃 みぃみ", yomi:"いちの みぃみ",   color:"#ec4899", colorLight:"#fbcfe8",
     bio:"うさぎのようにぴょんぴょん跳ねるおんなのこ。ちょっぴり泣き虫だけど、可愛いだけじゃ終わらない。やわらかくて強い魅力でみんなをメロメロにしちゃいます。",
-    image:"miimi.jpg", sns:{ x:"https://x.com/mallo_miimi", instagram:"https://www.instagram.com/mallo_miimi", tiktok:"https://www.tiktok.com/@mallo_miimi" } },
+    image:"miimi.jpg",
+    gallery:["images/miimi.jpg"],
+    sns:{ x:"https://x.com/mallo_miimi", instagram:"https://www.instagram.com/mallo_miimi", tiktok:"https://www.tiktok.com/@mallo_miimi" } },
   { id:3, name:"月島 せいら", yomi:"つきしま せいら", color:"#f97316", colorLight:"#fed7aa",
     bio:"みんなに元気を届けるビタミン剤！「にゃ〜」と鳴いちゃう犬のように、褒めるとすぐ懐く寂しがり屋。目を離すと逃げちゃうのでしっかり見ていてね。",
-    image:"seira.jpg", sns:{ x:"https://x.com/mallo_seira", instagram:"https://www.instagram.com/mallo_seira", tiktok:"https://www.tiktok.com/@mallo_seira" } },
+    image:"seira.jpg",
+    gallery:["images/seira.jpg"],
+    sns:{ x:"https://x.com/mallo_seira", instagram:"https://www.instagram.com/mallo_seira", tiktok:"https://www.tiktok.com/@mallo_seira" } },
   { id:4, name:"白雪 りずむ", yomi:"しらゆき りずむ", color:"#3b82f6", colorLight:"#bfdbfe",
     bio:"美味しいものをモグモグ食べることが大好きな、ふわふわ小動物系女子。ときどき慌てちゃうけれど、ステージではいつでも本気のリズムを刻み歌うよ。",
-    image:"rhythm.jpg", sns:{ x:"https://x.com/mallo_rhythm", instagram:"https://www.instagram.com/mallo_rhythm", tiktok:"https://www.tiktok.com/@mallo_rhythm" } },
+    image:"rhythm.jpg",
+    gallery:["images/rhythm.jpg"],
+    sns:{ x:"https://x.com/mallo_rhythm", instagram:"https://www.instagram.com/mallo_rhythm", tiktok:"https://www.tiktok.com/@mallo_rhythm" } },
   { id:5, name:"秋風 ミミ澪", yomi:"あきかぜ みみお", color:"#eab308", colorLight:"#fef08a",
     bio:"笑うとパッとまわりを照らす、太陽のようにハッピーなヒロイン。ハチャメチャに見えて実は努力家。目で追っているうちに、すぐお隣にいるかも……？",
-    image:"mimio.jpg", sns:{ x:"https://x.com/mallo_mimimio", instagram:"https://www.instagram.com/mallo_mimimio", tiktok:"https://www.tiktok.com/@mimimiodayo" } },
+    image:"mimio.jpg",
+    gallery:["images/mimio.jpg"],
+    sns:{ x:"https://x.com/mallo_mimimio", instagram:"https://www.instagram.com/mallo_mimimio", tiktok:"https://www.tiktok.com/@mimimiodayo" } },
   { id:6, name:"東雲 ふりる", yomi:"しののめ ふりる", color:"#10b981", colorLight:"#a7f3d0",
     bio:"夜明けの空のような、圧倒的な透明感をまとったおしとやかな存在。その美しいひと声で誰もが振り返る、甘く優しい「ふりるの魔法」にかかってね。",
-    image:"furiru.jpg", sns:{ x:"https://x.com/mallo_furiru", instagram:"https://www.instagram.com/mallo.furiru", tiktok:"https://www.tiktok.com/@mallo_furiru" } },
+    image:"furiru.jpg",
+    gallery:["images/furiru.jpg"],
+    sns:{ x:"https://x.com/mallo_furiru", instagram:"https://www.instagram.com/mallo.furiru", tiktok:"https://www.tiktok.com/@mallo_furiru" } },
 ];
 
 // ============================================================
@@ -572,6 +671,21 @@ function slideMove(dir) {
 }
 
 // ============================================================
+// 簡易トースト通知（alert/confirm/prompt禁止のため代替）
+// ============================================================
+function showToast(msg) {
+  var old = document.getElementById("miniToast");
+  if (old) old.parentNode.removeChild(old);
+  var t = document.createElement("div");
+  t.id = "miniToast";
+  t.textContent = msg;
+  t.style.cssText = "position:fixed;left:50%;bottom:28px;transform:translateX(-50%);z-index:999;background:rgba(0,0,0,.8);color:#fff;font-size:12px;padding:10px 18px;border-radius:999px;max-width:86vw;text-align:center;box-shadow:0 4px 16px rgba(0,0,0,.25);";
+  document.body.appendChild(t);
+  setTimeout(function(){ if (t.parentNode) t.parentNode.removeChild(t); }, 3200);
+}
+
+
+// ============================================================
 // ② BGM（3曲プレイリスト・自動で繋げて再生）
 // ============================================================
 // audio/フォルダに bgm1.mp3, bgm2.mp3, bgm3.mp3 を置くだけで反映される
@@ -599,7 +713,7 @@ function bgmLoad(idx, autoplay) {
       bgmPlaying = true; bgmUpdateUI();
     }).catch(function(){
       bgmPlaying = false; bgmUpdateUI();
-      alert("audio/bgm1.mp3〜bgm3.mp3 を配置してください");
+      showToast("audio/bgm1.mp3〜bgm3.mp3 を配置してください");
     });
   } else {
     bgmUpdateUI();
@@ -613,7 +727,7 @@ function bgmToggle() {
   } else {
     bgmAudio.play().then(function(){
       bgmPlaying = true; bgmUpdateUI();
-    }).catch(function(){ alert("audio/bgm1.mp3〜bgm3.mp3 を配置してください"); });
+    }).catch(function(){ showToast("audio/bgm1.mp3〜bgm3.mp3 を配置してください"); });
   }
 }
 
@@ -658,7 +772,7 @@ function buildYoutube() {
 }
 
 function loadYoutube() {
-  if (!YOUTUBE.embedId) { alert("YOUTUBE.embedId を設定してください"); return; }
+  if (!YOUTUBE.embedId) { showToast("YOUTUBE.embedId を設定してください"); return; }
   var wrap = document.createElement("div");
   wrap.className = "yt-iframe-wrap";
   wrap.innerHTML = '<iframe src="https://www.youtube.com/embed/' + YOUTUBE.embedId + '?autoplay=1&rel=0" allowfullscreen allow="autoplay;encrypted-media"></iframe>';
@@ -823,7 +937,7 @@ document.getElementById("tickerInner").innerHTML = doubled.map(function(item){
 
 function memberCardHtml(m) {
   var num = String(m.id).padStart(2,"0");
-  return '<article class="member-card">' +
+  return '<article class="member-card" onclick="openMemberModal(' + m.id + ')" style="cursor:pointer">' +
     '<div class="member-photo">' +
       '<div class="fallback" style="background:linear-gradient(160deg,#fff1f2,' + m.colorLight + ',' + m.color + ')"></div>' +
       '<img src="images/' + m.image + '" alt="' + m.name + '" loading="lazy" onerror="this.style.display=\'none\'">' +
@@ -866,6 +980,121 @@ updateCountdown();
 setInterval(updateCountdown, 60000);
 
 
+
+// ============================================================
+// メンバーモーダル
+// ============================================================
+var currentModalTab = 0;
+var galleryIdx = 0;
+var gallerySlides = [];
+
+function openMemberModal(id) {
+  var m = null;
+  for (var i = 0; i < MEMBERS.length; i++) { if (MEMBERS[i].id === id) { m = MEMBERS[i]; break; } }
+  if (!m) return;
+
+  // ヘッダー
+  var imgWrap = document.getElementById("modalHeaderImgWrap");
+  imgWrap.innerHTML = '<img class="modal-header-img" src="images/' + m.image + '" alt="' + m.name + '" onerror="this.style.display=\'none\'">';
+  imgWrap.style.background = "linear-gradient(135deg,#fff1f2," + m.colorLight + ")";
+  document.getElementById("modalName").textContent = m.name;
+  document.getElementById("modalYomi").textContent = m.yomi;
+
+  // カラーバー
+  document.getElementById("memberModal").style.setProperty("--member-color", m.color);
+
+  // プロフィールタブ
+  document.getElementById("modalBio").textContent = m.bio;
+  document.getElementById("modalSns").innerHTML = [
+    { href:m.sns.x,         icon:"𝕏",  label:"X"         },
+    { href:m.sns.instagram,  icon:"📸", label:"Instagram"  },
+    { href:m.sns.tiktok,     icon:"♪",  label:"TikTok"    },
+  ].map(function(s){
+    return '<a href="' + s.href + '" target="_blank" rel="noopener noreferrer" class="modal-sns-btn">' + s.icon + ' ' + s.label + '</a>';
+  }).join("");
+
+  // ギャラリータブ
+  gallerySlides = m.gallery || ["images/" + m.image];
+  galleryIdx = 0;
+  renderGallery();
+
+  // 動画タブ（MEMBER_TIKTOKSから該当メンバーを検索）
+  var tiktokData = null;
+  for (var j = 0; j < MEMBER_TIKTOKS.length; j++) {
+    if (MEMBER_TIKTOKS[j].name === m.name) { tiktokData = MEMBER_TIKTOKS[j]; break; }
+  }
+  var tiktokGrid = document.getElementById("modalTiktokGrid");
+  if (tiktokData && tiktokData.url) {
+    var thumbHtml = tiktokData.thumb
+      ? '<div class="mt-bg"><img src="' + tiktokData.thumb + '" alt="' + tiktokData.name + '" onerror="this.parentNode.style.background=\'linear-gradient(135deg,#fce7f3,#fbcfe8)\'"></div>'
+      : '<div class="mt-bg" style="background:linear-gradient(135deg,#fce7f3,#fbcfe8)"></div>';
+    tiktokGrid.innerHTML = '<a href="' + tiktokData.url + '" target="_blank" rel="noopener noreferrer" class="modal-tiktok-card" style="border-bottom:3px solid ' + tiktokData.color + '">' +
+      thumbHtml +
+      '<div class="mt-overlay"><p class="mt-name">' + tiktokData.name + '</p><span class="mt-badge">♪ TikTok</span></div>' +
+    '</a>';
+  } else {
+    tiktokGrid.innerHTML = '<p style="font-size:12px;color:var(--muted);padding:8px 0">動画は準備中です</p>';
+  }
+
+  // タブリセット
+  switchModalTab(0);
+
+  // 開く
+  document.getElementById("memberModalOverlay").classList.add("open");
+  document.getElementById("memberModal").classList.add("open");
+  document.body.style.overflow = "hidden";
+}
+
+function closeMemberModal() {
+  document.getElementById("memberModalOverlay").classList.remove("open");
+  document.getElementById("memberModal").classList.remove("open");
+  document.body.style.overflow = "";
+}
+
+function switchModalTab(idx) {
+  currentModalTab = idx;
+  var tabs = document.querySelectorAll(".modal-tab");
+  var panels = document.querySelectorAll(".modal-panel");
+  tabs.forEach(function(t, i){ t.classList.toggle("active", i === idx); });
+  panels.forEach(function(p, i){ p.classList.toggle("active", i === idx); });
+  // タブバー移動
+  var bar = document.getElementById("modalTabBar");
+  var w = 100 / tabs.length;
+  bar.style.width = w + "%";
+  bar.style.transform = "translateX(" + (idx * 100) + "%)";
+}
+
+function renderGallery() {
+  var track = document.getElementById("galleryTrack");
+  var dots  = document.getElementById("galleryDots");
+  track.innerHTML = gallerySlides.map(function(src){
+    return '<div class="gallery-slide"><img src="' + src + '" alt="" onerror="this.parentNode.innerHTML=\'<div class=gallery-slide-ph>🌸</div>\'" style="width:100%;height:100%;object-fit:cover;object-position:top"></div>';
+  }).join("");
+  track.style.transform = "translateX(0)";
+  dots.innerHTML = gallerySlides.length > 1 ? gallerySlides.map(function(_, i){
+    return '<button class="gallery-dot' + (i===0?' active':'') + '" onclick="galleryGoTo(' + i + ')"></button>';
+  }).join("") : "";
+}
+
+function galleryGoTo(idx) {
+  galleryIdx = (idx + gallerySlides.length) % gallerySlides.length;
+  document.getElementById("galleryTrack").style.transform = "translateX(-" + (galleryIdx * 100) + "%)";
+  var dots = document.querySelectorAll(".gallery-dot");
+  dots.forEach(function(d, i){ d.classList.toggle("active", i === galleryIdx); });
+}
+
+function galleryMove(dir) { galleryGoTo(galleryIdx + dir); }
+
+// モーダル外スワイプで閉じる（下スワイプ）
+(function(){
+  var startY = 0;
+  var modal = document.getElementById("memberModal");
+  modal.addEventListener("touchstart", function(e){ startY = e.touches[0].clientY; }, { passive:true });
+  modal.addEventListener("touchend", function(e){
+    var endY = e.changedTouches[0].clientY;
+    if (endY - startY > 80) closeMemberModal();
+  }, { passive:true });
+})();
 
 // ============================================================
 // 初期化
