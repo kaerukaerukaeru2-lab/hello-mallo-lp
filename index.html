@@ -593,14 +593,8 @@ var DEBUT_DATE = "2026-09-12T00:00:00+09:00";
 
 // ── ヒーロースライド ──
 // image: 画像パス　copy: コピー文
-var SLIDES = [
-  { image:"images/slide2.jpg", copy:"不完全で、まぶしくて。" },
-  { image:"images/slide3.jpg", copy:"やるからには、全力で。" },
-  { image:"images/slide4.jpg", copy:"完璧になるまで。"       },
-  { image:"images/slide5.jpg", copy:"あなたを笑顔にするために。" },
-  { image:"images/slide6.jpg", copy:"頑張れる理由になりたい。" },
-  { image:"images/slide7.jpg", copy:"大阪から、世界へ。"     },
-];
+// SLIDES はこの下、MEMBERSのgalleryから自動生成される（「自動ヒーロースライダー生成」セクション参照）
+var SLIDES = []; // 互換用の仮宣言（後で上書きされる）
 
 // ── メンバー個人TikTok動画 ──
 // thumb: サムネイル画像パス（images/フォルダに置く）
@@ -691,36 +685,52 @@ var LIVES = [
 
 var MEMBERS = [
   { id:1, name:"月兎 まる",   yomi:"つきと まる",     color:"#ef4444", colorLight:"#fecdd3",
+    heroCopy:"不完全で、まぶしくて。",
     bio:"赤いリボンがトレードマークの、真面目で負けず嫌いなかぐや姫。まるの魅力をまるっと全部受け止めて、夜空の月まで一緒に連れていってあげるね。",
     image:"maru.jpg",
     gallery:["images/maru.jpg","images/gallery/maru_g1.webp","images/gallery/maru_g2.webp","images/gallery/maru_g3.webp","images/gallery/maru_g4.webp","images/gallery/maru_g5.webp"],
     sns:{ x:"https://x.com/mallo_maru0", instagram:"https://www.instagram.com/mallo_maru0", tiktok:"https://www.tiktok.com/@mallo_maru" } },
   { id:2, name:"苺乃 みぃみ", yomi:"いちの みぃみ",   color:"#ec4899", colorLight:"#fbcfe8",
+    heroCopy:"やるからには、全力で。",
     bio:"うさぎのようにぴょんぴょん跳ねるおんなのこ。ちょっぴり泣き虫だけど、可愛いだけじゃ終わらない。やわらかくて強い魅力でみんなをメロメロにしちゃいます。",
     image:"miimi.jpg",
     gallery:["images/miimi.jpg","images/gallery/miimi_g1.webp","images/gallery/miimi_g2.webp","images/gallery/miimi_g3.webp"],
     sns:{ x:"https://x.com/mallo_miimi", instagram:"https://www.instagram.com/mallo_miimi", tiktok:"https://www.tiktok.com/@mallo_miimi" } },
   { id:3, name:"月島 せいら", yomi:"つきしま せいら", color:"#f97316", colorLight:"#fed7aa",
+    heroCopy:"完璧になるまで。",
     bio:"みんなに元気を届けるビタミン剤！「にゃ〜」と鳴いちゃう犬のように、褒めるとすぐ懐く寂しがり屋。目を離すと逃げちゃうのでしっかり見ていてね。",
     image:"seira.jpg",
     gallery:["images/seira.jpg","images/gallery/seira_g1.webp","images/gallery/seira_g2.webp","images/gallery/seira_g3.webp","images/gallery/seira_g4.webp","images/gallery/seira_g5.webp"],
     sns:{ x:"https://x.com/mallo_seira", instagram:"https://www.instagram.com/mallo_seira", tiktok:"https://www.tiktok.com/@mallo_seira" } },
   { id:4, name:"白雪 りずむ", yomi:"しらゆき りずむ", color:"#3b82f6", colorLight:"#bfdbfe",
+    heroCopy:"あなたを笑顔にするために。",
     bio:"美味しいものをモグモグ食べることが大好きな、ふわふわ小動物系女子。ときどき慌てちゃうけれど、ステージではいつでも本気のリズムを刻み歌うよ。",
     image:"rhythm.jpg",
     gallery:["images/rhythm.jpg","images/gallery/rhythm_g1.webp","images/gallery/rhythm_g2.webp","images/gallery/rhythm_g3.webp","images/gallery/rhythm_g4.webp","images/gallery/rhythm_g5.webp","images/gallery/rhythm_g6.webp"],
     sns:{ x:"https://x.com/mallo_rhythm", instagram:"https://www.instagram.com/mallo_rhythm", tiktok:"https://www.tiktok.com/@mallo_rhythm" } },
   { id:5, name:"秋風 ミミ澪", yomi:"あきかぜ みみお", color:"#eab308", colorLight:"#fef08a",
+    heroCopy:"頑張れる理由になりたい。",
     bio:"笑うとパッとまわりを照らす、太陽のようにハッピーなヒロイン。ハチャメチャに見えて実は努力家。目で追っているうちに、すぐお隣にいるかも……？",
     image:"mimio.jpg",
     gallery:["images/mimio.jpg","images/gallery/mimio_g1.webp","images/gallery/mimio_g2.webp","images/gallery/mimio_g3.webp","images/gallery/mimio_g4.webp"],
     sns:{ x:"https://x.com/mallo_mimimio", instagram:"https://www.instagram.com/mallo_mimimio", tiktok:"https://www.tiktok.com/@mimimiodayo" } },
   { id:6, name:"東雲 ふりる", yomi:"しののめ ふりる", color:"#10b981", colorLight:"#a7f3d0",
+    heroCopy:"大阪から、世界へ。",
     bio:"夜明けの空のような、圧倒的な透明感をまとったおしとやかな存在。その美しいひと声で誰もが振り返る、甘く優しい「ふりるの魔法」にかかってね。",
     image:"furiru.jpg",
     gallery:["images/furiru.jpg","images/gallery/furiru_g1.webp","images/gallery/furiru_g2.webp","images/gallery/furiru_g3.webp","images/gallery/furiru_g4.webp"],
     sns:{ x:"https://x.com/mallo_furiru", instagram:"https://www.instagram.com/mallo.furiru", tiktok:"https://www.tiktok.com/@mallo_furiru" } },
 ];
+
+// ============================================================
+// ヒーロースライダーを自動生成（各メンバーのgalleryの2枚目から採用）
+// gallery[0]はプロフィール写真固定なので、gallery[1]（追加写真の1枚目）を使う。
+// メンバーを追加・入れ替えするだけで自動的にヒーローにも反映される。
+// ============================================================
+SLIDES = MEMBERS.map(function(m){
+  var pic = (m.gallery && m.gallery.length > 1) ? m.gallery[1] : (m.gallery ? m.gallery[0] : "");
+  return { image: pic, copy: m.heroCopy || ("Hello ∵ Mallo") };
+}).filter(function(s){ return s.image; });
 
 // ============================================================
 // ① ヒーロースライダー
@@ -732,7 +742,7 @@ function buildSlides() {
   var slider = document.getElementById("heroSlider");
   var dots   = document.getElementById("sliderDots");
   var list   = SLIDES.filter(function(s){ return s.image; });
-  if (!list.length) list = [{ image:"images/slide2.jpg", copy:"やわらかいから、強い。" }];
+  if (!list.length) list = [{ image:"images/group.jpg", copy:"やわらかいから、強い。" }];
 
   slider.innerHTML = list.map(function(s, i) {
     return '<div class="hero-slide' + (i===0?' active':'') + '">' +
@@ -1358,6 +1368,7 @@ function copyPrompt() {
 var currentModalTab = 0;
 var galleryIdx = 0;
 var gallerySlides = [];
+var galleryTimer = null;
 
 function openMemberModal(id) {
   var m = null;
@@ -1420,6 +1431,7 @@ function closeMemberModal() {
   document.getElementById("memberModalOverlay").classList.remove("open");
   document.getElementById("memberModal").classList.remove("open");
   document.body.style.overflow = "";
+  galleryStopAutoplay();
 }
 
 function switchModalTab(idx) {
@@ -1433,6 +1445,8 @@ function switchModalTab(idx) {
   var w = 100 / tabs.length;
   bar.style.width = w + "%";
   bar.style.transform = "translateX(" + (idx * 100) + "%)";
+  // ギャラリータブ（idx=1）の時だけ自動再生
+  if (idx === 1) galleryStartAutoplay(); else galleryStopAutoplay();
 }
 
 function renderGallery() {
@@ -1445,6 +1459,18 @@ function renderGallery() {
   dots.innerHTML = gallerySlides.length > 1 ? gallerySlides.map(function(_, i){
     return '<button class="gallery-dot' + (i===0?' active':'') + '" onclick="galleryGoTo(' + i + ')"></button>';
   }).join("") : "";
+  galleryStartAutoplay();
+}
+
+function galleryStartAutoplay() {
+  if (galleryTimer) clearInterval(galleryTimer);
+  if (gallerySlides.length > 1) {
+    galleryTimer = setInterval(function(){ galleryGoTo(galleryIdx + 1); }, 3500);
+  }
+}
+
+function galleryStopAutoplay() {
+  if (galleryTimer) { clearInterval(galleryTimer); galleryTimer = null; }
 }
 
 function galleryGoTo(idx) {
@@ -1452,6 +1478,7 @@ function galleryGoTo(idx) {
   document.getElementById("galleryTrack").style.transform = "translateX(-" + (galleryIdx * 100) + "%)";
   var dots = document.querySelectorAll(".gallery-dot");
   dots.forEach(function(d, i){ d.classList.toggle("active", i === galleryIdx); });
+  galleryStartAutoplay(); // 手動操作時も自動再生のタイマーをリセット
 }
 
 function galleryMove(dir) { galleryGoTo(galleryIdx + dir); }
