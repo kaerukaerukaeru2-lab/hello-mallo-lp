@@ -245,6 +245,102 @@ header.nav{position:sticky;top:0;z-index:50;display:flex;align-items:center;just
 .link-member-sns{display:flex;gap:6px;margin-top:6px;}
 .link-member-sns a{border-radius:999px;padding:2px 8px;font-size:10px;color:var(--sub);background:var(--bg2);border:.5px solid var(--bdr);}
 
+/* ===== ヘルプモーダル ===== */
+:root {
+  --help-accent:      #ec4899;
+  --help-accent-dim:  rgba(236,72,153,0.2);
+  --help-bg:          rgba(255,248,251,0.98);
+  --help-border:      rgba(236,72,153,0.25);
+  --help-text:        #1a0812;
+  --help-text-dim:    #9d4e73;
+  --help-section-bg:  rgba(236,72,153,0.08);
+  --help-item-bg:     rgba(249,168,212,0.08);
+  --help-btn-size:    2rem;
+}
+#helpBtn {
+  width: var(--help-btn-size); height: var(--help-btn-size);
+  border-radius: 50%; border: 0.5px solid var(--bdr);
+  background: var(--bg2); color: var(--pk2);
+  font-size: 13px; font-weight: 700; cursor: pointer;
+  display: flex; align-items: center; justify-content: center;
+  transition: background .2s; -webkit-tap-highlight-color: transparent;
+  flex-shrink: 0;
+}
+#helpBtn:hover { background: var(--help-accent-dim); }
+#helpOverlay {
+  display: none; position: fixed; inset: 0; z-index: 910;
+  background: rgba(0,0,0,.5); backdrop-filter: blur(4px);
+  align-items: center; justify-content: center; padding: 1rem;
+}
+#helpOverlay.active { display: flex; }
+#helpModal {
+  position: relative; width: 100%; max-width: 480px; max-height: 85vh;
+  background: var(--help-bg); border: 1px solid var(--help-border);
+  border-radius: 1rem; overflow: hidden; display: flex; flex-direction: column;
+  box-shadow: 0 8px 40px rgba(0,0,0,.2);
+}
+#helpModal .help-header {
+  padding: .9rem 1.2rem; border-bottom: 1px solid var(--help-border);
+  display: flex; align-items: center; justify-content: space-between; flex-shrink: 0;
+}
+#helpModal .help-header-title { font-size: 1rem; font-weight: 700; color: var(--help-accent); letter-spacing: .05em; }
+#helpCloseBtn {
+  width: 2rem; height: 2rem; border-radius: 50%;
+  border: 1px solid var(--help-border); background: transparent;
+  color: var(--help-text-dim); font-size: 1.1rem; cursor: pointer;
+  display: flex; align-items: center; justify-content: center;
+  -webkit-tap-highlight-color: transparent;
+}
+#helpCopyPromptBtn {
+  display: block; width: calc(100% - 1.6rem); margin: .6rem .8rem .2rem;
+  padding: .65rem; background: var(--help-accent-dim);
+  border: 1px solid var(--help-border); border-radius: .5rem;
+  color: var(--help-accent); font-size: .85rem; font-weight: 700;
+  cursor: pointer; text-align: center; letter-spacing: .04em;
+  -webkit-tap-highlight-color: transparent; flex-shrink: 0;
+}
+#helpBody { overflow-y: auto; -webkit-overflow-scrolling: touch; padding: .8rem .8rem 1.2rem; flex: 1; }
+.help-section-title {
+  display: flex; align-items: center; gap: .4rem;
+  font-size: .75rem; font-weight: 700; letter-spacing: .12em;
+  color: var(--help-accent); text-transform: uppercase;
+  background: var(--help-section-bg); border-radius: .45rem;
+  padding: .45rem .7rem; margin-bottom: .4rem; margin-top: .6rem;
+}
+.help-section-title:first-child { margin-top: 0; }
+.help-item { border-radius: .5rem; overflow: hidden; margin-bottom: .3rem; }
+.help-item-trigger {
+  width: 100%; text-align: left; background: var(--help-item-bg);
+  border: 1px solid transparent; border-radius: .5rem;
+  color: var(--help-text); font-size: .88rem; font-weight: 600;
+  padding: .6rem .8rem; cursor: pointer;
+  display: flex; align-items: center; justify-content: space-between; gap: .5rem;
+  transition: border-color .15s; -webkit-tap-highlight-color: transparent;
+}
+.help-item-trigger.open { border-color: var(--help-accent-dim); border-bottom-left-radius:0; border-bottom-right-radius:0; background: rgba(236,72,153,.05); }
+.help-item-trigger .help-chevron { font-size: .7rem; color: var(--help-text-dim); transition: transform .2s; flex-shrink: 0; }
+.help-item-trigger.open .help-chevron { transform: rotate(180deg); }
+.help-item-body {
+  display: none; background: rgba(249,168,212,.04);
+  border: 1px solid var(--help-accent-dim); border-top: none;
+  border-bottom-left-radius: .5rem; border-bottom-right-radius: .5rem;
+  padding: .65rem .85rem .75rem; font-size: .83rem;
+  color: var(--help-text); line-height: 1.65;
+}
+.help-item-body.open { display: block; }
+.help-item-body .lesson-label {
+  font-size: .7rem; font-weight: 700; letter-spacing: .08em;
+  color: var(--help-text-dim); text-transform: uppercase;
+  margin-top: .5rem; margin-bottom: .15rem;
+}
+.help-item-body .lesson-label:first-child { margin-top: 0; }
+.help-item-body strong { color: var(--text); font-weight: 700; }
+.help-item-body code {
+  font-family: monospace; font-size: .78rem;
+  background: rgba(236,72,153,.08); border: 1px solid var(--bdr);
+  border-radius: .25rem; padding: .05em .35em; color: var(--pk3);
+}
+
 /* ===== メンバーモーダル ===== */
 .member-modal-overlay{position:fixed;inset:0;z-index:100;background:rgba(0,0,0,.45);backdrop-filter:blur(4px);opacity:0;pointer-events:none;transition:opacity .3s;}
 .member-modal-overlay.open{opacity:1;pointer-events:auto;}
@@ -333,6 +429,7 @@ footer .copyright{font-size:10px;letter-spacing:.04em;color:var(--muted);}
       <span class="bgm-track-label" id="bgmTrackLabel">1/3</span>
     </div>
     <div class="nav-sns" id="navSns"></div>
+    <button id="helpBtn" aria-label="ヘルプを開く">❓</button>
   </div>
 </header>
 
@@ -425,6 +522,18 @@ footer .copyright{font-size:10px;letter-spacing:.04em;color:var(--muted);}
   <div class="countdown" id="countdown">計算中...</div>
 
 </section>
+
+<!-- ===== ヘルプモーダル ===== -->
+<div id="helpOverlay" role="dialog" aria-modal="true" aria-labelledby="helpTitle">
+  <div id="helpModal">
+    <div class="help-header">
+      <span class="help-header-title" id="helpTitle">❓ このページの使い方</span>
+      <button id="helpCloseBtn" aria-label="閉じる">✕</button>
+    </div>
+    <button id="helpCopyPromptBtn">📋 バグチェック用プロンプトをコピー</button>
+    <div id="helpBody"></div>
+  </div>
+</div>
 
 <!-- ===== メンバーモーダル ===== -->
 <div class="member-modal-overlay" id="memberModalOverlay" onclick="closeMemberModal()"></div>
@@ -584,32 +693,32 @@ var MEMBERS = [
   { id:1, name:"月兎 まる",   yomi:"つきと まる",     color:"#ef4444", colorLight:"#fecdd3",
     bio:"赤いリボンがトレードマークの、真面目で負けず嫌いなかぐや姫。まるの魅力をまるっと全部受け止めて、夜空の月まで一緒に連れていってあげるね。",
     image:"maru.jpg",
-    gallery:["images/maru.jpg"],  // ギャラリー画像（images/フォルダに置いて追加）
+    gallery:["images/maru.jpg","images/gallery/maru_g1.webp","images/gallery/maru_g2.webp","images/gallery/maru_g3.webp","images/gallery/maru_g4.webp","images/gallery/maru_g5.webp"],
     sns:{ x:"https://x.com/mallo_maru0", instagram:"https://www.instagram.com/mallo_maru0", tiktok:"https://www.tiktok.com/@mallo_maru" } },
   { id:2, name:"苺乃 みぃみ", yomi:"いちの みぃみ",   color:"#ec4899", colorLight:"#fbcfe8",
     bio:"うさぎのようにぴょんぴょん跳ねるおんなのこ。ちょっぴり泣き虫だけど、可愛いだけじゃ終わらない。やわらかくて強い魅力でみんなをメロメロにしちゃいます。",
     image:"miimi.jpg",
-    gallery:["images/miimi.jpg"],
+    gallery:["images/miimi.jpg","images/gallery/miimi_g1.webp","images/gallery/miimi_g2.webp","images/gallery/miimi_g3.webp"],
     sns:{ x:"https://x.com/mallo_miimi", instagram:"https://www.instagram.com/mallo_miimi", tiktok:"https://www.tiktok.com/@mallo_miimi" } },
   { id:3, name:"月島 せいら", yomi:"つきしま せいら", color:"#f97316", colorLight:"#fed7aa",
     bio:"みんなに元気を届けるビタミン剤！「にゃ〜」と鳴いちゃう犬のように、褒めるとすぐ懐く寂しがり屋。目を離すと逃げちゃうのでしっかり見ていてね。",
     image:"seira.jpg",
-    gallery:["images/seira.jpg"],
+    gallery:["images/seira.jpg","images/gallery/seira_g1.webp","images/gallery/seira_g2.webp","images/gallery/seira_g3.webp","images/gallery/seira_g4.webp","images/gallery/seira_g5.webp"],
     sns:{ x:"https://x.com/mallo_seira", instagram:"https://www.instagram.com/mallo_seira", tiktok:"https://www.tiktok.com/@mallo_seira" } },
   { id:4, name:"白雪 りずむ", yomi:"しらゆき りずむ", color:"#3b82f6", colorLight:"#bfdbfe",
     bio:"美味しいものをモグモグ食べることが大好きな、ふわふわ小動物系女子。ときどき慌てちゃうけれど、ステージではいつでも本気のリズムを刻み歌うよ。",
     image:"rhythm.jpg",
-    gallery:["images/rhythm.jpg"],
+    gallery:["images/rhythm.jpg","images/gallery/rhythm_g1.webp","images/gallery/rhythm_g2.webp","images/gallery/rhythm_g3.webp","images/gallery/rhythm_g4.webp","images/gallery/rhythm_g5.webp","images/gallery/rhythm_g6.webp"],
     sns:{ x:"https://x.com/mallo_rhythm", instagram:"https://www.instagram.com/mallo_rhythm", tiktok:"https://www.tiktok.com/@mallo_rhythm" } },
   { id:5, name:"秋風 ミミ澪", yomi:"あきかぜ みみお", color:"#eab308", colorLight:"#fef08a",
     bio:"笑うとパッとまわりを照らす、太陽のようにハッピーなヒロイン。ハチャメチャに見えて実は努力家。目で追っているうちに、すぐお隣にいるかも……？",
     image:"mimio.jpg",
-    gallery:["images/mimio.jpg"],
+    gallery:["images/mimio.jpg","images/gallery/mimio_g1.webp","images/gallery/mimio_g2.webp","images/gallery/mimio_g3.webp","images/gallery/mimio_g4.webp"],
     sns:{ x:"https://x.com/mallo_mimimio", instagram:"https://www.instagram.com/mallo_mimimio", tiktok:"https://www.tiktok.com/@mimimiodayo" } },
   { id:6, name:"東雲 ふりる", yomi:"しののめ ふりる", color:"#10b981", colorLight:"#a7f3d0",
     bio:"夜明けの空のような、圧倒的な透明感をまとったおしとやかな存在。その美しいひと声で誰もが振り返る、甘く優しい「ふりるの魔法」にかかってね。",
     image:"furiru.jpg",
-    gallery:["images/furiru.jpg"],
+    gallery:["images/furiru.jpg","images/gallery/furiru_g1.webp","images/gallery/furiru_g2.webp","images/gallery/furiru_g3.webp","images/gallery/furiru_g4.webp"],
     sns:{ x:"https://x.com/mallo_furiru", instagram:"https://www.instagram.com/mallo.furiru", tiktok:"https://www.tiktok.com/@mallo_furiru" } },
 ];
 
@@ -786,10 +895,42 @@ function loadYoutube() {
 var calYear, calMonth;
 
 function initCalendar() {
+  var hashTarget = parseEventHash();
   var now = new Date();
-  calYear  = now.getFullYear();
-  calMonth = now.getMonth();
+  if (hashTarget) {
+    calYear  = hashTarget.year;
+    calMonth = hashTarget.month;
+  } else {
+    calYear  = now.getFullYear();
+    calMonth = now.getMonth();
+  }
   renderCalendar();
+  if (hashTarget) {
+    setTimeout(function(){ openAndScrollToEvent(hashTarget.cardId); }, 60);
+  }
+}
+
+// URLハッシュ #event-YYYY-MM-DD-index から対象イベントを特定
+function parseEventHash() {
+  var hash = window.location.hash.replace("#", "");
+  if (hash.indexOf("event-") !== 0) return null;
+  var rest = hash.slice(6); // "YYYY-MM-DD-index"
+  var parts = rest.split("-");
+  if (parts.length < 4) return null;
+  var y = parseInt(parts[0], 10), m = parseInt(parts[1], 10), d = parseInt(parts[2], 10), idx = parts[3];
+  if (!y || !m || !d) return null;
+  return {
+    year: y,
+    month: m - 1,
+    cardId: "ev-" + y + "-" + (m < 10 ? "0"+m : m) + "-" + (d < 10 ? "0"+d : d) + "-" + idx,
+  };
+}
+
+function openAndScrollToEvent(cardId) {
+  var el = document.getElementById(cardId);
+  if (!el) return;
+  el.classList.add("open");
+  el.scrollIntoView({ behavior:"smooth", block:"start" });
 }
 
 function calMove(dir) {
@@ -985,6 +1126,231 @@ updateCountdown();
 setInterval(updateCountdown, 60000);
 
 
+
+// ============================================================
+// ヘルプモーダル
+// ============================================================
+var helpData = {
+  howto: [
+    {
+      title: "🏠 ページ全体の見方",
+      body: `
+        <strong>Hello ∵ Mallo（ハローマロー）</strong>の公式ファンページです。<br><br>
+        上から順に：<br>
+        ① ヒーロースライダー（グループ写真）<br>
+        ② メンバー紹介カード<br>
+        ③ メンバー個人TikTok動画<br>
+        ④ ライブ・イベントカレンダー<br>
+        ⑤ 公式SNSリンク<br>
+        ⑥ デビューカウントダウン
+      `
+    },
+    {
+      title: "👆 メンバーカードをタップすると？",
+      body: `
+        メンバーカード（写真）をタップすると、下から詳細パネルが開きます。<br><br>
+        パネル内の3つのタブ：<br><br>
+        <strong>📋 プロフィール</strong><br>
+        自己紹介文と個人SNS（X・Instagram・TikTok）へのリンク<br><br>
+        <strong>🖼 ギャラリー</strong><br>
+        メンバーの写真を横スワイプで見られます<br><br>
+        <strong>🎵 動画</strong><br>
+        メンバーのTikTok動画サムネイル。タップするとTikTokが開きます<br><br>
+        パネルは下にスワイプするか✕ボタンで閉じられます。
+      `
+    },
+    {
+      title: "📅 ライブカレンダーの見方",
+      body: `
+        月ごとのカレンダーでライブ・イベント情報を確認できます。<br><br>
+        <strong>カレンダー上のピンクのドット</strong><br>
+        イベントがある日に表示されます。タップすると下のイベント詳細にジャンプします。<br><br>
+        <strong>＜ ＞ ボタン</strong><br>
+        月を前後に移動できます。<br><br>
+        <strong>チケット購入ボタン</strong><br>
+        チケットが販売されているイベントに表示されます。
+      `
+    },
+    {
+      title: "🎵 BGMの操作",
+      body: `
+        右上のプレーヤーで音楽を操作できます。<br><br>
+        <strong>▶ ボタン</strong>：再生・一時停止<br>
+        <strong>⏮ ⏭ ボタン</strong>：前の曲・次の曲<br>
+        <strong>1/3 の数字</strong>：現在の曲番号 / 全曲数<br><br>
+        ※ BGMファイルは <code>audio/bgm1.mp3</code> 〜 <code>audio/bgm3.mp3</code> を配置することで再生されます。
+      `
+    },
+    {
+      title: "🔗 SNSへのリンク",
+      body: `
+        <strong>ナビバー右上のアイコン</strong><br>
+        グループ公式のX・Instagram・TikTokへ直接アクセスできます。<br><br>
+        <strong>Linksセクション</strong><br>
+        グループ公式SNSのリンク一覧です。<br><br>
+        <strong>メンバーカードのSNSボタン</strong><br>
+        各メンバーの個人X・Instagram・TikTokへのリンクです。
+      `
+    },
+  ],
+  lessons: [
+    {
+      title: "単一HTMLファイル構成を崩さない",
+      body: `
+        <div class="lesson-label">① 何が問題だったか</div>
+        lives.json等の外部ファイルを作成したため、GitHubでの管理が複雑になった。
+
+        <div class="lesson-label">② どう解決したか</div>
+        全データ（LIVES・MEMBERS・SLIDES等）をindex.html内のJS配列に直書きする構成に戻した。
+
+        <div class="lesson-label">③ 次回Claudeへの指示</div>
+        JSONや外部JSファイルを絶対に作らない。全データはindex.html1枚のJS配列に直書きすること。
+      `
+    },
+    {
+      title: "ファイル名はindex.htmlで固定出力",
+      body: `
+        <div class="lesson-label">① 何が問題だったか</div>
+        present_filesで出力すると index(4).html のように連番になり、GitHubへの上書きアップロードができなかった。
+
+        <div class="lesson-label">② どう解決したか</div>
+        たっちゃんがリネームして対応（手間）。
+
+        <div class="lesson-label">③ 次回Claudeへの指示</div>
+        出力ファイルは必ずindex.htmlで固定。連番・別名禁止。
+      `
+    },
+    {
+      title: "alert()禁止・showToast()を使う",
+      body: `
+        <div class="lesson-label">① 何が問題だったか</div>
+        alert()はモバイル（Android Brave）で操作の邪魔になる。
+
+        <div class="lesson-label">② どう解決したか</div>
+        showToast()関数でボトムに小さく通知を出す方式に変更。
+
+        <div class="lesson-label">③ 次回Claudeへの指示</div>
+        alert()/confirm()/prompt()を使わない。代わりにshowToast()を呼ぶこと。
+      `
+    },
+    {
+      title: "bodyスクロールとモーダル内スクロールの干渉",
+      body: `
+        <div class="lesson-label">① 何が問題だったか</div>
+        メンバーモーダルやヘルプモーダルが開いているときにbodyがスクロールしてしまう。
+
+        <div class="lesson-label">② どう解決したか</div>
+        モーダルopen時に<code>document.body.style.overflow = 'hidden'</code>、close時に空文字に戻す。
+
+        <div class="lesson-label">③ 次回Claudeへの指示</div>
+        モーダルが複数ある場合、各open/close関数でoverflowを適切に管理すること。
+      `
+    },
+  ]
+};
+
+var COMMON_PROMPT =
+'【前提条件（必ず守れ）】\n' +
+'- スマホ（Android Brave）でGitHub Pages / Vercel公開の単一HTMLファイル\n' +
+'- vanilla HTML/CSS/JS のみ（フレームワーク・外部JSライブラリ禁止）\n' +
+'- 外部JSONファイル等を作らない。全データはindex.html内のJS配列に直書き\n' +
+'- 出力ファイル名は必ずindex.htmlで固定（連番・別名禁止）\n' +
+'- alert()/confirm()/prompt()禁止。showToast()を使う\n' +
+'- 既存機能を削除するな・UIを破壊するな\n';
+
+function stripHtml(html) {
+  var tmp = document.createElement('div');
+  tmp.innerHTML = html;
+  return (tmp.textContent || tmp.innerText || '').replace(/\s+/g, ' ').trim();
+}
+
+function buildPrompt() {
+  var lines = [COMMON_PROMPT, '【このアプリの教訓（過去のバグ・制約）】'];
+  for (var i = 0; i < helpData.lessons.length; i++) {
+    var l = helpData.lessons[i];
+    lines.push('・' + l.title + '\n  ' + stripHtml(l.body));
+  }
+  return lines.join('\n');
+}
+
+function copyPrompt() {
+  var text = buildPrompt();
+  navigator.clipboard.writeText(text).then(function() {
+    showToast('コピーしました！Claudeにそのまま貼ってください。');
+  }).catch(function() {
+    showToast('コピー失敗。手動でコピーしてください。');
+  });
+}
+
+(function initHelpModal() {
+  var overlay  = document.getElementById('helpOverlay');
+  var body     = document.getElementById('helpBody');
+  var closeBtn = document.getElementById('helpCloseBtn');
+  var openBtn  = document.getElementById('helpBtn');
+
+  function renderHelp() {
+    body.innerHTML = '';
+    body.appendChild(makeSection('📖 使い方', helpData.howto, 'howto'));
+    body.appendChild(makeSection('🧠 Claude用教訓', helpData.lessons, 'lesson'));
+  }
+
+  function makeSection(label, items, prefix) {
+    var wrap = document.createElement('div');
+    var title = document.createElement('div');
+    title.className = 'help-section-title';
+    title.textContent = label;
+    wrap.appendChild(title);
+    items.forEach(function(item, i) {
+      var id = prefix + '-' + i;
+      var row = document.createElement('div');
+      row.className = 'help-item';
+      var trigger = document.createElement('button');
+      trigger.className = 'help-item-trigger';
+      trigger.setAttribute('aria-expanded', 'false');
+      trigger.setAttribute('aria-controls', id);
+      trigger.innerHTML = '<span>' + escHtml(item.title) + '</span><span class="help-chevron">▼</span>';
+      var panel = document.createElement('div');
+      panel.className = 'help-item-body';
+      panel.id = id;
+      panel.innerHTML = item.body;
+      trigger.addEventListener('click', function() {
+        var isOpen = trigger.classList.contains('open');
+        wrap.querySelectorAll('.help-item-trigger.open').forEach(function(t) {
+          t.classList.remove('open');
+          t.setAttribute('aria-expanded', 'false');
+          document.getElementById(t.getAttribute('aria-controls')).classList.remove('open');
+        });
+        if (!isOpen) {
+          trigger.classList.add('open');
+          trigger.setAttribute('aria-expanded', 'true');
+          panel.classList.add('open');
+        }
+      });
+      row.appendChild(trigger); row.appendChild(panel); wrap.appendChild(row);
+    });
+    return wrap;
+  }
+
+  function escHtml(str) {
+    return str.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');
+  }
+
+  function openHelp() {
+    renderHelp();
+    overlay.classList.add('active');
+    document.body.style.overflow = 'hidden';
+  }
+  function closeHelp() {
+    overlay.classList.remove('active');
+    document.body.style.overflow = '';
+  }
+
+  openBtn.addEventListener('click', openHelp);
+  closeBtn.addEventListener('click', closeHelp);
+  document.getElementById('helpCopyPromptBtn').addEventListener('click', copyPrompt);
+  overlay.addEventListener('click', function(e) { if (e.target === overlay) closeHelp(); });
+  document.addEventListener('keydown', function(e) { if (e.key === 'Escape') closeHelp(); });
+})();
 
 // ============================================================
 // メンバーモーダル
