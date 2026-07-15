@@ -615,6 +615,42 @@ var MEMBER_TIKTOKS = [
   { name:"東雲 ふりる", thumb:"images/tiktok_furiru.jpg", url:"https://vt.tiktok.com/ZSCK3bJXG/", color:"#10b981" },
 ];
 
+// ── メンバー詳細モーダル「動画」タブ専用：1人最大6本まで登録可 ──
+// URLだけ追加すればOK。サムネイルはTikTok公式oEmbedから自動取得するので画像の用意は不要。
+// 空文字("")のままなら「未登録」として表示されない。
+var MEMBER_VIDEOS = {
+  "月兎 まる":   ["https://vt.tiktok.com/ZSCK76Mxu/", "https://vt.tiktok.com/ZSXAea3Pg/", "https://vt.tiktok.com/ZSXAesksq/", "https://vt.tiktok.com/ZSXAeKhSR/", "https://vt.tiktok.com/ZSXAemW9n/", "https://vt.tiktok.com/ZSXAeC6Ce/"],
+  "苺乃 みぃみ": ["https://vt.tiktok.com/ZSCKvRQ93/", "https://vt.tiktok.com/ZSXAdT6oE/", "https://vt.tiktok.com/ZSXAR42pL/", "https://vt.tiktok.com/ZSXARbEPe/", "https://vt.tiktok.com/ZSXAR4w1a/", "https://vt.tiktok.com/ZSXARU4mM/"],
+  "月島 せいら": ["https://vt.tiktok.com/ZSCKcYmtr/", "https://vt.tiktok.com/ZSXAd52VP/", "https://vt.tiktok.com/ZSXARRAGp/", "https://vt.tiktok.com/ZSXAdw6E9/", "https://vt.tiktok.com/ZSXARerhL/", "https://vt.tiktok.com/ZSXARjVMG/"],
+  "白雪 りずむ": ["https://vt.tiktok.com/ZSCK3euWX/", "https://vt.tiktok.com/ZSXAeTUeC/", "https://vt.tiktok.com/ZSXAdyj6Y/", "https://vt.tiktok.com/ZSXAd6XN5/", "https://vt.tiktok.com/ZSXAd2qTA/", "https://vt.tiktok.com/ZSXAdYJuY/"],
+  "秋風 ミミ澪": ["https://vt.tiktok.com/ZSCK37een/", "https://vt.tiktok.com/ZSXAdncoc/", "https://vt.tiktok.com/ZSXAd4BeD/", "https://vt.tiktok.com/ZSXAd7xg7/", "https://vt.tiktok.com/ZSXAdu325/", "https://vt.tiktok.com/ZSXAdfkWx/"],
+  "東雲 ふりる": ["https://vt.tiktok.com/ZSCK3bJXG/", "https://vt.tiktok.com/ZSXARE2oT/", "https://vt.tiktok.com/ZSXA8NAao/", "", "", ""],
+};
+
+// TikTok oEmbedのサムネイルをキャッシュ（同じ動画を何度も取得しないように）
+var tiktokThumbCache = {};
+
+function fetchTiktokThumb(url, imgElId) {
+  if (tiktokThumbCache[url]) {
+    applyTiktokThumb(imgElId, tiktokThumbCache[url]);
+    return;
+  }
+  fetch("https://www.tiktok.com/oembed?url=" + encodeURIComponent(url))
+    .then(function(res){ return res.json(); })
+    .then(function(data){
+      if (data && data.thumbnail_url) {
+        tiktokThumbCache[url] = data.thumbnail_url;
+        applyTiktokThumb(imgElId, data.thumbnail_url);
+      }
+    })
+    .catch(function(){ /* 取得失敗時はグラデーションのまま */ });
+}
+
+function applyTiktokThumb(imgElId, src) {
+  var el = document.getElementById(imgElId);
+  if (el) el.style.backgroundImage = "url(" + src + ")";
+}
+
 // ── YouTube動画（16:9、1枚）──
 // embedId: watch?v= 以降のID　thumb: サムネイル（省略可）
 var YOUTUBE = {
@@ -700,7 +736,7 @@ var MEMBERS = [
     heroCopy:"やるからには、全力で。",
     bio:"うさぎのようにぴょんぴょん跳ねるおんなのこ。ちょっぴり泣き虫だけど、可愛いだけじゃ終わらない。やわらかくて強い魅力でみんなをメロメロにしちゃいます。",
     image:"miimi.jpg",
-    gallery:["images/miimi.jpg","images/gallery/miimi_g1.webp","images/gallery/miimi_g2.webp","images/gallery/miimi_g3.webp"],
+    gallery:["images/miimi.jpg","images/gallery/miimi_g1.webp","images/gallery/miimi_g2.webp","images/gallery/miimi_g3.webp","images/gallery/miimi_g4.webp"],
     sns:{ x:"https://x.com/mallo_miimi", instagram:"https://www.instagram.com/mallo_miimi", tiktok:"https://www.tiktok.com/@mallo_miimi" } },
   { id:3, name:"月島 せいら", yomi:"つきしま せいら", color:"#f97316", colorLight:"#fed7aa",
     heroCopy:"完璧になるまで。",
@@ -724,7 +760,7 @@ var MEMBERS = [
     heroCopy:"大阪から、世界へ。",
     bio:"夜明けの空のような、圧倒的な透明感をまとったおしとやかな存在。その美しいひと声で誰もが振り返る、甘く優しい「ふりるの魔法」にかかってね。",
     image:"furiru.jpg",
-    gallery:["images/furiru.jpg","images/gallery/furiru_g1.webp","images/gallery/furiru_g2.webp","images/gallery/furiru_g3.webp","images/gallery/furiru_g4.webp"],
+    gallery:["images/furiru.jpg","images/gallery/furiru_g1.webp","images/gallery/furiru_g2.webp","images/gallery/furiru_g3.webp","images/gallery/furiru_g4.webp","images/gallery/furiru_g5.webp"],
     sns:{ x:"https://x.com/mallo_furiru", instagram:"https://www.instagram.com/mallo.furiru", tiktok:"https://www.tiktok.com/@mallo_furiru" } },
 ];
 
@@ -1396,20 +1432,21 @@ function openMemberModal(id) {
   galleryIdx = 0;
   renderGallery();
 
-  // 動画タブ（MEMBER_TIKTOKSから該当メンバーを検索）
-  var tiktokData = null;
-  for (var j = 0; j < MEMBER_TIKTOKS.length; j++) {
-    if (MEMBER_TIKTOKS[j].name === m.name) { tiktokData = MEMBER_TIKTOKS[j]; break; }
-  }
+  // 動画タブ（MEMBER_VIDEOSから該当メンバーの最大6本を取得）
   var tiktokGrid = document.getElementById("modalTiktokGrid");
-  if (tiktokData && tiktokData.url) {
-    var thumbHtml = tiktokData.thumb
-      ? '<div class="mt-bg"><img src="' + tiktokData.thumb + '" alt="' + tiktokData.name + '" onerror="this.parentNode.style.background=\'linear-gradient(135deg,#fce7f3,#fbcfe8)\'"></div>'
-      : '<div class="mt-bg" style="background:linear-gradient(135deg,#fce7f3,#fbcfe8)"></div>';
-    tiktokGrid.innerHTML = '<a href="' + tiktokData.url + '" target="_blank" rel="noopener noreferrer" class="modal-tiktok-card" style="border-bottom:3px solid ' + tiktokData.color + '">' +
-      thumbHtml +
-      '<div class="mt-overlay"><p class="mt-name">' + tiktokData.name + '</p><span class="mt-badge">TikTok</span></div>' +
-    '</a>';
+  var videoUrls = (MEMBER_VIDEOS[m.name] || []).filter(function(u){ return !!u; }).slice(0, 6);
+  if (videoUrls.length) {
+    tiktokGrid.innerHTML = videoUrls.map(function(url, vi){
+      var imgElId = "mtThumb_" + m.id + "_" + vi;
+      return '<a href="' + url + '" target="_blank" rel="noopener noreferrer" class="modal-tiktok-card" style="border-bottom:3px solid ' + m.color + '">' +
+        '<div class="mt-bg" id="' + imgElId + '" style="background:linear-gradient(135deg,#fce7f3,#fbcfe8);background-size:cover;background-position:center"></div>' +
+        '<div class="mt-overlay"><span class="mt-badge">TikTok</span></div>' +
+      '</a>';
+    }).join("");
+    // サムネイルは開いた後に非同期取得（初期表示はグラデーションでOK）
+    videoUrls.forEach(function(url, vi){
+      fetchTiktokThumb(url, "mtThumb_" + m.id + "_" + vi);
+    });
   } else {
     tiktokGrid.innerHTML = '<p style="font-size:12px;color:var(--muted);padding:8px 0">動画は準備中です</p>';
   }
