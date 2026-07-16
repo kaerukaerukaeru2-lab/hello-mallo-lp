@@ -538,7 +538,7 @@ footer .copyright{font-size:10px;letter-spacing:.04em;color:var(--muted);}
 <!-- ===== メンバーモーダル ===== -->
 <div class="member-modal-overlay" id="memberModalOverlay" onclick="closeMemberModal()"></div>
 <div class="member-modal" id="memberModal">
-  <div class="modal-handle-bar"><div class="modal-handle"></div></div>
+  <div class="modal-handle-bar" id="modalHandleBar"><div class="modal-handle"></div></div>
   <div class="modal-header">
     <div class="modal-header-img-ph" id="modalHeaderImgWrap"></div>
     <div>
@@ -1516,15 +1516,20 @@ function galleryGoTo(idx) {
 
 function galleryMove(dir) { galleryGoTo(galleryIdx + dir); }
 
-// モーダル外スワイプで閉じる（下スワイプ）
+// モーダル上部（つまみ＋ヘッダー）を下スワイプした時だけ閉じる
+// ※動画/ギャラリータブ内のスクロール操作と誤反応しないよう、対象をヘッダー部分のみに限定
 (function(){
   var startY = 0;
-  var modal = document.getElementById("memberModal");
-  modal.addEventListener("touchstart", function(e){ startY = e.touches[0].clientY; }, { passive:true });
-  modal.addEventListener("touchend", function(e){
-    var endY = e.changedTouches[0].clientY;
-    if (endY - startY > 80) closeMemberModal();
-  }, { passive:true });
+  var handle = document.getElementById("modalHandleBar");
+  var header = document.querySelector(".modal-header");
+  [handle, header].forEach(function(el){
+    if (!el) return;
+    el.addEventListener("touchstart", function(e){ startY = e.touches[0].clientY; }, { passive:true });
+    el.addEventListener("touchend", function(e){
+      var endY = e.changedTouches[0].clientY;
+      if (endY - startY > 60) closeMemberModal();
+    }, { passive:true });
+  });
 })();
 
 // ============================================================
