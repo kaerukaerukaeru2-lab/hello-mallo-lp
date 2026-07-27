@@ -128,6 +128,12 @@ header.nav{position:sticky;top:0;z-index:50;display:flex;align-items:center;just
 .members-carousel{display:flex;gap:12px;overflow-x:auto;padding-bottom:16px;scroll-snap-type:x mandatory;scrollbar-width:none;}
 .members-carousel::-webkit-scrollbar{display:none;}
 @media(min-width:640px){.members-carousel{display:none;}}
+.members-carousel-wrap{position:relative;}
+@media(min-width:640px){.members-carousel-wrap .carousel-arrow{display:none;}}
+.carousel-arrow{position:absolute;top:40%;transform:translateY(-50%);z-index:5;width:30px;height:30px;border-radius:50%;border:.5px solid var(--bdr);background:rgba(255,255,255,.85);backdrop-filter:blur(4px);display:flex;align-items:center;justify-content:center;font-size:14px;color:var(--sub);cursor:pointer;transition:all .2s;line-height:1;box-shadow:0 2px 8px rgba(0,0,0,.08);}
+.carousel-arrow:active{background:#fff;transform:translateY(-50%) scale(.92);}
+.carousel-arrow.prev{left:-2px;}
+.carousel-arrow.next{right:-2px;}
 .member-card-wrap{flex:none;width:72vw;scroll-snap-align:start;}
 .member-card{overflow:hidden;border-radius:16px;background:#fff;border:.5px solid var(--bdr);transition:transform .2s;}
 .member-card:hover{transform:translateY(-4px);}
@@ -397,7 +403,7 @@ header.nav{position:sticky;top:0;z-index:50;display:flex;align-items:center;just
   background:linear-gradient(160deg,#fff8fb 0%,#fdf0f7 100%);
   position:relative;
 }
-.debut-card-img{width:100%;display:block;max-height:220px;object-fit:cover;object-position:top;}
+.debut-card-img{width:100%;height:220px;display:block;object-fit:cover;object-position:top;}
 .debut-card-img-ph{width:100%;height:140px;background:linear-gradient(135deg,#fce7f3,#fbcfe8);display:flex;align-items:center;justify-content:center;font-size:36px;}
 .debut-card-body{padding:20px 20px 0;}
 .debut-catch{font-size:11px;color:var(--pk2);font-weight:500;letter-spacing:.05em;margin-bottom:8px;text-align:center;}
@@ -637,7 +643,11 @@ footer .copyright{font-size:10px;letter-spacing:.04em;color:var(--muted);}
   <p class="section-label"><span class="line"></span>Members</p>
   <h2 class="members-title">6人のメンバー</h2>
   <div class="members-grid" id="membersGrid"></div>
-  <div class="members-carousel" id="membersCarousel"></div>
+  <div class="members-carousel-wrap" style="position:relative;">
+    <div class="members-carousel" id="membersCarousel"></div>
+    <button class="carousel-arrow prev" onclick="membersCarouselMove(-1)" aria-label="前のメンバー">&#8249;</button>
+    <button class="carousel-arrow next" onclick="membersCarouselMove(1)" aria-label="次のメンバー">&#8250;</button>
+  </div>
 </section>
 
 <!-- ===== メンバーTikTok動画 ===== -->
@@ -1103,6 +1113,17 @@ function slideTo(idx) {
 function slideMove(dir) {
   slideTo(slideIndex + dir);
   if (slideTimer) { clearInterval(slideTimer); slideTimer = setInterval(function(){ slideTo(slideIndex+1); }, 5000); }
+}
+
+// ============================================================
+// メンバーカルーセルの矢印送り（スマホ用横スクロール）
+// ============================================================
+function membersCarouselMove(dir) {
+  var track = document.getElementById("membersCarousel");
+  if (!track) return;
+  var card = track.querySelector(".member-card-wrap");
+  var step = card ? (card.offsetWidth + 12) : (track.clientWidth * 0.72); // 12はgap分
+  track.scrollBy({ left: dir * step, behavior: "smooth" });
 }
 
 // ============================================================
