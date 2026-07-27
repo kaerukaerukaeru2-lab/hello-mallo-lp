@@ -389,6 +389,82 @@ header.nav{position:sticky;top:0;z-index:50;display:flex;align-items:center;just
 .modal-tiktok-card .mt-name{font-size:10px;font-weight:600;color:#fff;}
 .modal-tiktok-card .mt-badge{font-size:9px;color:rgba(255,255,255,.8);background:rgba(0,0,0,.3);padding:2px 6px;border-radius:999px;width:fit-content;margin-top:2px;}
 
+/* ===== デビューライブ告知 ===== */
+.debut-announce{padding:32px 20px;background:#fff;}
+.debut-card{
+  border-radius:20px;overflow:hidden;
+  border:.5px solid var(--bdr);
+  background:linear-gradient(160deg,#fff8fb 0%,#fdf0f7 100%);
+  position:relative;
+}
+.debut-card-img{width:100%;display:block;max-height:220px;object-fit:cover;object-position:top;}
+.debut-card-img-ph{width:100%;height:140px;background:linear-gradient(135deg,#fce7f3,#fbcfe8);display:flex;align-items:center;justify-content:center;font-size:36px;}
+.debut-card-body{padding:20px 20px 0;}
+.debut-catch{font-size:11px;color:var(--pk2);font-weight:500;letter-spacing:.05em;margin-bottom:8px;text-align:center;}
+.debut-title{font-size:20px;font-weight:600;color:var(--text);text-align:center;margin-bottom:16px;line-height:1.4;}
+.debut-meta{display:flex;align-items:center;justify-content:center;gap:0;margin-bottom:14px;}
+.debut-date-block{text-align:center;padding-right:18px;}
+.debut-date-num{font-size:32px;font-weight:300;color:var(--pk2);letter-spacing:-.02em;line-height:1;}
+.debut-date-sub{font-size:10px;color:var(--muted);letter-spacing:.08em;}
+.debut-meta-divider{width:1px;height:40px;background:var(--bdr);}
+.debut-venue-block{text-align:left;padding-left:18px;}
+.debut-venue-name{font-size:14px;font-weight:500;color:var(--text);}
+.debut-venue-sub{font-size:11px;color:var(--sub);}
+.debut-copy{font-size:12px;color:var(--sub);text-align:center;line-height:1.85;margin-bottom:18px;}
+.debut-ticket-btn{
+  display:flex;align-items:center;justify-content:center;gap:8px;
+  width:100%;padding:14px;border-radius:12px;
+  background:linear-gradient(135deg,var(--pk2),var(--pk3));
+  color:#fff;font-size:14px;font-weight:700;letter-spacing:.04em;
+  text-decoration:none;transition:opacity .2s;margin-bottom:10px;
+}
+.debut-ticket-btn:hover{opacity:.88;}
+.debut-detail-toggle{
+  width:100%;padding:12px;border-radius:12px;
+  border:.5px solid var(--bdr);background:transparent;
+  color:var(--sub);font-size:12px;cursor:pointer;
+  font-family:inherit;transition:all .2s;
+  display:flex;align-items:center;justify-content:center;gap:6px;
+}
+.debut-detail-toggle:hover{border-color:var(--pk2);color:var(--pk2);}
+.debut-detail-toggle .chevron{transition:transform .25s;font-size:10px;}
+.debut-detail-toggle.open .chevron{transform:rotate(180deg);}
+.debut-detail-body{
+  display:none;padding:16px 0 4px;
+  font-size:12px;color:var(--sub);line-height:1.9;
+}
+.debut-detail-body.open{display:block;}
+.debut-detail-row{display:flex;gap:12px;padding:8px 0;border-bottom:.5px solid var(--bdr);}
+.debut-detail-row:last-child{border-bottom:none;}
+.debut-detail-label{font-size:11px;font-weight:600;color:var(--text);min-width:44px;flex-shrink:0;}
+.debut-detail-val{font-size:12px;color:var(--sub);line-height:1.7;}
+.debut-card-footer{padding:12px 20px 20px;}
+
+/* ===== 固定告知バナー ===== */
+.fixed-banner{
+  position:fixed; bottom:0; left:0; right:0; z-index:200;
+  background:rgba(255,248,251,0.96); backdrop-filter:blur(10px);
+  border-top:.5px solid var(--bdr);
+  padding:10px 16px; cursor:pointer;
+  display:flex; align-items:center; gap:12px;
+  transition:transform .3s ease; -webkit-tap-highlight-color:transparent;
+}
+.fixed-banner:active{transform:scale(0.98);}
+.fixed-banner-img{
+  width:48px; height:48px; border-radius:8px; object-fit:cover; flex-shrink:0;
+  border:.5px solid var(--bdr);
+}
+.fixed-banner-img-ph{
+  width:48px; height:48px; border-radius:8px; flex-shrink:0;
+  background:linear-gradient(135deg,var(--pk),var(--pk2));
+  display:flex;align-items:center;justify-content:center;font-size:20px;
+}
+.fixed-banner-text{flex:1;min-width:0;}
+.fixed-banner-date{font-size:11px;color:var(--pk2);font-weight:600;margin-bottom:2px;}
+.fixed-banner-name{font-size:13px;font-weight:500;color:var(--text);white-space:nowrap;overflow:hidden;text-overflow:ellipsis;}
+.fixed-banner-arrow{font-size:18px;color:var(--pk2);flex-shrink:0;}
+body{padding-bottom:72px;}
+
 /* ===== Final CTA ===== */
 .cta-section{position:relative;overflow:hidden;padding:80px 28px;text-align:center;background:linear-gradient(140deg,#fdf2f8 0%,#fce7f3 30%,#fbcfe8 60%,#f9a8d4 100%);}
 .orb{position:absolute;pointer-events:none;border-radius:999px;}
@@ -462,6 +538,99 @@ footer .copyright{font-size:10px;letter-spacing:.04em;color:var(--muted);}
       Hello ∵ Mallo は、ひとりひとりの個性をそのまま抱きしめて、マシュマロみたいにやわらかい心で、大阪から世界へ夢を届けるガールズアイドルグループです。
     </p>
   </div>
+</section>
+
+<!-- ===== デビューライブ告知 ===== -->
+<section class="debut-announce">
+
+  <!-- デビューワンマンLIVE -->
+  <div class="debut-card" style="margin-bottom:16px;">
+    <img class="debut-card-img" src="images/live_debut.webp" alt="Hello ∵ Mallo デビューワンマンLIVE" onerror="this.style.display='none'">
+    <div class="debut-card-body">
+      <p class="debut-catch">デビューは、絶対ワンマンで輝くの！</p>
+      <h2 class="debut-title">Hello ∵ Mallo<br>デビューワンマンLIVE</h2>
+      <div class="debut-meta">
+        <div class="debut-date-block">
+          <p class="debut-date-num">09.12</p>
+          <p class="debut-date-sub">2026 SAT</p>
+        </div>
+        <div class="debut-meta-divider"></div>
+        <div class="debut-venue-block">
+          <p class="debut-venue-name">Club Vijon</p>
+          <p class="debut-venue-sub">（北堀江）</p>
+        </div>
+      </div>
+      <p class="debut-copy">不完全な彼女たちの、<br>世界で一番美しい「はじまり」。</p>
+      <a href="https://tiget.net/events/505247" target="_blank" rel="noopener noreferrer" class="debut-ticket-btn">
+        🎟️ チケット購入はこちら
+      </a>
+      <button class="debut-detail-toggle" id="debutDetailToggle" onclick="toggleDebutDetail()">
+        詳細情報を見る <span class="chevron">▾</span>
+      </button>
+    </div>
+    <div class="debut-card-footer">
+      <div class="debut-detail-body" id="debutDetailBody">
+        <div class="debut-detail-row">
+          <span class="debut-detail-label">日時</span>
+          <span class="debut-detail-val">2026年9月12日（土）<br>開場 18:30 ／ 開演 19:00</span>
+        </div>
+        <div class="debut-detail-row">
+          <span class="debut-detail-label">会場</span>
+          <span class="debut-detail-val">北堀江 club vijon</span>
+        </div>
+        <div class="debut-detail-row">
+          <span class="debut-detail-label">料金</span>
+          <span class="debut-detail-val">優先 ¥2,000 ／ 一般 ¥500（各1D別）<br>当日 +¥500（1D別）</span>
+        </div>
+        <div class="debut-detail-row">
+          <span class="debut-detail-label">出演</span>
+          <span class="debut-detail-val">Hello ∵ Mallo</span>
+        </div>
+        <div class="debut-detail-row">
+          <span class="debut-detail-label">撮影</span>
+          <span class="debut-detail-val">優先のみ可（動画・静止画）</span>
+        </div>
+        <div class="debut-detail-row">
+          <span class="debut-detail-label">タイム<br>テーブル</span>
+          <span class="debut-detail-val">OPEN 18:30 ／ START 19:00<br>19:00〜21:00　ワンマンLIVE<br>21:00〜22:00　特典会</span>
+        </div>
+
+        <!-- デビュー前LIVE（続きで表示） -->
+        <div style="margin-top:20px;padding-top:16px;border-top:1px solid var(--bdr);">
+          <img src="images/live_predebut.webp" alt="デビュー前LIVE" style="width:100%;border-radius:10px;margin-bottom:14px;" onerror="this.style.display='none'">
+          <p style="font-size:14px;font-weight:600;color:var(--text);margin-bottom:12px;">Hello ∵ Mallo デビュー前LIVE！</p>
+          <div class="debut-detail-row">
+            <span class="debut-detail-label">日時</span>
+            <span class="debut-detail-val">2026年9月12日（土）<br>開場 13:00 ／ 開演 13:20</span>
+          </div>
+          <div class="debut-detail-row">
+            <span class="debut-detail-label">会場</span>
+            <span class="debut-detail-val">北堀江 club vijon</span>
+          </div>
+          <div class="debut-detail-row">
+            <span class="debut-detail-label">料金</span>
+            <span class="debut-detail-val">優先 ¥2,000 ／ 一般 ¥500（各1D別）<br>当日 +¥500（1D別）</span>
+          </div>
+          <div class="debut-detail-row">
+            <span class="debut-detail-label">出演</span>
+            <span class="debut-detail-val">Hello ∵ Mallo ／ Lunouir Tiara ／ MellBell ／ パイナップルクラブ ／ プラリオン</span>
+          </div>
+          <div class="debut-detail-row">
+            <span class="debut-detail-label">撮影</span>
+            <span class="debut-detail-val">優先のみ可（動画・静止画）<br>※各アイドルのレギュレーション優先</span>
+          </div>
+          <div class="debut-detail-row">
+            <span class="debut-detail-label">特典会</span>
+            <span class="debut-detail-val">15:00〜</span>
+          </div>
+          <a href="https://tiget.net/events/505240" target="_blank" rel="noopener noreferrer" class="debut-ticket-btn" style="margin-top:14px;">
+            🎟️ デビュー前LIVEチケット
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+
 </section>
 
 <section id="members" class="members-section">
@@ -572,6 +741,17 @@ footer .copyright{font-size:10px;letter-spacing:.04em;color:var(--muted);}
       <div class="modal-tiktok-grid" id="modalTiktokGrid"></div>
     </div>
   </div>
+</div>
+
+<!-- ===== 固定告知バナー ===== -->
+<div class="fixed-banner" onclick="scrollToDebut()" role="button" aria-label="デビューライブ告知を見る">
+  <img class="fixed-banner-img" src="images/live_debut.webp" alt="デビューLIVE" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
+  <div class="fixed-banner-img-ph" style="display:none">🎤</div>
+  <div class="fixed-banner-text">
+    <p class="fixed-banner-date">9/12（土）</p>
+    <p class="fixed-banner-name">Hello ∵ Mallo デビューワンマンLIVE！</p>
+  </div>
+  <span class="fixed-banner-arrow">↑</span>
 </div>
 
 <footer>
@@ -728,19 +908,21 @@ var LIVES = [
   },
   {
     date: "2026-09-12",
-    time: "12:00",
+    time: "13:00",
     name: "Hello ∵ Mallo デビュー前LIVE！",
-    venue: "Club Vijon 堀江",
-    image: "",
-    ticketUrl: "",
+    venue: "北堀江 club vijon",
+    image: "images/live_predebut.webp",
+    ticketUrl: "https://tiget.net/events/505240",
+    detail: "開場 13:00 ／ 開演 13:20\n15:00〜 特典会\n\n料金：優先 ¥2,000 ／ 一般 ¥500（各1D別）\n当日 +¥500（1D別）\n※優先のみ撮影可（動画・静止画）\n※各アイドルのレギュレーション優先\n\n出演：Hello ∵ Mallo ／ Lunouir Tiara ／ MellBell ／ パイナップルクラブ ／ プラリオン",
   },
   {
     date: "2026-09-12",
-    time: "15:00",
+    time: "18:30",
     name: "Hello ∵ Mallo デビューワンマンLIVE",
-    venue: "club vijon",
-    image: "",
-    ticketUrl: "",
+    venue: "北堀江 club vijon",
+    image: "images/live_debut.webp",
+    ticketUrl: "https://tiget.net/events/505247",
+    detail: "開場 18:30 ／ 開演 19:00\n\n料金：優先 ¥2,000 ／ 一般 ¥500（各1D別）\n当日 +¥500（1D別）\n※優先のみ撮影可（動画・静止画）\n\nタイムテーブル：\n19:00〜21:00　ワンマンLIVE\n21:00〜22:00　特典会",
   },
 ];
 
@@ -748,36 +930,119 @@ var MEMBERS = [
   { id:1, name:"月兎 まる",   yomi:"つきと まる",     color:"#ef4444", colorLight:"#fecdd3",
     heroCopy:"不完全で、まぶしくて。",
     bio:"赤いリボンがトレードマークの、真面目で負けず嫌いなかぐや姫。まるの魅力をまるっと全部受け止めて、夜空の月まで一緒に連れていってあげるね。",
+    nickname:"まる、まるちゃん",
+    catchphrase:"みんなをまるっと笑顔に！",
+    profile:{
+      担当:"じゆう担当", 血液型:"B型", 身長:"157cm", 誕生日:"2004年6月14日",
+      チャームポイント:"右ほっぺたのえくぼと大きい目",
+      趣味:"ひとり旅",
+      特技:"韓国語、ダンス、タイピング",
+      好きな食べ物:"チョコチップクッキー、蟹味噌",
+      苦手な食べ物:"みたらし団子",
+      好きな色:"赤と白",
+      将来の夢:"日本一のアイドル！",
+    },
+    motto:"応援してくださるみなさんの毎日に、少しでも幸せや癒しを届けられる存在になりたいです。もらった愛を何倍にもして返せるように、初心を忘れず頑張ります！",
     image:"maru.jpg",
     gallery:["images/maru.jpg","images/gallery/maru_g1.webp","images/gallery/maru_g2.webp","images/gallery/maru_g3.webp","images/gallery/maru_g4.webp","images/gallery/maru_g5.webp"],
     sns:{ x:"https://x.com/mallo_maru0", instagram:"https://www.instagram.com/mallo_maru0", tiktok:"https://www.tiktok.com/@mallo_maru" } },
+
   { id:2, name:"苺乃 みぃみ", yomi:"いちの みぃみ",   color:"#ec4899", colorLight:"#fbcfe8",
     heroCopy:"やるからには、全力で。",
     bio:"うさぎのようにぴょんぴょん跳ねるおんなのこ。ちょっぴり泣き虫だけど、可愛いだけじゃ終わらない。やわらかくて強い魅力でみんなをメロメロにしちゃいます。",
+    nickname:"みぃみ、みぃちゃん",
+    catchphrase:"次は、私があなたの居場所をつくる。",
+    profile:{
+      担当:"あいされ担当", 血液型:"O型", 身長:"155cm", 誕生日:"2005年2月15日",
+      チャームポイント:"まんまるおめめ",
+      趣味:"ガチャガチャ巡り",
+      特技:"かわいい笑顔をつくること（いつでも全力アイドル！）",
+      好きな食べ物:"いちご、ぷりん",
+      苦手な食べ物:"苦いもの",
+      好きな色:"ぴんく",
+      将来の夢:"誰かの心の支えになるアイドル",
+    },
+    motto:"全力で楽しんで一生懸命がんばります！",
     image:"miimi.jpg",
     gallery:["images/miimi.jpg","images/gallery/miimi_g1.webp","images/gallery/miimi_g2.webp","images/gallery/miimi_g3.webp","images/gallery/miimi_g4.webp","images/gallery/miimi_g5.webp","images/gallery/miimi_g6.webp"],
     sns:{ x:"https://x.com/mallo_miimi", instagram:"https://www.instagram.com/mallo_miimi", tiktok:"https://www.tiktok.com/@mallo_miimi" } },
+
   { id:3, name:"月島 せいら", yomi:"つきしま せいら", color:"#f97316", colorLight:"#fed7aa",
     heroCopy:"完璧になるまで。",
     bio:"みんなに元気を届けるビタミン剤！「にゃ〜」と鳴いちゃう犬のように、褒めるとすぐ懐く寂しがり屋。目を離すと逃げちゃうのでしっかり見ていてね。",
+    nickname:"せいら",
+    catchphrase:"出会った人全員笑顔にする！",
+    profile:{
+      担当:"おひさま担当", 血液型:"A型", 身長:"164cm", 誕生日:"2026年5月28日",
+      チャームポイント:"笑った時に線になる目",
+      趣味:"ディズニーにインパすること",
+      特技:"スポーツ、ディズニーキャストさんのモノマネ",
+      好きな食べ物:"チョコレート、餃子、芋けんぴ",
+      苦手な食べ物:"コーヒー",
+      好きな色:"ピンク、オレンジ、ミントグリーン",
+      将来の夢:"おっきいステージでワンマンライブ！",
+    },
+    motto:"夢見ることができれば、それは実現できる！",
     image:"seira.jpg",
     gallery:["images/seira.jpg","images/gallery/seira_g1.webp","images/gallery/seira_g2.webp","images/gallery/seira_g3.webp","images/gallery/seira_g4.webp","images/gallery/seira_g5.webp"],
     sns:{ x:"https://x.com/mallo_seira", instagram:"https://www.instagram.com/mallo_seira", tiktok:"https://www.tiktok.com/@mallo_seira" } },
+
   { id:4, name:"白雪 りずむ", yomi:"しらゆき りずむ", color:"#3b82f6", colorLight:"#bfdbfe",
     heroCopy:"あなたを笑顔にするために。",
     bio:"美味しいものをモグモグ食べることが大好きな、ふわふわ小動物系女子。ときどき慌てちゃうけれど、ステージではいつでも本気のリズムを刻み歌うよ。",
+    nickname:"ずむちゃん",
+    catchphrase:"歌が降りてきた時、世界が変わる",
+    profile:{
+      担当:"ひらめき担当", 血液型:"B型", 身長:"150cm", 誕生日:"2005年12月21日",
+      チャームポイント:"綺麗に通る声",
+      趣味:"美味しいご飯を沢山食べること",
+      特技:"ゲーム",
+      好きな食べ物:"ラーメン、カツ丼、ポテト、ドーナツ",
+      苦手な食べ物:"トマト",
+      好きな色:"水色、白、桃色",
+      将来の夢:"どこまでも高く羽ばたくこと",
+    },
+    motto:"上限を決めず行けるところまで駆け上がっていきたいです。「和を以て貴しと為す」",
     image:"rhythm.jpg",
     gallery:["images/rhythm.jpg","images/gallery/rhythm_g1.webp","images/gallery/rhythm_g2.webp","images/gallery/rhythm_g3.webp","images/gallery/rhythm_g4.webp","images/gallery/rhythm_g5.webp","images/gallery/rhythm_g6.webp"],
     sns:{ x:"https://x.com/mallo_rhythm", instagram:"https://www.instagram.com/mallo_rhythm", tiktok:"https://www.tiktok.com/@mallo_rhythm" } },
+
   { id:5, name:"秋風 ミミ澪", yomi:"あきかぜ みみお", color:"#eab308", colorLight:"#fef08a",
     heroCopy:"頑張れる理由になりたい。",
     bio:"笑うとパッとまわりを照らす、太陽のようにハッピーなヒロイン。ハチャメチャに見えて実は努力家。目で追っているうちに、すぐお隣にいるかも……？",
+    nickname:"ミオ、みみみお",
+    catchphrase:"気づけば君のお隣です！",
+    profile:{
+      担当:"ギャップ担当", 血液型:"A型", 身長:"157cm", 誕生日:"2002年11月11日",
+      チャームポイント:"表情がコロコロ変わるところ",
+      趣味:"アニメ、美少女フィギュア集め",
+      特技:"いっぱい寝ること（どこでも寝れちゃう！）",
+      好きな食べ物:"ラム肉、白子",
+      苦手な食べ物:"パクチー",
+      好きな色:"黄色、黒",
+      将来の夢:"朝ごはんをのんびり楽しめるヒト",
+    },
+    motto:"まずはワンマン成功させたい 沢山の方に「Hello ∵ Mallo」を知ってもらえるように全力で頑張ります。それから先はファンの方とみんなで作り上げていきたい。",
     image:"mimio.jpg",
     gallery:["images/mimio.jpg","images/gallery/mimio_g1.webp","images/gallery/mimio_g2.webp","images/gallery/mimio_g3.webp","images/gallery/mimio_g4.webp"],
     sns:{ x:"https://x.com/mallo_mimimio", instagram:"https://www.instagram.com/mallo_mimimio", tiktok:"https://www.tiktok.com/@mimimiodayo" } },
+
   { id:6, name:"東雲 ふりる", yomi:"しののめ ふりる", color:"#10b981", colorLight:"#a7f3d0",
     heroCopy:"大阪から、世界へ。",
     bio:"夜明けの空のような、圧倒的な透明感をまとったおしとやかな存在。その美しいひと声で誰もが振り返る、甘く優しい「ふりるの魔法」にかかってね。",
+    nickname:"ふりるちゃん",
+    catchphrase:"毎日に優しい煌めきを！",
+    profile:{
+      担当:"いやし担当", 血液型:"A型", 身長:"152cm", 誕生日:"2007年2月28日",
+      チャームポイント:"ぷるぷるの唇",
+      趣味:"カフェ巡り、お散歩",
+      特技:"ギター、猫のモノマネ",
+      好きな食べ物:"チーズケーキ",
+      苦手な食べ物:"しいたけ",
+      好きな色:"クリーム色",
+      将来の夢:"ドームツアー！",
+    },
+    motto:"心に響くようなパフォーマンスができるように表現力を磨きたい！そして、メンバーと一緒に多くの人を笑顔にできる大きなグループになりたいです。",
     image:"furiru.jpg",
     gallery:["images/furiru.jpg","images/gallery/furiru_g1.webp","images/gallery/furiru_g2.webp","images/gallery/furiru_g3.webp","images/gallery/furiru_g4.webp","images/gallery/furiru_g5.webp"],
     sns:{ x:"https://x.com/mallo_furiru", instagram:"https://www.instagram.com/mallo.furiru", tiktok:"https://www.tiktok.com/@mallo_furiru" } },
@@ -1087,8 +1352,14 @@ function renderEventList() {
       ? '<p class="event-card-toggle">詳細あり <span class="arrow">▾</span></p>' : '';
     var detailImgHtml = live.detailImage
       ? '<img class="event-card-detail-img" src="' + live.detailImage + '" alt="タイムテーブル" onerror="this.style.display=\'none\'">' : '';
+    var shareText = live.name + '\n' + dateStr + '\n📍 ' + (live.venue||'') + (live.ticketUrl ? '\n🎟 チケット: ' + live.ticketUrl : '') + '\n\n#HelloMallo #ハローマロー';
+    var shareUrl = 'https://twitter.com/intent/tweet?text=' + encodeURIComponent(shareText);
+    var shareHtml = '<div style="display:flex;gap:8px;margin-top:12px;">' +
+      '<button onclick="event.stopPropagation();copyEventDetail(\'' + cardId + '\')" style="flex:1;padding:10px;border-radius:10px;border:.5px solid var(--bdr);background:var(--bg2);color:var(--sub);font-size:12px;cursor:pointer;font-family:inherit;">🗒 コピー</button>' +
+      '<a href="' + shareUrl + '" target="_blank" rel="noopener noreferrer" onclick="event.stopPropagation()" style="flex:1;padding:10px;border-radius:10px;background:#000;color:#fff;font-size:12px;text-align:center;display:flex;align-items:center;justify-content:center;gap:5px;font-weight:500;">𝕏 でシェアして応援！</a>' +
+    '</div>';
     var detailHtml = hasDetail
-      ? '<div class="event-card-detail"><div class="event-card-detail-inner">' + detailImgHtml + (live.detail ? live.detail.replace(/\n/g,'<br>') : '') + '</div></div>' : '';
+      ? '<div class="event-card-detail"><div class="event-card-detail-inner">' + detailImgHtml + (live.detail ? live.detail.replace(/\n/g,'<br>') : '') + shareHtml + '</div></div>' : '';
     var clickAttr = hasDetail ? ' data-clickable="1" onclick="toggleEventCard(\'' + cardId + '\')"' : '';
     return '<div class="event-card" id="' + cardId + '" data-date="' + live.date + '"' + clickAttr + '>' +
       imgHtml +
@@ -1413,6 +1684,43 @@ function copyPrompt() {
   document.addEventListener('keydown', function(e) { if (e.key === 'Escape') closeHelp(); });
 })();
 
+// デビューライブ詳細アコーディオン
+function toggleDebutDetail() {
+  var body   = document.getElementById("debutDetailBody");
+  var toggle = document.getElementById("debutDetailToggle");
+  var isOpen = body.classList.contains("open");
+  body.classList.toggle("open", !isOpen);
+  toggle.classList.toggle("open", !isOpen);
+  toggle.innerHTML = isOpen
+    ? '詳細情報を見る <span class="chevron">▾</span>'
+    : '詳細情報を閉じる <span class="chevron" style="transform:rotate(180deg)">▾</span>';
+}
+
+// 固定バナー→告知エリアへスクロール
+function scrollToDebut() {
+  var el = document.querySelector('.debut-announce');
+  if (el) el.scrollIntoView({ behavior:'smooth', block:'start' });
+}
+
+// イベント詳細コピー
+function copyEventDetail(cardId) {
+  var card = document.getElementById(cardId);
+  if (!card) return;
+  var detail = card.querySelector('.event-card-detail-inner');
+  if (!detail) return;
+  var text = detail.innerText || detail.textContent || '';
+  // シェアボタンのテキストは除外
+  var name  = (card.querySelector('.event-card-name') || {}).textContent || '';
+  var date  = (card.querySelector('.event-card-date') || {}).textContent || '';
+  var venue = (card.querySelector('.event-card-venue') || {}).textContent || '';
+  var copyText = name + '\n' + date + '\n' + venue + '\n\n' + text.replace(/🗒 コピー|𝕏 でシェアして応援！/g,'').trim();
+  navigator.clipboard.writeText(copyText).then(function(){
+    showToast('コピーしました！');
+  }).catch(function(){
+    showToast('コピーに失敗しました');
+  });
+}
+
 // ============================================================
 // メンバーモーダル
 // ============================================================
@@ -1437,11 +1745,44 @@ function openMemberModal(id) {
   document.getElementById("memberModal").style.setProperty("--member-color", m.color);
 
   // プロフィールタブ
-  document.getElementById("modalBio").textContent = m.bio;
+  var profileHtml = '';
+  // キャッチフレーズ
+  if (m.catchphrase) {
+    profileHtml += '<p style="font-size:13px;color:var(--pk2);font-weight:600;text-align:center;margin-bottom:6px;">「' + m.catchphrase + '」</p>';
+  }
+  // ニックネーム
+  if (m.nickname) {
+    profileHtml += '<p style="font-size:11px;color:var(--muted);text-align:center;margin-bottom:14px;">呼び方：' + m.nickname + '</p>';
+  }
+  // 自己紹介文
+  profileHtml += '<p style="font-size:13px;line-height:1.85;color:var(--sub);margin-bottom:16px;">' + m.bio + '</p>';
+  // プロフィール詳細
+  if (m.profile) {
+    profileHtml += '<div style="border-radius:10px;overflow:hidden;border:.5px solid var(--bdr);margin-bottom:16px;">';
+    var profileKeys = Object.keys(m.profile);
+    profileKeys.forEach(function(key, ki) {
+      var isLast = ki === profileKeys.length - 1;
+      profileHtml += '<div style="display:flex;gap:10px;padding:9px 12px;' + (isLast ? '' : 'border-bottom:.5px solid var(--bdr);') + 'background:' + (ki % 2 === 0 ? '#fff' : 'var(--bg2)') + '">' +
+        '<span style="font-size:11px;font-weight:600;color:var(--text);min-width:80px;flex-shrink:0;">' + key + '</span>' +
+        '<span style="font-size:12px;color:var(--sub);line-height:1.6;">' + m.profile[key] + '</span>' +
+      '</div>';
+    });
+    profileHtml += '</div>';
+  }
+  // Motto
+  if (m.motto) {
+    profileHtml += '<div style="background:linear-gradient(135deg,var(--bg2),#fff);border-radius:10px;padding:14px;border:.5px solid var(--bdr);margin-bottom:16px;">' +
+      '<p style="font-size:10px;font-weight:700;color:var(--pk2);letter-spacing:.12em;text-transform:uppercase;margin-bottom:6px;">✦ Motto</p>' +
+      '<p style="font-size:12px;color:var(--sub);line-height:1.85;">' + m.motto + '</p>' +
+    '</div>';
+  }
+  // SNSリンク
+  profileHtml += '<div id="modalSns" style="display:flex;gap:10px;flex-wrap:wrap;"></div>';
+  document.getElementById("modalPanel0").innerHTML = profileHtml;
   document.getElementById("modalSns").innerHTML = [
-    { href:m.sns.x,         icon:SNS_SVG.x,  label:"X"         },
-    { href:m.sns.instagram,  icon:SNS_SVG.instagram, label:"Instagram"  },
-    { href:m.sns.tiktok,     icon:SNS_SVG.tiktok,  label:"TikTok"    },
+    { href:m.sns.x,          icon:SNS_SVG.x,         label:"X"         },
+    { href:m.sns.instagram,  icon:SNS_SVG.instagram,  label:"Instagram"  },
+    { href:m.sns.tiktok,     icon:SNS_SVG.tiktok,     label:"TikTok"    },
   ].map(function(s){
     return '<a href="' + s.href + '" target="_blank" rel="noopener noreferrer" class="modal-sns-btn">' + s.icon + ' ' + s.label + '</a>';
   }).join("");
