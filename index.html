@@ -549,6 +549,20 @@ footer .copyright{font-size:10px;letter-spacing:.04em;color:var(--muted);}
 <!-- ===== デビューライブ告知 ===== -->
 <section class="debut-announce">
 
+  <!-- タブ切り替え -->
+  <div style="display:flex;gap:0;margin-bottom:16px;border-radius:12px;overflow:hidden;border:.5px solid var(--bdr);background:var(--bg2);">
+    <button id="debutTab0" onclick="switchDebutTab(0)"
+      style="flex:1;padding:10px;font-size:13px;font-weight:600;border:none;cursor:pointer;font-family:inherit;transition:all .2s;background:var(--pk2);color:#fff;border-radius:11px 0 0 11px;">
+      🎤 告知
+    </button>
+    <button id="debutTab1" onclick="switchDebutTab(1)"
+      style="flex:1;padding:10px;font-size:13px;font-weight:600;border:none;cursor:pointer;font-family:inherit;transition:all .2s;background:transparent;color:var(--sub);border-radius:0 11px 11px 0;">
+      🎫 フライヤー
+    </button>
+  </div>
+
+  <!-- タブ0：告知カード -->
+  <div id="debutPanel0">
   <!-- デビューワンマンLIVE -->
   <div class="debut-card" style="margin-bottom:16px;">
     <img class="debut-card-img" src="images/live_debut.webp" alt="Hello ∵ Mallo デビューワンマンLIVE" onerror="this.style.display='none'">
@@ -634,6 +648,33 @@ footer .copyright{font-size:10px;letter-spacing:.04em;color:var(--muted);}
           </a>
         </div>
       </div>
+    </div>
+  </div>
+  </div><!-- /#debutPanel0 -->
+
+  <!-- タブ1：フライヤー -->
+  <div id="debutPanel1" style="display:none;">
+    <div id="flyerView" style="background:linear-gradient(180deg,#ffffff 0%,#fff0f5 40%,#ffffff 70%,#ffedf3 100%);border-radius:16px;border:.5px solid var(--bdr);padding:28px 20px;text-align:center;position:relative;">
+
+      <!-- 実際のフライヤー画像（ピックアップ告知と同じもの） -->
+      <img src="images/live_debut.webp" alt="Hello ∵ Mallo デビューワンマンLIVE フライヤー" style="width:100%;border-radius:10px;margin-bottom:16px;display:block;" onerror="this.style.display='none'">
+
+      <!-- QRコードエリア -->
+      <div style="display:flex;justify-content:space-around;align-items:flex-start;background:rgba(255,255,255,0.7);border-radius:10px;padding:14px;border:1px solid #f7e1e6;margin-bottom:16px;">
+        <div style="display:flex;flex-direction:column;align-items:center;width:45%;">
+          <canvas id="qrX" width="80" height="80" style="margin-bottom:6px;"></canvas>
+          <p style="font-size:10px;font-weight:700;color:#6a6a6a;">公式X (@_HelloMallo)</p>
+        </div>
+        <div style="display:flex;flex-direction:column;align-items:center;width:45%;">
+          <canvas id="qrTicket" width="80" height="80" style="margin-bottom:6px;"></canvas>
+          <p style="font-size:10px;font-weight:700;color:#6a6a6a;">チケット予約</p>
+        </div>
+      </div>
+
+      <!-- 印刷ボタン -->
+      <button onclick="printFlyer()" style="width:100%;padding:12px;border-radius:10px;background:linear-gradient(135deg,var(--pk2),var(--pk3));color:#fff;font-size:13px;font-weight:700;border:none;cursor:pointer;font-family:inherit;letter-spacing:.05em;">
+        🖨️ 印刷する
+      </button>
     </div>
   </div>
 
@@ -1718,7 +1759,86 @@ function copyPrompt() {
   document.addEventListener('keydown', function(e) { if (e.key === 'Escape') closeHelp(); });
 })();
 
+// ============================================================
+// デビューライブ告知タブ
+// ============================================================
+function switchDebutTab(idx) {
+  var panels = [document.getElementById('debutPanel0'), document.getElementById('debutPanel1')];
+  var tabs   = [document.getElementById('debutTab0'),   document.getElementById('debutTab1')];
+  panels.forEach(function(p, i) { p.style.display = i === idx ? 'block' : 'none'; });
+  tabs.forEach(function(t, i) {
+    t.style.background = i === idx ? 'var(--pk2)' : 'transparent';
+    t.style.color      = i === idx ? '#fff'       : 'var(--sub)';
+  });
+  if (idx === 1) { renderQRCodes(); }
+}
+
+// 印刷
+function printFlyer() {
+  var el = document.getElementById('flyerView');
+  if (!el) return;
+  var win = window.open('', '_blank');
+  win.document.write('<html><head><title>Hello ∵ Mallo フライヤー</title><style>body{margin:0;display:flex;justify-content:center;align-items:center;min-height:100vh;background:#f9f6f7;}@media print{body{background:#fff;}}</style></head><body>' + el.outerHTML + '<script>window.onload=function(){window.print();}<\/script></body></html>');
+  win.document.close();
+}
+
+// QRコード生成（ライブラリなし・Canvas描画）
+var qrRendered = false;
+function renderQRCodes() {
+  if (qrRendered) return;
+  qrRendered = true;
+  generateQR('qrX',      'https://x.com/_HelloMallo');
+  generateQR('qrTicket', 'https://tiget.net/events/505247');
+}
+
+// QR生成（簡易版：CDN経由でqrcode.jsを使用）
+function generateQR(canvasId, url) {
+  var canvas = document.getElementById(canvasId);
+  if (!canvas) return;
+  // qrcode-generatorライブラリをCDNから動的ロード
+  if (typeof qrcode !== 'undefined') {
+    drawQR(canvas, url);
+    return;
+  }
+  var script = document.createElement('script');
+  script.src = 'https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js';
+  script.onload = function() {
+    // qrcodejsはcanvasに直接描画しないのでdiv経由で生成
+    var tmp = document.createElement('div');
+    tmp.style.display = 'none';
+    document.body.appendChild(tmp);
+    var qr = new QRCode(tmp, {
+      text: url, width: 80, height: 80,
+      colorDark: '#333333', colorLight: '#ffffff',
+      correctLevel: QRCode.CorrectLevel.M
+    });
+    setTimeout(function() {
+      var img = tmp.querySelector('img');
+      if (img) {
+        var ctx = canvas.getContext('2d');
+        var image = new Image();
+        image.onload = function() { ctx.drawImage(image, 0, 0, 80, 80); };
+        image.src = img.src;
+      }
+      document.body.removeChild(tmp);
+    }, 300);
+  };
+  script.onerror = function() {
+    // CDN失敗時はURLテキストを表示
+    var ctx = canvas.getContext('2d');
+    ctx.fillStyle = '#f0f0f0';
+    ctx.fillRect(0, 0, 80, 80);
+    ctx.fillStyle = '#666';
+    ctx.font = '8px sans-serif';
+    ctx.textAlign = 'center';
+    ctx.fillText('QR生成失敗', 40, 40);
+  };
+  document.head.appendChild(script);
+}
+
+// ============================================================
 // デビューライブ詳細アコーディオン
+// ============================================================
 function toggleDebutDetail() {
   var body   = document.getElementById("debutDetailBody");
   var toggle = document.getElementById("debutDetailToggle");
