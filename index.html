@@ -1385,12 +1385,13 @@ function renderEventList() {
       ? '<p class="event-card-toggle">詳細あり <span class="arrow">▾</span></p>' : '';
     var detailImgHtml = live.detailImage
       ? '<img class="event-card-detail-img" src="' + live.detailImage + '" alt="タイムテーブル" onerror="this.style.display=\'none\'">' : '';
-    var shareText = live.name + '\n' + dateStr + '\n📍 ' + (live.venue||'') + (live.ticketUrl ? '\n🎟 チケット: ' + live.ticketUrl : '') + '\n\n#HelloMallo #ハローマロー';
-    var shareUrl = 'https://twitter.com/intent/tweet?text=' + encodeURIComponent(shareText);
+    var shareText = live.name + '\n' + dateStr + '\n📍 ' + (live.venue||'') + (live.ticketUrl ? '\n🎟 チケット: ' + live.ticketUrl : '');
+    var shareUrl = 'https://x.com/intent/tweet?text=' + encodeURIComponent(shareText) + '&hashtags=' + encodeURIComponent('HelloMallo,ハローマロー');
     var shareHtml = '<div style="display:flex;gap:8px;margin-top:12px;">' +
       '<button onclick="event.stopPropagation();copyEventDetail(\'' + cardId + '\')" style="flex:1;padding:10px;border-radius:10px;border:.5px solid var(--bdr);background:var(--bg2);color:var(--sub);font-size:12px;cursor:pointer;font-family:inherit;">🗒 コピー</button>' +
       '<a href="' + shareUrl + '" target="_blank" rel="noopener noreferrer" onclick="event.stopPropagation()" style="flex:1;padding:10px;border-radius:10px;background:#000;color:#fff;font-size:12px;text-align:center;display:flex;align-items:center;justify-content:center;gap:5px;font-weight:500;">𝕏 でシェアして応援！</a>' +
-    '</div>';
+    '</div>' +
+    '<p style="font-size:10px;color:var(--muted);margin-top:6px;text-align:center;">※Xがうまく開かない場合は「🗒 コピー」→ Xアプリで貼り付けてください</p>';
     var detailHtml = hasDetail
       ? '<div class="event-card-detail"><div class="event-card-detail-inner">' + detailImgHtml + (live.detail ? live.detail.replace(/\n/g,'<br>') : '') + shareHtml + '</div></div>' : '';
     var clickAttr = hasDetail ? ' data-clickable="1" onclick="toggleEventCard(\'' + cardId + '\')"' : '';
@@ -1746,7 +1747,7 @@ function copyEventDetail(cardId) {
   var name  = (card.querySelector('.event-card-name') || {}).textContent || '';
   var date  = (card.querySelector('.event-card-date') || {}).textContent || '';
   var venue = (card.querySelector('.event-card-venue') || {}).textContent || '';
-  var copyText = name + '\n' + date + '\n' + venue + '\n\n' + text.replace(/🗒 コピー|𝕏 でシェアして応援！/g,'').trim();
+  var copyText = name + '\n' + date + '\n' + venue + '\n\n' + text.replace(/🗒 コピー|𝕏 でシェアして応援！|※Xがうまく開かない場合は「🗒 コピー」→ Xアプリで貼り付けてください/g,'').trim();
   navigator.clipboard.writeText(copyText).then(function(){
     showToast('コピーしました！');
   }).catch(function(){
