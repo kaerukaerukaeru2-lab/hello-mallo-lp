@@ -1778,7 +1778,15 @@ function printFlyer() {
   var el = document.getElementById('flyerView');
   if (!el) return;
   var win = window.open('', '_blank');
-  win.document.write('<html><head><title>Hello ∵ Mallo フライヤー</title><style>body{margin:0;display:flex;justify-content:center;align-items:center;min-height:100vh;background:#f9f6f7;}@media print{body{background:#fff;}}</style></head><body>' + el.outerHTML + '<script>window.onload=function(){window.print();}<\/script></body></html>');
+  win.document.write('<html><head><title>Hello ∴ Mallo フライヤー</title><style>' +
+    'body{margin:0;display:flex;justify-content:center;align-items:center;min-height:100vh;background:#f9f6f7;}' +
+    '@media print{' +
+      'body{background:#fff;}' +
+      '@page{margin:8mm;}' +
+      '#flyerView,#flyerView *{page-break-inside:avoid;break-inside:avoid;}' +
+      'img{max-width:100%;}' +
+    '}' +
+  '</style></head><body>' + el.outerHTML + '<script>window.onload=function(){window.print();}<\\/script></body></html>');
   win.document.close();
 }
 
