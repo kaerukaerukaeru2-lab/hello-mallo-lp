@@ -662,11 +662,11 @@ footer .copyright{font-size:10px;letter-spacing:.04em;color:var(--muted);}
       <!-- QRコードエリア -->
       <div style="display:flex;justify-content:space-around;align-items:flex-start;background:rgba(255,255,255,0.7);border-radius:10px;padding:14px;border:1px solid #f7e1e6;margin-bottom:16px;">
         <div style="display:flex;flex-direction:column;align-items:center;width:45%;">
-          <canvas id="qrX" width="80" height="80" style="margin-bottom:6px;"></canvas>
+          <img id="qrX" src="https://api.qrserver.com/v1/create-qr-code/?size=160x160&data=https%3A%2F%2Fx.com%2F_HelloMallo" width="80" height="80" alt="公式XのQRコード" style="margin-bottom:6px;border-radius:4px;" onerror="this.style.display='none'">
           <p style="font-size:10px;font-weight:700;color:#6a6a6a;">公式X (@_HelloMallo)</p>
         </div>
         <div style="display:flex;flex-direction:column;align-items:center;width:45%;">
-          <canvas id="qrTicket" width="80" height="80" style="margin-bottom:6px;"></canvas>
+          <img id="qrTicket" src="https://api.qrserver.com/v1/create-qr-code/?size=160x160&data=https%3A%2F%2Ftiget.net%2Fevents%2F505247" width="80" height="80" alt="チケット予約のQRコード" style="margin-bottom:6px;border-radius:4px;" onerror="this.style.display='none'">
           <p style="font-size:10px;font-weight:700;color:#6a6a6a;">チケット予約</p>
         </div>
       </div>
@@ -1770,7 +1770,7 @@ function switchDebutTab(idx) {
     t.style.background = i === idx ? 'var(--pk2)' : 'transparent';
     t.style.color      = i === idx ? '#fff'       : 'var(--sub)';
   });
-  if (idx === 1) { renderQRCodes(); }
+  if (idx === 1) { /* QRコードはimgタグで直接読み込むため処理不要 */ }
 }
 
 // 印刷
@@ -1780,60 +1780,6 @@ function printFlyer() {
   var win = window.open('', '_blank');
   win.document.write('<html><head><title>Hello ∵ Mallo フライヤー</title><style>body{margin:0;display:flex;justify-content:center;align-items:center;min-height:100vh;background:#f9f6f7;}@media print{body{background:#fff;}}</style></head><body>' + el.outerHTML + '<script>window.onload=function(){window.print();}<\/script></body></html>');
   win.document.close();
-}
-
-// QRコード生成（ライブラリなし・Canvas描画）
-var qrRendered = false;
-function renderQRCodes() {
-  if (qrRendered) return;
-  qrRendered = true;
-  generateQR('qrX',      'https://x.com/_HelloMallo');
-  generateQR('qrTicket', 'https://tiget.net/events/505247');
-}
-
-// QR生成（簡易版：CDN経由でqrcode.jsを使用）
-function generateQR(canvasId, url) {
-  var canvas = document.getElementById(canvasId);
-  if (!canvas) return;
-  // qrcode-generatorライブラリをCDNから動的ロード
-  if (typeof qrcode !== 'undefined') {
-    drawQR(canvas, url);
-    return;
-  }
-  var script = document.createElement('script');
-  script.src = 'https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js';
-  script.onload = function() {
-    // qrcodejsはcanvasに直接描画しないのでdiv経由で生成
-    var tmp = document.createElement('div');
-    tmp.style.display = 'none';
-    document.body.appendChild(tmp);
-    var qr = new QRCode(tmp, {
-      text: url, width: 80, height: 80,
-      colorDark: '#333333', colorLight: '#ffffff',
-      correctLevel: QRCode.CorrectLevel.M
-    });
-    setTimeout(function() {
-      var img = tmp.querySelector('img');
-      if (img) {
-        var ctx = canvas.getContext('2d');
-        var image = new Image();
-        image.onload = function() { ctx.drawImage(image, 0, 0, 80, 80); };
-        image.src = img.src;
-      }
-      document.body.removeChild(tmp);
-    }, 300);
-  };
-  script.onerror = function() {
-    // CDN失敗時はURLテキストを表示
-    var ctx = canvas.getContext('2d');
-    ctx.fillStyle = '#f0f0f0';
-    ctx.fillRect(0, 0, 80, 80);
-    ctx.fillStyle = '#666';
-    ctx.font = '8px sans-serif';
-    ctx.textAlign = 'center';
-    ctx.fillText('QR生成失敗', 40, 40);
-  };
-  document.head.appendChild(script);
 }
 
 // ============================================================
